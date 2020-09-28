@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh_Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dynamic Programming,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="Dynamic Programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QBXT Jinan Day5">
+<meta property="og:url" content="http://yoursite.com/2019/04/13/QBXT-Jinan-Day5/index.html">
+<meta property="og:site_name" content="Zechariah&#39;s blog">
+<meta property="og:locale" content="zh_Hans">
+<meta property="og:image" content="https://i.loli.net/2019/04/21/5cbb5cc2b9741.jpg">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/50646.png">
+<meta property="og:updated_time" content="2020-02-27T13:01:43.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QBXT Jinan Day5">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/21/5cbb5cc2b9741.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/13/QBXT-Jinan-Day5/">
+
+
+
+
+
+  <title>QBXT Jinan Day5 | Zechariah's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <!--<a href="https://github.com/Zechariah2001"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>-->
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zechariah's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/QBXT-Jinan-Day5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zechariah">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zechariah's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">QBXT Jinan Day5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T10:42:45+08:00">
+                2019-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/游记/" itemprop="url" rel="index">
+                    <span itemprop="name">游记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/游记/2019清北学堂/" itemprop="url" rel="index">
+                    <span itemprop="name">2019清北学堂</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/13/QBXT-Jinan-Day5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/13/QBXT-Jinan-Day5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/13/QBXT-Jinan-Day5/" class="leancloud_visitors" data-flag-title="QBXT Jinan Day5">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.loli.net/2019/04/21/5cbb5cc2b9741.jpg" alt><br><a id="more"></a></p>
+<h1 id="Day5-上午——动态规划"><a href="#Day5-上午——动态规划" class="headerlink" title="Day5 上午——动态规划"></a>Day5 上午——动态规划</h1><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><h3 id="DP的类型"><a href="#DP的类型" class="headerlink" title="DP的类型"></a>DP的类型</h3><p>序列DP<br>数位DP<br>概率DP<br>树形DP<br>状态压缩DP<br>DP套DP  </p>
+<h3 id="DP的优化"><a href="#DP的优化" class="headerlink" title="DP的优化"></a>DP的优化</h3><p>形式优化<br>决策单调性优化<br>斜率优化<br>凸单调性DP优化  </p>
+<h3 id="例题、-HAOI2011-problem-a"><a href="#例题、-HAOI2011-problem-a" class="headerlink" title="例题、[HAOI2011]problem a"></a>例题、[HAOI2011]problem a</h3><p>题面见P2519  </p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>将问题转化一下，一个人说的话如果为真说明从第$a_i+1$到第$n-b_i$个人的分数是一样的.<br>如果我们把这样一个模型看成一条线段，那么在这$n$条线段中，相交且互不重合的线段一定不能同时为真话，所以问题就转化为选出尽可能多的不相交或完全重合的线段，且对于某条线段完全重合的个数要小于等于线段长。<br>所以做法就很明显了，先求出说最多的说真话的人数，用总人数去剪。具体做法为：将每个人对应的线段放在一起进行双关键字排序，合并完全包含的线段，每一个线段上存一个权值$V_i$，现在就是要从$m$个线段中取出不相交的线段使得权值和最大，这就可以DP了。<br>将所有线段按右端点排序，设$f_i$为到第$i$个线段的最优解。<br>转移的时候先二分$[1,i)$之间满足$R_k&lt;L_i$的$f_k$最大的$k$，转移方程为$f_i=\max(f_{i-1},f_k+V_i)$<br>最终答案为$n-f_m$</p>
+<h2 id="一、数位DP"><a href="#一、数位DP" class="headerlink" title="一、数位DP"></a>一、数位DP</h2><p>数位DP常用来统计或查找一个区间满足条件的数，然后按数位顺序DP，一般需要仔细分情况讨论，常见处理如将区间拆为$[1, R], [1, L)$，记忆化，预处理等。</p>
+<h3 id="例题一、-SDOI2013-淘金"><a href="#例题一、-SDOI2013-淘金" class="headerlink" title="例题一、[SDOI2013]淘金"></a>例题一、[SDOI2013]淘金</h3><p>题面见P3303  </p>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>考虑对于一个$i$，有多少$j$满足$f_j=i$，记为$v_i$<br>不难发现，$[1,n]$内的任何数各位相乘的结果最多只有4个质因子$2 ,3 ,5 ,7$，也就是说$i$可以被分解为$2^a\times 3^b\times5^c\times7^d$，这样的$i$在$n\le10^{12}$范围内其实是很少的这个个数设为$m$。<br>所以我们可以设计状态$f_{i,j,0/1}$表示从低位到高位的第$i$位，各位的乘积为$j$（离散化后），最后一维表示是否小于等于$N$<br>转移的时候枚举第$k$位，如果$k|j$<br>那么$dp_{i,j,0/1}$可以从$dp_{i-1,\dfrac{j}{k},0/1}$转移过来<br>最终我们是要求位置$(x,y)$的价值$v_x\times v_y$的前$K$大之和。<br>考虑将$v$从小到大排序，用大根堆维护$m$个指针$p_i$，分别表示的是$v_1$到$v_m$，维护堆的关键字为$v_{p_i}\times v_i$，贪心选择$K$个求和得到答案。</p>
+<h2 id="二、概率和期望DP"><a href="#二、概率和期望DP" class="headerlink" title="二、概率和期望DP"></a>二、概率和期望DP</h2><p>概率DP是一类求事件概率或期望的DP的总称。对于求概率问题，有时利用补集转化，或者将其转化为计数问题；而对于求期望则大多利用期望的线性性来解决问题。</p>
+<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>条件概率$P(y|x)$<br>联合概率$P(y,x)$<br>$P(x,y)=P(x,y)=P(y|x)P(x)=P(x)P(y)$<br>$P(x,y)=P(x|y)P(y)$<br>贝叶斯公式：$P(y|x)=\dfrac{P(x|y)P(y)}{P(x)}$</p>
+<h3 id="例题一、亚瑟王"><a href="#例题一、亚瑟王" class="headerlink" title="例题一、亚瑟王"></a>例题一、亚瑟王</h3><p>给你$N$张牌，每张牌有一个发动概率 $P_i$ 以及伤害 $D_i$，共有$R$回合，每回合会按编号从小到大依次考虑本次游戏中还未发动的卡牌，依次尝试发动，如果发动成功，进入下一回合，求期望伤害之和，共 $T$组数据。<br>$T\le444,N\le220,R\le132$  </p>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><p>$dp_{i,j}$表示前$i$张牌发动了$j$张的概率<br>求出每张牌发动的概率$sump_i=\sum\limits_{j=0}^rdp_{i-1,j}(1-(1-p_i)^{r-j})$<br>$dp$可以DP求得<br>$dp_{i,j}=\sum\limits_{j=0}^r(dp_{i-1,j}(1-p_i)^{r-j}+dp_{i-1,j-1}(1-(1-p_i)^{r-j+1}))$</p>
+<h3 id="例题二、Museum"><a href="#例题二、Museum" class="headerlink" title="例题二、Museum"></a>例题二、Museum</h3><p>题面见CF113D  </p>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>解法一、<br>设$ f_{i, j} $为第一个人在$ i$, 第二个人在$ j$,此时开始,之后在$ t $点相遇的概率.<br>枚举终点, 做$ n $次高斯消元即可,不过直接这样做是$ O(n^7)$的.注意到每次高斯消元时,$ Ax = B $只有$ B $发生了变化.于是把$ B $改成一个矩阵就可以$ O(n^6)$了.<br>最后通过$f_{i,j}=\sum\limits_{1\le i\le n}A_if_{i,i}$,令$f_{i,i}=1$就可以求出所有解  </p>
+<p>解法二、<br>设$f(i,j)$为第一个人在$i$，第二个人在$j$这种情况的期望出现次数，因为终止状态只会出现0/1，于是期望就是概率了。  </p>
+<h2 id="三、树形DP"><a href="#三、树形DP" class="headerlink" title="三、树形DP"></a>三、树形DP</h2><p>树形DP是指基于树的结构的动态规划，基础的有：  </p>
+<ul>
+<li>树的直径：DP记录子树内最长路  </li>
+<li>树的重心：DP记录子树大小  </li>
+<li>树上最大权独立集：DP记录子树的根是否选择  </li>
+<li>树形依赖背包：在dfs序上DP(即每次选择是否跳过子树)，或通过父节点的DP值传入孩子DP  </li>
+<li>虚树：在原树上只保留需要的点与他们的LCA的树称为虚树，建树方法为：将点按dfs序排序，一次将点加入，用一个栈维护树上的已加入的点和他们LCA的右链，每次加入一个点，与栈顶比较，便可以建出虚树  </li>
+<li>…</li>
+</ul>
+<h3 id="例题一、大工程"><a href="#例题一、大工程" class="headerlink" title="例题一、大工程"></a>例题一、大工程</h3><p>题面见P4103  </p>
+<h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><p>有着询问的和小于的限制的题是虚树的一个显著的特征。<br>建出虚树, 然后直接在上面树形DP。设$ f_i $为以$ i $为根的子树内路径的代价和,$ size_i $为$ i $的子树中询问点的个数,$ max_i $为$i$子树内的到$ i $的最长路,$ min_i $为最短路，则：<br>$f_i=f_{son_i}+size_i\times k-size_{son_i}$<br>$max_i = \max\left\{max_{son_i} + 1\right\}$<br>路径和答案是$ f_{root}$, 对于每个点,用它的最大与次大的儿子更新答案.如果他是被询问的点,则还可以用它每个儿子更新答案.</p>
+<h2 id="四、状态压缩DP"><a href="#四、状态压缩DP" class="headerlink" title="四、状态压缩DP"></a>四、状态压缩DP</h2><p>基于状态压缩的DP是由于状态用单个简单的变量直接存储存在空间的浪费，而采用压缩的状态的动态规划，例如：  </p>
+<ul>
+<li>插头DP：维护当前已决策和未决策的一条$Z$字形的轮廓线的插头状态，用括号序列配对插头，每次只需分情况讨论即可，但是这类DP的显著特点就是情况繁多，使用时须细心  </li>
+</ul>
+<h3 id="例题、"><a href="#例题、" class="headerlink" title="例题、"></a>例题、</h3><p>给一个$N$个点$M$条边的无向图，每个点有点权$A_i$，保证任意两点之间距离不超过$10$。<br>现在要你选取一些点，使得每个点要么自己被选，要么相邻的点被选。<br>一个方案的代价定义为选取的点的点权和，求最小代价。<br>$N\le20000,M\le25000,0\le A_i\le10000$  </p>
+<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>考虑如何利用 “距离不超过10” 这个限制.<br>不妨把生成树搞出来,那么这个树的深度$ \le 10$. 一个很显然的想法是DP时,对每个点设状态$ dp_{u, S}$, 表示以$ u $为根的子树,当$ u $到根这条路径上的点的选取情况是$S $时的最小代价.<br>由于,一个点可能会对通过非树边覆盖祖先,对于$S$中每个未选取的点,我们可以再记录一下它是否已经被覆盖.对于一个点状态数是$3^{10}$的.<br>用$3$进制来表示$S$. 规定一下$S$中某一位的值的意义:  </p>
+<ul>
+<li>0: 这个点被选取了  </li>
+<li>1: 这个点未被选取, 但已经被覆盖  </li>
+<li>2: 这个点未被选取, 且仍未被覆盖  </li>
+</ul>
+<p>在DFS序上做即可.转移并不困难,注意的是当DFS序中前一个点不是当前点的父亲时,要把$dp$值维护一下.<br>使用滚动数组,空间复杂度$ O(N + M + 3^{10})$,时间复杂度$O(M + 3^{10}N)$.对每个连通块都要做一遍.</p>
+<h3 id="例题一、"><a href="#例题一、" class="headerlink" title="例题一、"></a>例题一、</h3><p>对于任意一个正整数$N\le10^5$，求出${1,2,…,N}$的满足”若$x$在该子集中，则$2x,3x$不能在该子集”的子集个数。答案对$10^9+1$取模。<br>$N\le10^5$  </p>
+<h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><p>将题目转化为“一个网格图，相邻点不能选”的计数问题，枚举左上角就行了。  </p>
+<h2 id="五、DP套DP"><a href="#五、DP套DP" class="headerlink" title="五、DP套DP"></a>五、DP套DP</h2><p>某些DP问题的子判定问题不能简单的解决,而必须用另一个DP解决,此时就只能使用DP套DP的方法,即：外面的DP的状态是存的里层DP各个状态的值,利用里层的状态来判断外层的DP是否合法,类似的问题有LCS为定值的序列的方案数等等。</p>
+<h3 id="例题一、-1"><a href="#例题一、-1" class="headerlink" title="例题一、"></a>例题一、</h3><p>给你一个只由$ACGT$组成的字符串$S$，对于每个$0\le k\le |S|$，问有多少个只由$ACGT$组成的长度为$M$字符串$T$，使得$LCS(S,T)=k$.<br>$|S|\le15,M\le10^3$  </p>
+<h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><p>DP套DP，<br>算LCS的DP为$dp_{i,j}=max(dp_{i-1,j-1}+[T_i=S_i],dp_{i-1,j},dp_{i,j-1})$<br>这题的$ |S| $很小,不妨对于每个$ i$, 将$ j $不同时的DP值都记录下来,计个数即可.<br>但是直接记DP值状态数会爆内存,但是注意到相邻的DP值只会差$1$,所以我们可以用$ 2^{|S|} $的状态数将这些值记录下来.</p>
+<h2 id="六、DP的形式优化"><a href="#六、DP的形式优化" class="headerlink" title="六、DP的形式优化"></a>六、DP的形式优化</h2><p>有时在做一个DP问题时将会遇到时间或者空间复杂度过高的问题,而在DP的形式上优化便是有效的优化技巧, 典型的有预处理, 分阶段DP等:</p>
+<ul>
+<li>预处理: 我们可能发现, 在DP的过程中, 出现了重复的运算, 浪费了时间, 所以我们可以通过DP前预处理, 或者DP过程总处理出最值, 而达到为后面的DP提供便捷的功能与作用, 达到优化的目的</li>
+<li>分阶段DP: 在某些DP中将DP拆为一个个有特点阶段也许比将整个DP放在一起更加节省时间与空间, 所以对于彼此相对无关的转移, 可以分开考虑  </li>
+</ul>
+<h3 id="例题一、-2"><a href="#例题一、-2" class="headerlink" title="例题一、"></a>例题一、</h3><p>给定长度为$N,M$的数组$A,B$，求最长公共上升子序列。<br>$N,M\le5000$  </p>
+<h4 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h4><p>状态设计：$dp_{i,j}$表示$A$考虑到$i$，$B$考虑到$j$且必须选$j$的长度<br>当$A_i=B_j$时，有转移<br>$dp_{i,j}=\max\left\{dp_{i-1,k}|k&lt;j,B_k&lt;B_j\right\}+1$<br>由于$A_i=B_j$，这个限制事实上就是$B_k&lt;A_i$，对于同一个$i$限制是相同的。<br>我们可以从小到大枚举$j$，维护$\max\left\{dp_{i-1,k}|k&lt;j,B_k&lt;A_i\right\}$，直接转移即可。</p>
+<h3 id="例题二、"><a href="#例题二、" class="headerlink" title="例题二、"></a>例题二、</h3><p>现在有$n$个活动，每个活动需要占用$[l_i,r_i)$的时间，现在有两个会场，两个会场不能同时有活动，但是一个会场可以同时举办多个活动。<br>要求安排每个活动在哪个会场举行，或者不举行，使得举行活动较少的会场举行活动最多。同时，对$i\in[1,n] $求出如果强制活动$i$必须举行，那么所求答案是多少。<br>$n\le200$  </p>
+<h4 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h4><p>第一问，预处理出$[l,r)$表示$[l,r)$包含多少段区间，设$f_{i,j}$表示考虑了$[0,i)$区间，第一个会场举办$j$个活动的前提下，第二个会场最多举办多少活动。<br>第二问，处理出DP数组的前后缀，对于每个询问合并答案<br>令$g_{i,j}$表示考虑了$[i,size)$这个区间时的DP数组，不难想到：处理出$max_{l,r}$表示$[l,r)$区间一定选时的答案，然后合并前后缀。<br>考虑优化合并过程，我们发现前缀和后缀都具有单调性，双指针即可。<br>最终复杂度$O(n^3)$</p>
+<h2 id="七、决策单调性优化"><a href="#七、决策单调性优化" class="headerlink" title="七、决策单调性优化"></a>七、决策单调性优化</h2><p>DP问题的转移往往需要大量的时间, 如果我们能发现一些性质, 找到一些规律来优化 DP 决策转移的过程, 那么在时间上我们便能得到很大的优化, 常见的有四边形不等式优化, 以及一些1D/1D动态规划的优化。  </p>
+<h3 id="四边形不等式优化"><a href="#四边形不等式优化" class="headerlink" title="四边形不等式优化"></a>四边形不等式优化</h3><p>对于形如以下DP:<br>$f_{i,j}=f_{i,k-1}+f_{k,j}+w_{i,j}$<br>如果$w$满足四边形不等式：  </p>
+<ul>
+<li>任意$i\le i’\le j\le j’$，有$w_{i,j}+w_{i’,j’}\le w_{i’,j}+w_{i,j’}$  </li>
+<li>任意$i’\le i\le j\le j’$，有$w_{i,j}\le w_{i’,j’}$  </li>
+</ul>
+<p>那么也可证明：$f_{i,j}+f_{i’,j’}\le f_{i’,j}+f_{i,j’}$<br>而如果得到了这样的式子, 则就可以证明$ f_{i, j} $的决策一定在$f_{i, j − 1} $与$ f_{i − 1, j} $的决策之间:<br>$s_{i,j-1}\le s_{i,j}\le s_{i-1,j}$<br>四边形不等式的证明：<a href="http://wenku.baidu.com/link?url=344UHCQdTP9z2dFTCCGB3eBYHnlBeF0IAYdFeLmA_p0QU9nGv3L-6AyISk4zUKcTMBDrokvx_i-5BHh7H5ZFfjS3hf2j9jHdPCgUXwQjqS">http://wenku.baidu.com/link?url=344UHCQdTP9z2dFTCCGB3eBYHnlBeF0IAYdFeLmA_p0QU9nGv3L-6AyISk4zUKcTMBDrokvx_i-5BHh7H5ZFfjS3hf2j9jHdPCgUXwQjqS</a></p>
+<h3 id="1D-1D动态规划方程的优化"><a href="#1D-1D动态规划方程的优化" class="headerlink" title="1D/1D动态规划方程的优化"></a>1D/1D动态规划方程的优化</h3><p>$f_i=\min\left\{f_j+w_{j,i}|j\le i\right\}$<br>若$w$满足四边形不等式，则可证明$f_i$的决策也一定单调。</p>
+<h3 id="例题一、NOI2009-诗人小G"><a href="#例题一、NOI2009-诗人小G" class="headerlink" title="例题一、NOI2009 诗人小G"></a>例题一、NOI2009 诗人小G</h3><p>题面见P1912  </p>
+<h4 id="思路-8"><a href="#思路-8" class="headerlink" title="思路"></a>思路</h4><p>首先推出DP方程:$f_i=\min\left\{f_j+|sum_i-sum_j-l|^p\right\}$<br>令$w_{i,j}=|sum_i-sum_j-l|^p$，可以证明（不会证）$w$满足四边形不等式。<br>由上述结论，对于任意的$i\le j$，$f_i$的决策一定$\le f_j$的决策，于是我们用一个栈来维护DP的决策。<br><img src="https://cdn.luogu.org/upload/pic/50646.png" alt="图解决策过程"></p>
+<h2 id="八、斜率优化"><a href="#八、斜率优化" class="headerlink" title="八、斜率优化"></a>八、斜率优化</h2><p>斜率优化DP是当DP转移式形如<br>$f_i = \min\left\{f_j + k_ix_j + c_i + b_j\right\}$<br>将与$ j $无关的常数提出$ \min$，我们就是要求<br>$\min\left\{k_ix_j + f_j + b_j\right\}$<br>令$ y_j = f_j + b_j$，每次我们实际上是在所有过 $(x_j , y_j )$ 且斜率为$-k_i $的直线<br>$y_j =-k_ix_j+B$<br>中找到一个直线具有最小的$ B$，即纵截距最小。显然最优的$(x_j , y_j ) $一定在凸壳上。于是我们便可以使用维护凸壳来将时间复杂度变得更优。<br>根据$ x_j $和$ k_i $的单调性，我们可以：  </p>
+<ul>
+<li>$x_j $与$ k_i $同时单调: 单调队列/单调栈 (hdu 3507)  </li>
+<li>$x_j $单调,$ k_i $不单调: 单调队列/单调栈+二分斜率 (bzoj 2726)  </li>
+<li>$x_j $不单调: Splay维护凸壳 (bzoj 1492)  </li>
+</ul>
+<h2 id="九、凸单调性DP优化"><a href="#九、凸单调性DP优化" class="headerlink" title="九、凸单调性DP优化"></a>九、凸单调性DP优化</h2><h3 id="例题一、IOI2016-aliens"><a href="#例题一、IOI2016-aliens" class="headerlink" title="例题一、IOI2016 aliens"></a>例题一、IOI2016 aliens</h3><p>题面见uoj240  </p>
+<h4 id="思路-9"><a href="#思路-9" class="headerlink" title="思路"></a>思路</h4><p>将主对角线一边的点翻到另一边，去除一些无用点，首先可以推出一个显然的DP方程<br>  $dp_{i,j}=\max\limits_{k&lt;j}\left\{dp_{i-1,k}+(x_j-y_{k+1}+1)^2-\max(0,x_k-y_{k+1}+1)^2\right\} $<br>其中$dp_{i,j}$表示用$i$个正方形覆盖$j$个点所需要的最小并面积。<br>这个转移方程可以很容易斜率优化，时间复杂度就变成$O(nk)$<br>当然这并不能满足题目要求。<br>如果$dp_{k,n}$是一个关于$k$的凸函数，那么不妨二分$dp_{k-1,n}$和$dp_{k,n}$这两个状态之间的差值（用一个一次函数取切，得一个切点）。<br>将DP方程改为$dp_i=\max\limits_j&lt;i\left\{dp_j+(x_i-y_{j+1}+1)^2-\max(0,x_j-y_{j+1}+1)^2\right\}+x$<br>转移一次有$x$的代价，记录一下$dp_n$转移达到最优值所需要的最少转移次数，就可以二分了。</p>
+<h2 id="十、容斥DP"><a href="#十、容斥DP" class="headerlink" title="十、容斥DP"></a>十、容斥DP</h2><h3 id="例题一、-3"><a href="#例题一、-3" class="headerlink" title="例题一、"></a>例题一、</h3><p>给定$n$个数$a_1,a_2,…,a_n$，将这些数分成两组，使得两组中的元素$or$和相同，求方案数，答案对1e9+7取模。<br>$n\le50,0\le a_i\le2^{20}$  </p>
+<h4 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h4><p>按位考虑, 如果所有的数在某一位上都为$ 0$, 显然可以不用考虑.对于其它的位, 如果要满足题目的要求, 则必须满足所有这一位为$ 1$的数不能全部在同一组里. 虽然这个条件不好计数, 但是它的反面是很好计数的!<br>所以, 枚举至少有哪些二进制位不满足条件, 然后用并查集维护一下就行了.</p>
+<h3 id="例题二、-1"><a href="#例题二、-1" class="headerlink" title="例题二、"></a>例题二、</h3><p>给定一个$N$维超立方体，第$i$个维度的长度为$r_i$，同时给你一个$N$维超平面$x_1+x_2+…+x_n=S$。这个超平面把超立方体切成至多两部分，求圆点所在那一部分的面积。<br>$N\le500,A_i\le500,S\le10^9$  </p>
+<h4 id="思路-10"><a href="#思路-10" class="headerlink" title="思路"></a>思路</h4><p>有点超纲。。。学了微积分再补</p>
+<h3 id="例题三、-ZJOI2016-小星星"><a href="#例题三、-ZJOI2016-小星星" class="headerlink" title="例题三、[ZJOI2016]小星星"></a>例题三、[ZJOI2016]小星星</h3><p>题面见P3349  </p>
+<h4 id="思路-11"><a href="#思路-11" class="headerlink" title="思路"></a>思路</h4><p>首先考虑一个错误的树形DP. 设$ dp_{u, p} $表示考虑了以$ u $为根的这个子树, 并且根映射到原图的$ p $点. 这个显然可以$ O(n^3) $转移, 但是有什么问题呢?<br>不同的点可能映射到同一个点. 于是考虑容斥.<br>求出$ dp_S $表示映射的点集至多为$ S $时的答案, 然后就可以$O(2^nn^3) $做了.</p>
+<h3 id="容斥何时起作用"><a href="#容斥何时起作用" class="headerlink" title="容斥何时起作用"></a>容斥何时起作用</h3><ul>
+<li>$=$和$\not=$  </li>
+<li>$\min$和$\max$</li>
+<li>gcd和lcm  </li>
+<li>“恰好”和”至少”  </li>
+<li>…</li>
+</ul>
+<h3 id="容斥的理解"><a href="#容斥的理解" class="headerlink" title="容斥的理解"></a>容斥的理解</h3><p>给定一些条件，问全部满足的对象的个数<br>答案$=$所有对象$-$至少不满足其中一个的$+$至少不满足其中两个的$-$至少不满足其中三个的…<br>另一种理解：在所有物品中, 问在某个条件$C_0$下所有物品的贡献之和.构造一些相对容易计算贡献的条件$C_1,…,C_n$再对于每个条件构造容斥系数 $f_1,…,f_n$ 满足对于每个物品<br>$\sum\limits_{i=1}^{n}s_{C_i}f_i=s_{C_0}$<br>其中$s_{C_i}$表示这个物品在条件$C_i$下所产生的贡献.对于常见的计数问题, 物品的贡献只会是$0/1$, 表示这个物品是否满足此条件.  </p>
+<h3 id="凑系数"><a href="#凑系数" class="headerlink" title="凑系数"></a>凑系数</h3><h3 id="一个经典的错排问题"><a href="#一个经典的错排问题" class="headerlink" title="一个经典的错排问题"></a>一个经典的错排问题</h3><p>求长度为$n$的排列$a_1,…,a_n$的个数，满足$a_i\not=i$<br>错排数：排列的不动点，即$a_i=i$的位置.  </p>
+<h3 id="例题四、小学奥数（雾）"><a href="#例题四、小学奥数（雾）" class="headerlink" title="例题四、小学奥数（雾）"></a>例题四、小学奥数（雾）</h3><p>给定$m$个数$a_1,a_2,…,a_n$，统计$[1,n]$的整数中，满足$a_1,a_2,…,a_n$中有奇数个数整除它的个数。<br>$n\le10^9,m\le15$  </p>
+<h4 id="思路-12"><a href="#思路-12" class="headerlink" title="思路"></a>思路</h4><p>枚举$m$个数的一个子集，算出$lcm$，容斥一下。<br>对于每个数，如果它被$k$个数整除，则有<br>$\sum\limits_{i=0}^{k}C^i_kf_i=k\mod 2$<br>可以求出所有的$f_i$  </p>
+<h3 id="例题五、异或图"><a href="#例题五、异或图" class="headerlink" title="例题五、异或图"></a>例题五、异或图</h3><p>题面见bzoj4671  </p>
+<h4 id="思路-13"><a href="#思路-13" class="headerlink" title="思路"></a>思路</h4><p>容斥。首先枚举子集划分，强制连通性“至少”是这个划分，也就是说，不同子集的两个点之间一定没有边，相同子集的两个点则任意.<br>对于一个有$m$个联通块的图，容斥系数需要满足<br>$\sum\limits_{i=1}^{m}$  </p>
+<h3 id="例题六、-NOI2009-管道取珠"><a href="#例题六、-NOI2009-管道取珠" class="headerlink" title="例题六、[NOI2009]管道取珠"></a>例题六、[NOI2009]管道取珠</h3><p>题面见P1758  </p>
+<h4 id="技巧：平方处理"><a href="#技巧：平方处理" class="headerlink" title="技巧：平方处理"></a>技巧：平方处理</h4><h4 id="思路-14"><a href="#思路-14" class="headerlink" title="思路"></a>思路</h4><p>统计平方的和, 转化成统计有序对.<br>即统计有多少对$(wayA, wayB)$使得$wayA, wayB$均能得到相同的结果.</p>
+<h3 id="例题七、"><a href="#例题七、" class="headerlink" title="例题七、"></a>例题七、</h3><p>给定$S, T, K,$求每次$+1, −1,$用不超过$K$次操作从$S$变成$T$的方案数.每一时刻都不能为负<br>$S,T,K\le10^5$</p>
+<h4 id="技巧：反射法"><a href="#技巧：反射法" class="headerlink" title="技巧：反射法"></a>技巧：反射法</h4><p>在平面直角坐标系中画出图像($x $轴代表时间,$ y $轴代表当前的数值), 发现所有不合法的路径都可以沿$ y = −1 $反射到一条从$(-(S + 2), 0) $到$ (T, 0) $的路径.<br>直接组合数计算即可. 当然直接减一下转化为不能穿过对角线也是一样的.</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+          
+            
+          
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programming/" rel="tag"><i class="fa fa-tag"></i> Dynamic Programming</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/QBXT-Jinan-Day4/" rel="next" title="QBXT Jinan Day4">
+                <i class="fa fa-chevron-left"></i> QBXT Jinan Day4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/13/QBXT-Jinan-Day6/" rel="prev" title="QBXT Jinan Day6">
+                QBXT Jinan Day6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/1.png" alt="Zechariah">
+            
+              <p class="site-author-name" itemprop="name">Zechariah</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zechariah2001" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=3&id=2057873814&auto=0&height=32"></iframe>
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ffacs.xyz/" title="洛二" target="_blank">洛二</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://minagami.github.io/" title="zgj" target="_blank">zgj</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.wjyyy.top/" title="wjyyy" target="_blank">wjyyy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://owenowl.net/blogs/" title="OwenOwl" target="_blank">OwenOwl</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day5-上午——动态规划"><span class="nav-number">1.</span> <span class="nav-text">Day5 上午——动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#大纲"><span class="nav-number">1.1.</span> <span class="nav-text">大纲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DP的类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">DP的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP的优化"><span class="nav-number">1.1.2.</span> <span class="nav-text">DP的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题、-HAOI2011-problem-a"><span class="nav-number">1.1.3.</span> <span class="nav-text">例题、[HAOI2011]problem a</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数位DP"><span class="nav-number">1.2.</span> <span class="nav-text">一、数位DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、-SDOI2013-淘金"><span class="nav-number">1.2.1.</span> <span class="nav-text">例题一、[SDOI2013]淘金</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、概率和期望DP"><span class="nav-number">1.3.</span> <span class="nav-text">二、概率和期望DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯公式"><span class="nav-number">1.3.1.</span> <span class="nav-text">贝叶斯公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、亚瑟王"><span class="nav-number">1.3.2.</span> <span class="nav-text">例题一、亚瑟王</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题二、Museum"><span class="nav-number">1.3.3.</span> <span class="nav-text">例题二、Museum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-3"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、树形DP"><span class="nav-number">1.4.</span> <span class="nav-text">三、树形DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、大工程"><span class="nav-number">1.4.1.</span> <span class="nav-text">例题一、大工程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解答"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">解答</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、状态压缩DP"><span class="nav-number">1.5.</span> <span class="nav-text">四、状态压缩DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题、"><span class="nav-number">1.5.1.</span> <span class="nav-text">例题、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解法"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、"><span class="nav-number">1.5.2.</span> <span class="nav-text">例题一、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-4"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、DP套DP"><span class="nav-number">1.6.</span> <span class="nav-text">五、DP套DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">例题一、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-5"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、DP的形式优化"><span class="nav-number">1.7.</span> <span class="nav-text">六、DP的形式优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">例题一、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-6"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题二、"><span class="nav-number">1.7.2.</span> <span class="nav-text">例题二、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-7"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、决策单调性优化"><span class="nav-number">1.8.</span> <span class="nav-text">七、决策单调性优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四边形不等式优化"><span class="nav-number">1.8.1.</span> <span class="nav-text">四边形不等式优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1D-1D动态规划方程的优化"><span class="nav-number">1.8.2.</span> <span class="nav-text">1D/1D动态规划方程的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、NOI2009-诗人小G"><span class="nav-number">1.8.3.</span> <span class="nav-text">例题一、NOI2009 诗人小G</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-8"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、斜率优化"><span class="nav-number">1.9.</span> <span class="nav-text">八、斜率优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、凸单调性DP优化"><span class="nav-number">1.10.</span> <span class="nav-text">九、凸单调性DP优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、IOI2016-aliens"><span class="nav-number">1.10.1.</span> <span class="nav-text">例题一、IOI2016 aliens</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-9"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、容斥DP"><span class="nav-number">1.11.</span> <span class="nav-text">十、容斥DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题一、-3"><span class="nav-number">1.11.1.</span> <span class="nav-text">例题一、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解法-1"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题二、-1"><span class="nav-number">1.11.2.</span> <span class="nav-text">例题二、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-10"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题三、-ZJOI2016-小星星"><span class="nav-number">1.11.3.</span> <span class="nav-text">例题三、[ZJOI2016]小星星</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-11"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容斥何时起作用"><span class="nav-number">1.11.4.</span> <span class="nav-text">容斥何时起作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容斥的理解"><span class="nav-number">1.11.5.</span> <span class="nav-text">容斥的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#凑系数"><span class="nav-number">1.11.6.</span> <span class="nav-text">凑系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个经典的错排问题"><span class="nav-number">1.11.7.</span> <span class="nav-text">一个经典的错排问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题四、小学奥数（雾）"><span class="nav-number">1.11.8.</span> <span class="nav-text">例题四、小学奥数（雾）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-12"><span class="nav-number">1.11.8.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题五、异或图"><span class="nav-number">1.11.9.</span> <span class="nav-text">例题五、异或图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-13"><span class="nav-number">1.11.9.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题六、-NOI2009-管道取珠"><span class="nav-number">1.11.10.</span> <span class="nav-text">例题六、[NOI2009]管道取珠</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#技巧：平方处理"><span class="nav-number">1.11.10.1.</span> <span class="nav-text">技巧：平方处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-14"><span class="nav-number">1.11.10.2.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题七、"><span class="nav-number">1.11.11.</span> <span class="nav-text">例题七、</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#技巧：反射法"><span class="nav-number">1.11.11.1.</span> <span class="nav-text">技巧：反射法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zechariah</span>
+
+  
+</div>
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Blog &mdash; Powered by Hexo</div>
+
+
+
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: 'FLMvOwPUVOdFx6UgH0RzxHAb-gzGzoHsz',
+        appKey: 'hQ0qToQHi0i3SOlEtB2lGzt6',
+        placeholder: '有什么想说的？',
+        avatar:'identicon',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("FLMvOwPUVOdFx6UgH0RzxHAb-gzGzoHsz", "hQ0qToQHi0i3SOlEtB2lGzt6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
