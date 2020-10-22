@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据结构（二）]]></title>
+    <url>%2F2020%2F10%2F22%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%8C%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据结构（一）]]></title>
+    <url>%2F2020%2F10%2F22%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基本数据结构栈栈是一种遵循先进后出原则的数据结构，数据在同一端入栈和出栈。 手动实现如下：123456789int stk[100005], top;//stk用于存放栈内的数据，top为栈顶，入栈和出栈都是在栈顶进行操作void ins(int x) &#123; stk[++top] = x; //新加入一个元素x&#125;int del() &#123; return stk[top--]; //返回并删除一个元素， 出栈&#125; 是不是很简单呢？ C++的STL提供了stack给我们直接使用，它支持如下基本操作：123456stack&lt;dataType&gt;name;//创建一个元素类型为dataType的栈namename.top();//返回顶部元素的引用name.push(x);//将x压入栈中name.pop();//弹出栈顶元素name.size();//返回栈中的元素个数name.empty();//栈为空时返回true 单调栈在栈的基础上，我们规定元素出栈的顺序必须是单调不降或单调不增的，对栈内元素的顺序没有要求。对于单调不降的单调栈，入栈前把比要入栈的元素小的元素全部出栈。对于单调不增的单调栈，入栈前把比要入栈的元素大的元素全部出栈。12345678void ins(int x) &#123; //此处以单调不降的单调栈为例 while (top &amp;&amp; stk[top] &lt; x) &#123; fun(stk[top--]);//出栈的元素可能要进行一些操作 //top--出栈 &#125; stk[++top] = x;&#125; 队列队列是一种遵循先进先出原则的数据结构，数据在一段入队，在另一端出队。 手动实现如下123456789int q[100005], head = 1, tail;void ins(int x) &#123; q[++tail] = x; //从尾部入队&#125;int del() &#123; return q[head++]; //从头部出队&#125; C++的STL中同样提供了queue供我们使用，它支持如下基本操作：1234567queue&lt;dataType&gt;name;//创建一个元素类型为dataType的队列namename.front();//返回队列中第一个元素的引用name.back();//返回队列中最后一个元素的引用name.push(x);//x从队列尾部入队name.pop();//删除队列的尾部name.size();//返回队列中元素的个数name.empty();//队列为空时返回true 单调队列与单调栈不同，单调队列要求队内的元素要是单调不降或单调不增的，且队首队尾都可以进行出队操作，只有队尾可以进行入队操作。一般来说，单调队列会有一个限制的大小m，即最多只能有m个元素。单调队列主要用于维护不同段区间内的最值，每次元素要入队时，与单调栈类似地，要让一些元素出队。123456void ins(int x) &#123; //以单调不降的单调队列为例 while (head &lt;= tail &amp;&amp; q[tail] &lt;= x)--tail;//删除比x小的元素 q[++tail] = x;//x入队 while (tail - head &gt;= m)++head;&#125; 链表先鸽着 简单数据结构优先队列（二叉堆）首先，优先队列并不是用队列实现的，一般我们用二叉堆来实现优先队列。那么什么是优先队列？就是队列中的元素被赋予的优先级，当我们访问优先队列时优先访问优先级高的元素。二叉堆，其实就是一棵二叉树，它满足父节点的优先级一定大于子节点的性质，换句话说，在二叉堆中，以任意节点x为根的子树中，x的优先级是最高的，这样的话，只要构建一个二叉堆，它的根节点就是优先级最高的点。12345678910111213141516171819202122232425262728293031323334//这里我们用一种比较方便的方法表示节点的左右孩子//x * 2表示x的左孩子，x * 2 + 1表示x的右孩子，可以证明这种表示方法是不会重复的//这样的话x / 2就可以表示x的父节点//f[x]表示x的优先级void shift1(int now, int len) &#123; //删除了堆顶，将一个优先级小的元素放到堆顶后，通过该操作维护堆的结构 //从顶向下去更新 int father = now , child = father &lt;&lt; 1; while (child &lt;= len) &#123; if (child &lt; len &amp;&amp; f[pq[child]] &lt; f[pq[child + 1]])++child; if (f[pq[child]] &gt; f[pq[father]])swap(pq[child], pq[father]); father = child, child &lt;&lt;= 1; &#125;&#125;void shift2(int now) &#123; //加入一个元素后，从加入的元素起向上更新，维护堆的结构 int child = now, father = child &gt;&gt; 1; while (father) &#123; if (f[pq[farther]] &gt;= f[pq[child]])break;//此时说明已经满足了堆的性质 //因为加入元素前堆是成立的，只有加入的元素破坏了堆的结构 swap(pq[father], pq[child]); child = father, father &gt;&gt;= 1; &#125;&#125;void add(int x) &#123; pq[++tot] = x; shift2(tot);&#125;dataType del() &#123; dataType x = pq[1]; pq[1] = pq[tot--];//将优先级小的放到堆顶 shift1(1, tot); return x;&#125; 手动实现起来相当麻烦，当然，C++的STL提供了priority_queue供我们直接使用，它支持以下基本操作：123456priority&lt;dataType&gt;pq;pq.top();//访问堆顶元素pq.push(x);//将x入队pq.pop();//将堆顶出队pq.size();//返回优先队列的元素个数pq.empty();//优先队列为空返回true ST表ST表用于求静态区间最值，构建复杂度$O(n\log n)$，查询复杂度只有$O(1)$!那么ST表是怎么实现的呢？显然区间[L,R]的最值可以拆成[L,L+x]与[R-x+1,R]的最值取最值，只要L+x&gt;=R-x+1即可。那么我们考虑求对于区间内每个位置i，从i开始往后$2^k$个元素中的最值ST[i][k]，于是构建ST表的算法就出来了。123456//以求最大值为例//注意，这里ST[i][0]为位置i上本来的这个数for (int j = 1; j &lt;= log2(n) + 1; ++j) for (int i = 1; i + (1 &lt;&lt; j - 1) &lt;= n; ++i) ST[i][j] = max(ST[i][j - 1], ST[i + (1 &lt;&lt; j - 1)][j - 1]);//显然是两段的最值中取最值 查询也好说：1234int query(int l, int r) &#123; int k = log2(r - l + 1); return max(ST[l][k], ST[r - (1 &lt;&lt; k) + 1][k]);&#125; 并查集并查集用于维护集合的关系。普通的并查集操作非常简单，直接上代码。123456789//用fa[x]表示x所在的集合//fa[x]初始化为x本身int findf(int x) &#123; if (x == fa[x])return x;//fa[x] == x说明当前的x已经表示了一个最大的集合 return fa[x] = findf(fa[x]);//如果fa[x] != x说明当前的集合被包含在另一个集合里&#125;//如此就能找到x所在的集合fa[findf(x)] = findf(y);//将x所在的集合合并到y所在的集合 不难看出，findf最多递归3次，因此并查集的复杂度是非常小的。]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>栈</tag>
+        <tag>队列</tag>
+        <tag>单调栈</tag>
+        <tag>单调队列</tag>
+        <tag>优先队列</tag>
+        <tag>链表</tag>
+        <tag>ST表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CodeForces 1166D Cute Sequences]]></title>
     <url>%2F2019%2F05%2F18%2FCodeForces-1166D-Cute-Sequences%2F</url>
     <content type="text"><![CDATA[写篇题解祭一下因为脑子短路而逝去的几个小时 Description给定一个正整数$m$，定义一个正整数序列$x_1,x_2,x_3,…,x_n$，满足对于$2\le i\le n$有$x_i=x_{i-1}+x_{i-2}+…+x_1+r_i$，其中$1\le r_i\le m$现在给出$q$个询问，每个询问给出$a,b,m$，强制要求$x_1=a$，$x_n=b$，要求构造出一个长度不超过$50$的$x$序列 Input第一行一个正整数$q(1\le q\le 10^3)$表示询问数接下来$q$行，每行三个正整数$a,b,m(1\le a,b,m\le 10^{14},a\le b)$，意义见题面 Output没有合法序列输出$-1$有合法序列则先输出序列长度$k(k\le 50)$，然后$k$个数$x_1,x_2,…,x_k(1\le x_i\le 10^{14})$，其中$x_1=a,x_k=b$ Sample Input12325 26 23 9 1 Sample Output124 5 6 13 26-1 Solution又被sb题整弱智了.jpg很容易推出$b=2^{k-2}\cdot a+2^{k-3}\cdot r_2+…+2^{k-i-1}\cdot r_i+…+r_{k-1}+r_k$首先特殊情况是$a=b$，这时候直接输出$1\;a$考虑到$k$很小，先枚举长度$k$这时候$a$是确定的，因此可以先把$a$的部分减掉，同时把每个$r_i$都减$1$，这样来保证求出的$r_i$都是$\ge0$的，那么此时$0\le r_i\le m-1$定义$cha=n-2^{k-2}\cdot a-2^{k-2}$从$r_2$到$r_{k-1}$贪心考虑，系数大的尽量大，同时要注意不能超过$m-1$这样构造出来，最后剩余的$r_k=cha$如果在$m$以内，就是合法的123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;bits/stdc++.h&gt;#define lowbit(x) (x &amp; -x)#define jh(x, y) x ^= y ^= x ^= y#define loc(x, y) (x - 1) * m + y#define rg register#define inl inline#define PI 3.141592654typedef long long ll;const int N = 6e2 + 5, INF = 0x3f3f3f3f, mod = 998244353;using namespace std;namespace fast_IO &#123; inl ll read() &#123; rg char c; rg ll x = 0; rg bool flag = false; while ((c = getchar()) == ' ' || c == '\n' || c == '\r'); if (c == EOF)return c; if (c == '-')flag = true; else x = c ^ 48; while ((c = getchar()) != ' ' &amp;&amp; c != '\n' &amp;&amp; c != '\r' &amp;&amp; ~c) x = (x &lt;&lt; 1) + (x &lt;&lt; 3) + (c ^ 48); if (flag)return -x; return x; &#125; inl ll max(rg ll a, rg ll b) &#123; if (a &gt; b)return a; return b; &#125; inl ll min(rg ll a, rg ll b) &#123; if (a &lt; b)return a; return b; &#125; void write(rg ll x) &#123; if (x &lt; 0)putchar('-'), x = -x; if (x &gt;= 10)write(x / 10); putchar(x % 10 ^ 48); &#125;&#125;ll r[N];int main(void) &#123; rg int q = fast_IO::read(); while (q--) &#123; rg ll a = fast_IO::read(), b = fast_IO::read(), m = fast_IO::read(); if (a == b) &#123; printf("1 %I64d\n", a); continue; &#125; rg bool can = false; r[1] = a; rg int len; for (rg int k = 2; k &lt;= 50 &amp;&amp; !can; ++k) &#123; rg ll cha = b - a * (1ll &lt;&lt; k - 2) - (1ll &lt;&lt; k - 2); if (cha &lt; 0)break; for (rg int i = 2; i &lt; k; ++i) r[i] = fast_IO::min(m - 1, cha / (1ll &lt;&lt; k - i - 1)), cha -= r[i] * (1ll &lt;&lt; k - i - 1); if (cha &lt; m) &#123; can = true, len = k, r[len] = cha; break; &#125; &#125; if (!can)puts("-1"); else &#123; rg ll sum = a; for (rg int i = 2; i &lt;= len; ++i)++r[i], r[i] += sum, sum += r[i]; fast_IO::write(len); for (rg int i = 1; i &lt;= len; ++i)putchar(' '), fast_IO::write(r[i]); putchar('\n'); &#125; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>algorithm</category>
+        <category>题目</category>
       </categories>
       <tags>
         <tag>思路</tag>
@@ -17,13 +46,13 @@
     <url>%2F2019%2F04%2F13%2FBZOJ5480-%E8%B7%AF%E5%BE%84%E7%9A%84%E6%9D%A1%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Description给一棵$n$个点的有标号无根树，你需要找到满足条件的路径$u−v$的条数。我们称路径$u-v$满足条件当且仅当$u\not=v$且路径$u-v$上不存在点对$(a,b)$,$a,b$满足$gcd(a,b)=a$。注意：路径$u−v$和$v−u$是同一条路径。 Input第一行一个整数$n\le10^5$接下来$n−1$行，每行两个用空格隔开的整数$a,b$，表示边$(a,b)$ Output一行一个整数，代表要求的答案。 Sample Input43 13 23 4 Sample Output2//只有路径$2 − 3$和$3 − 4$满足条件 Solution这个题的转换很有意思我们考虑用总路径数-不合法的路径数来得到合法的路径数那么现在问题就在于，如何求不合法的路径数首先根据题意，枚举起点$u$，可以通过枚举$u$的倍数来得到一些不合法的路径，我们可以称之为“限制”，很容易得出：每一个不合法的路径必定至少包含一个“限制”知道这个有什么用呢？重头戏来了：设$dfn[x]$为$x$点的dfs序，$cover[x]$为$x$子树中最大的dfs序考虑不合法路径$a-b$，假设$a-b$包含路径$u-v$且$dfn[u]&lt;dfn[v]$，$dfn[a]&lt;dfn[b]$分两种情况讨论： $u$是$v$的一个祖先 $u$不是$v$的祖先 对于第一种情况这时候$a,b$和$u,v$有怎样的关系呢？我们来看下面这张图 这时我们发现，$a$可以是$g$子树外的任意一点，$b$可以是$v$子树内的任意一点，他们对应的dfs序关系为$dfn[a]$ $&lt;$ $dfn[g]\;\;and\;\;dfn[v]\le dfn[b] \le cover[v]$当然你可能会问：那如果我们先遍历图中$g$的那棵子树，上面这个关系就不成立了！（注意我们的前提条件，$a$的dfs序小于$b$）没错，所以我们还要讨论把上图中把$a,b$交换的情况，此时关系为$dfn[v]\le dfn[a] \le cover[v]\;\;and\;\;dfn[b] &gt; cover[g]$ 对于第二种情况这种情况相对较简单，还是先上图此时$a$是$u$子树中的任意一点，$b$是$v$子树中的任意一点所以对应的关系就是$dfn[u]\le dfn[a] \le cover[u]\;\;and\;\;dfn[v]\le dfn[b]\le cover[v]$ 说了这么多，这有什么用啊？ 考虑这样一个坐标系这个坐标系的横轴是$dfn[a]$，纵轴是$dfn[b]$再看看上面我们列出的条件，$dfn[a]$对应一个横轴上的区间，$dfn[b]$对应一个纵轴上的区间这不是矩形嘛！大致乱画一下，其实一堆条件（关系）就成了下面这个东西这些矩形内的每一个整点$(dfn[a],dfn[b])$，都是满足我们要求的东西，也就是不合法而每一个dfs序对应唯一节点，这样我们计算这些矩形内的整点个数就能得到不合法的路径数如何计算？线段树维护扫描线即可，只不过把求面积改成求矩形内点的个数，如果具体不清楚可以直接看代码，代码还算是比较简明的最终统计答案，由于我们这样求出的路径是无向的，设求出的路径数为$ans$答案就是$\dfrac{n*(n-1)}{2}-ans$ 复杂度：枚举$u,v$是$O(n\ln n)$的，线段树还要再乘个$\log n$，所以总复杂度应该是$O(n\ln n\log n)$ 最后献上本人丑陋的代码，现在是2019年3月28日22:06:10，目前在BZOJ是最快的代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124/************************************************************** Problem: 5480 User: Zechariah Language: C++ Result: Accepted Time:13152 ms Memory:193400 kb****************************************************************/ #include &lt;bits/stdc++.h&gt;#define lowbit(x) (x &amp; -x)#define jh(x, y) x ^= y ^=x ^= y#define loc(x, y) (x - 1) * m + y#define rg register#define inl inline#define PI 3.141592654typedef long long ll;const int N = 8e5 + 5, mod = 998244353, INF = 0x3f3f3f3f;using namespace std;namespace fast_IO &#123; inl ll read() &#123; rg char c; rg ll x = 0; rg bool flag = false; while ((c = getchar()) == ' ' || c == '\n' || c == '\r'); if (c == EOF)return c; if (c == '-')flag = true; else x = c ^ 48; while ((c = getchar()) != ' ' &amp;&amp; c != '\n' &amp;&amp; c != '\r'&amp;&amp;~c) x = (x &lt;&lt; 1) + (x &lt;&lt; 3) + (c ^ 48); if (flag)return -x; return x; &#125; inl ll max(rg ll a, rg ll b) &#123; if (a &gt; b)return a; return b; &#125; inl ll min(rg ll a, rg ll b) &#123; if (a &lt; b)return a; return b; &#125; void write(rg ll x) &#123; if (x &lt; 0)putchar('-'), x = -x; if (x &gt;= 10)write(x / 10); putchar(x % 10 ^ 48); &#125;&#125;int cover[N], dfn[N], nt[N], b[N], p[N], num, id, fa[N][18], deep[N], tot, n;struct Node &#123; int left, right, min; ll sum;&#125;tree[N &lt;&lt; 2];struct Line &#123; int l, r, v, y; Line(rg int l = 0, rg int r = 0, rg int y = 0, rg int v = 0) :l(l), r(r), y(y), v(v) &#123;&#125; bool operator &lt;(const rg Line &amp;s)const &#123; return y &lt; s.y; &#125;&#125;e[N &lt;&lt; 2];inl void add(rg int x, rg int y) &#123; b[++num] = y, nt[num] = p[x], p[x] = num; b[++num] = x, nt[num] = p[y], p[y] = num;&#125;inl bool is(rg int x, rg int y) &#123; return dfn[x] &lt;= dfn[y] &amp;&amp; cover[x] &gt;= cover[y]; &#125;void dfs(rg int x) &#123; dfn[x] = ++id; for (rg int e= p[x]; e; e = nt[e]) &#123; if (b[e] == fa[x][0])continue; fa[b[e]][0] = x; deep[b[e]] = deep[x] + 1; dfs(b[e]); &#125; cover[x] = id;&#125;void build(rg int x, rg int l, rg int r) &#123; tree[x].left = l, tree[x].right = r; if (l == r)return; rg int mid = l + r &gt;&gt; 1; build(x &lt;&lt; 1, l, mid); build(x &lt;&lt; 1 | 1, mid + 1, r);&#125;inl void pushup(rg int x) &#123; if (tree[x].min)tree[x].sum = tree[x].right - tree[x].left + 1; else tree[x].sum = tree[x &lt;&lt; 1].sum + tree[x &lt;&lt; 1 | 1].sum;&#125;void update(rg int x, rg int l, rg int r, rg ll data) &#123; if (tree[x].left == l &amp;&amp; tree[x].right == r) &#123; tree[x].min += data; pushup(x); return; &#125; rg int mid = tree[x].left + tree[x].right &gt;&gt; 1; if (r &lt;= mid)update(x &lt;&lt; 1, l, r, data); else if (l &gt; mid)update(x &lt;&lt; 1 | 1, l, r, data); else &#123; update(x &lt;&lt; 1, l, mid, data); update(x &lt;&lt; 1 | 1, mid + 1, r, data); &#125; pushup(x);&#125;inl ll query() &#123; sort(e + 1, e + tot + 1); rg ll ans = 0; for (rg int i = 1; i &lt; tot; ++i) &#123; update(1, e[i].l, e[i].r, e[i].v); ans += tree[1].sum * (e[i + 1].y - e[i].y); &#125; return ans;&#125;inl int getfa(rg int x, rg int d) &#123; for (rg int j = 17; ~j; --j) if (d &amp; (1 &lt;&lt; j)) x = fa[x][j]; return x;&#125;inl void addedge(rg int x1, rg int x2, rg int y1, rg int y2) &#123; if (1 &lt;= x1 &amp;&amp; x1 &lt;= x2 &amp;&amp; x2 &lt;= n &amp;&amp; 1 &lt;= y1 &amp;&amp; y1 &lt;= y2 &amp;&amp; y2 &lt;= n) e[++tot] = Line(x1, x2, y1, 1), e[++tot] = Line(x1, x2, y2 + 1, -1);&#125; int main(void) &#123; n = fast_IO::read(); for (rg int i = 1; i != n; ++i)add(fast_IO::read(), fast_IO::read()); dfs(1); build(1, 1, n); for (rg int j = 1; j != 18; ++j) for (rg int i = 1; i &lt;= n; ++i) fa[i][j] = fa[fa[i][j - 1]][j - 1]; for (rg int i = 1; i &lt;= n; ++i) &#123; for (rg int j = i &lt;&lt; 1; j &lt;= n; j += i) &#123; rg int x = i, y = j; if (dfn[x] &gt; dfn[y])jh(x, y); if (is(x, y)) &#123; rg int node = getfa(y, deep[y] - deep[x] - 1); addedge(1, dfn[node] - 1, dfn[y], cover[y]); addedge(dfn[y], cover[y], cover[node] + 1, n); &#125; else addedge(dfn[x], cover[x], dfn[y], cover[y]); &#125; &#125; fast_IO::write((ll)n * (n - 1) / 2 - query()); return 0;&#125;]]></content>
       <categories>
-        <category>algorithm</category>
+        <category>题目</category>
       </categories>
       <tags>
-        <tag>思路</tag>
-        <tag>Segment tree</tag>
-        <tag>Data Structure</tag>
+        <tag>线段树</tag>
+        <tag>数据结构</tag>
         <tag>扫描线</tag>
+        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
@@ -35,7 +64,7 @@
         <category>2019清北学堂</category>
       </categories>
       <tags>
-        <tag>String</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -47,7 +76,7 @@
         <category>2019清北学堂</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -59,7 +88,7 @@
         <category>2019清北学堂</category>
       </categories>
       <tags>
-        <tag>Math</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -71,7 +100,7 @@
         <category>2019清北学堂</category>
       </categories>
       <tags>
-        <tag>Graph Theory</tag>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -83,8 +112,8 @@
         <category>2019清北学堂</category>
       </categories>
       <tags>
-        <tag>Divide and Conquer</tag>
-        <tag>Block</tag>
+        <tag>分治</tag>
+        <tag>分块</tag>
       </tags>
   </entry>
   <entry>
@@ -96,7 +125,7 @@
         <category>2019清北学堂</category>
       </categories>
       <tags>
-        <tag>Data Structure</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -107,7 +136,7 @@
         <category>others</category>
       </categories>
       <tags>
-        <tag>Others</tag>
+        <tag>其他</tag>
       </tags>
   </entry>
 </search>
