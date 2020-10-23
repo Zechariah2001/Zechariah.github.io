@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/10/22/7jrcDNOd3vEsJSF.png">
-<meta property="og:updated_time" content="2020-10-23T03:09:39.953Z">
+<meta property="og:updated_time" content="2020-10-23T03:12:51.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/22/7jrcDNOd3vEsJSF.png">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2k
+                  2.1k
                 </span>
               
 
@@ -472,6 +472,7 @@
 <p>手动实现起来相当麻烦，当然，C++的STL提供了<strong>priority_queue</strong>供我们直接使用，它支持以下基本操作：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">priority&lt;dataType&gt;pq;</span><br><span class="line">pq.top();<span class="comment">//访问堆顶元素</span></span><br><span class="line">pq.push(x);<span class="comment">//将x入队</span></span><br><span class="line">pq.pop();<span class="comment">//将堆顶出队</span></span><br><span class="line">pq.size();<span class="comment">//返回优先队列的元素个数</span></span><br><span class="line">pq.empty();<span class="comment">//优先队列为空返回true</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="左偏树（可并堆）"><a href="#左偏树（可并堆）" class="headerlink" title="左偏树（可并堆）"></a>左偏树（可并堆）</h2><p>有些时候，我们需要将堆进行合并，这时候就用到左偏树。<br>左偏树，左偏是啥意思？意思就是对于堆内任意一棵子树，其左子树中深度最小的<strong>叶子节点</strong>的深度要大于右子树中深度最小的<strong>叶子节点</strong>的深度，这样的话从整体上看，整棵树明显左边比较重。</p>
 <p>具体实现：我们用并查集来维护不同的节点是否在同一个堆中，下面给出合并操作<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;<span class="comment">//将y堆合并到x堆上，返回合并后的根节点</span></span><br><span class="line">    <span class="keyword">if</span> (!x || !y)<span class="keyword">return</span> x | y;<span class="comment">//0当然是没有这棵树啦</span></span><br><span class="line">    <span class="keyword">if</span> (f(x) &lt; f(y))swap(x, y);<span class="comment">//f(x)表示x的优先级</span></span><br><span class="line">    <span class="comment">//这时候就保证了x节点的优先级比y大，即y只能往x的子树合并，合并后x为根节点</span></span><br><span class="line">    rson[x] = merge(rson[x], y);<span class="comment">//左偏树嘛，右子树比较轻，把y往右子树合并</span></span><br><span class="line">    <span class="keyword">if</span> (dep[lson[x]] &gt; dep[rson[x]])</span><br><span class="line">        swap(lson[x], rson[x]);</span><br><span class="line">    <span class="comment">//永远保证rson[x]的最小深度比lson[x]的最小深度小，保证“左偏”</span></span><br><span class="line">    dep[x] = dep[rson[x]] + <span class="number">1</span>;<span class="comment">//x的最小深度</span></span><br><span class="line">    fa[lson[x]] = fa[rson[x]] = x;<span class="comment">//x为根节点</span></span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>合并自然不用说，如果要删除根节点，只需要合并左右子树就行了。</p>
 
       
     </div>
