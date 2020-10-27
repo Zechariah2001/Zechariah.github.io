@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/10/27/hlJRc7wxoHTVpjQ.jpg">
-<meta property="og:updated_time" content="2020-10-27T14:43:25.290Z">
+<meta property="og:updated_time" content="2020-10-27T14:55:26.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图论（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/27/hlJRc7wxoHTVpjQ.jpg">
@@ -392,7 +392,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.4k
+                  1.6k
                 </span>
               
 
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  6
                 </span>
               
             </div>
@@ -430,7 +430,8 @@
 
       
         <p><img src="https://i.loli.net/2020/10/27/hlJRc7wxoHTVpjQ.jpg" alt="4e07f05293b8217b34ce394552bd76c49bbe109e_s2_n1.jpg"><br><a id="more"></a></p>
-<h1 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h1><h2 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h2><p>咕咕咕</p>
+<h1 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h1><p>最短路是非常常见的问题，求解方法和各种应用也很多，首先来看一些常用的、基本的最短路求法。</p>
+<h2 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h2><p>Floyd是一种用<strong>DP</strong>求解最短路的方法，基本思想就是；对于每个起点和终点，枚举中间点，进行状态转移。<br>转移方程为$d_{x,y}=\min\{d_{x,k}+d_{k,y}|1\le k\le n\}$<br>其时间复杂度为$O(n^3)$，主要用来求<strong>任意两点</strong>间的最短路。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; ++k)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">            <span class="keyword">if</span> (d[i][j] &lt; d[i][k] + d[k][j])</span><br><span class="line">                d[i][j] = d[i][k] = d[k][j];</span><br></pre></td></tr></table></figure></p>
 <h2 id="Bellman-Ford（dijkstra）"><a href="#Bellman-Ford（dijkstra）" class="headerlink" title="Bellman-Ford（dijkstra）"></a>Bellman-Ford（dijkstra）</h2><p>咕咕咕</p>
 <h2 id="spfa"><a href="#spfa" class="headerlink" title="spfa"></a>spfa</h2><p>咕咕咕</p>
 <h1 id="tarjan"><a href="#tarjan" class="headerlink" title="tarjan"></a>tarjan</h1><p>tarjan是非常实用的图论算法，使用tarjan可以解决很多图论问题。</p>
