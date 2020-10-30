@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/10/29/rnsKEPzu5e6d7L9.jpg">
-<meta property="og:updated_time" content="2020-10-29T07:55:50.211Z">
+<meta property="og:updated_time" content="2020-10-30T13:54:47.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分治（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/29/rnsKEPzu5e6d7L9.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  18
+                  522
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -453,7 +453,11 @@
       
         <p><img src="https://i.loli.net/2020/10/29/rnsKEPzu5e6d7L9.jpg" alt="48a96d88a399214ebc9c7704065fb38f.jpg"><br><a id="more"></a></p>
 <p>CDQ分治和整体二分都属于<strong>离线</strong>算法</p>
-<h1 id="CDQ分治"><a href="#CDQ分治" class="headerlink" title="CDQ分治"></a>CDQ分治</h1>
+<h1 id="CDQ分治"><a href="#CDQ分治" class="headerlink" title="CDQ分治"></a>CDQ分治</h1><p>CDQ分治的流程与普通分治的流程区别在于，当我们递归解决[L,M]和[M+1,R]区间后，除了将两个子区间的答案合并还要再加上右区间对左区间的贡献。<br>CDQ分治主要用于求解<strong>偏序问题</strong>。</p>
+<p>下面用一个简单的示例说明CDQ的基本思想。</p>
+<h2 id="CDQ分治求逆序数"><a href="#CDQ分治求逆序数" class="headerlink" title="CDQ分治求逆序数"></a>CDQ分治求逆序数</h2><p>求逆序数实质是一个<strong>二维偏序</strong>问题，相当于一个由有序点对$(x,y)$组成的集合，求对于每个$(x_i,y_i)$有多少对$(x_j,y_j)$使得$x_i&gt;x_j且y_i&lt;y_j$的和。<br>首先一个区间其下标必然是有序的，于是我们只用考虑用$y$如何进行统计。那么参照上面所说的CDQ分治的思想，我们分别计算左右区间的逆序对个数并求和，然后算出右区间对左区间的贡献，总和即为整个当前区间的逆序对数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">CDQ</span><span class="params">(<span class="keyword">int</span> *p, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//p开始的len个元素为当前区间，区间长度为len</span></span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//只有一个数显然逆序数为0</span></span><br><span class="line">    <span class="keyword">int</span> mid = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    ll ans = CDQ(p, mid) + CDQ (p + mid, len - mid);<span class="comment">//分治，左右区间分别求解</span></span><br><span class="line">    <span class="comment">//此处应该将整个区间排序用双指针算出右区间对左区间的贡献，考虑到我们分治的过程</span></span><br><span class="line">    <span class="comment">//我们可以直接在分治过程中通过归并排序来减少复杂度</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = mid, k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; mid &amp;&amp; j &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p[i] &lt;= p[j])tmp[k++] = p[i++];<span class="comment">//不构成逆序对</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ans += mid - i;<span class="comment">//p[i]后面的数都比p[i]大，因此也比p[j]大，将这部分计入右区间对左区间的贡献</span></span><br><span class="line">            tmp[k++] = p[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; mid)tmp[k++] = p[i++];</span><br><span class="line">    <span class="keyword">while</span> (j &lt; len)tmp[k++] = p[j++];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i)p[i] = tmp[i];<span class="comment">//tmp存储的是归并后有序的区间，用其更新p</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -675,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDQ分治"><span class="nav-number">1.</span> <span class="nav-text">CDQ分治</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDQ分治"><span class="nav-number">1.</span> <span class="nav-text">CDQ分治</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDQ分治求逆序数"><span class="nav-number">1.1.</span> <span class="nav-text">CDQ分治求逆序数</span></a></li></ol></li></ol></div>
             
 
           </div>
