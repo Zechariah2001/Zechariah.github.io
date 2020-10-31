@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="分块,莫队,">
 
 
 
@@ -95,14 +95,17 @@
 
 
 
+<meta name="keywords" content="分块,莫队">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不讲道理算法">
 <meta property="og:url" content="http://yoursite.com/2020/10/28/不讲道理算法/index.html">
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:updated_time" content="2020-10-28T08:41:34.608Z">
+<meta property="og:image" content="https://i.loli.net/2020/10/31/It72LQnXax9HZhV.jpg">
+<meta property="og:updated_time" content="2020-10-31T15:05:02.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不讲道理算法">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/31/It72LQnXax9HZhV.jpg">
 
 
 
@@ -347,6 +350,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小结/" itemprop="url" rel="index">
+                    <span itemprop="name">小结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -389,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  655
                 </span>
               
 
@@ -405,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -426,7 +451,12 @@
       
 
       
-        
+        <p><img src="https://i.loli.net/2020/10/31/It72LQnXax9HZhV.jpg" alt="90f43312d3678823f6c54b91f5a86498.jpeg"><br><a id="more"></a></p>
+<p><del>个人觉得分块和莫队都是相当暴力不讲道理的算法</del></p>
+<h1 id="分块"><a href="#分块" class="headerlink" title="分块"></a>分块</h1><p>首先来说说分块。<br>顾名思义，把一段区间分成一块一块的。<br>分成一块块的有什么好处呢？如果我们要进行区间修改区间查询，当这个区间中包含了整个块时，如果我们知道了这个块的一些信息，就没必要对块内的元素一个个进行修改或查询，如此就达到了降低复杂度的目的。<br>于是分块的策略就很清楚了，对于当前操作的区间[L,R]，对于其中的整块我们整体修改或查询，而两边可能有的非整块元素则暴力修改，这些元素个数显然不会超过两个块的大小，所以时间复杂度就有了保证。<br>那么块的大小应该怎么确定呢？理论上，如果区间长度为$n$，则当块大小为$\sqrt{n}$时时间复杂度是最优的，每次操作复杂度为$O(\sqrt{n})$</p>
+<h1 id="莫队"><a href="#莫队" class="headerlink" title="莫队"></a>莫队</h1><p>莫队是在分块的基础上，<del>更暴力</del>的一种算法。<br>对于只有查询的题目，我们可以通过移动l r指针来得到所有查询的答案，但是这样的话复杂度将是$O(n^2)$<br>由于只有查询，我们可以将这些要查询的区间改变顺序，使得两个指针移动的距离尽量减少，从而达到降低复杂度的目的。<br>考虑将整个区间分块，然后将所有查询进行双关键字排序，第一关键字为左端点所在的块，第二关键字为右端点本身。<br>这样的话，对于左端点，在同一块内的转移每次不会超过$\sqrt{n}$，不同块之间的转移不会超过$\sqrt{n}$；<br>对于右端点，在左端点在同一块时，右端点是单调不降的，即最多$n$，而在左端点不同块之间的转移不会超过$\sqrt{n}$<br>因此总时间复杂度为$O(n\sqrt{n})$</p>
+<h2 id="带修莫队"><a href="#带修莫队" class="headerlink" title="带修莫队"></a>带修莫队</h2><p>带修莫队实际上就是在普通莫队的基础上增加一个时间轴，来表示修改的时间点。<br>分块策略与普通莫队类似，还是先l r分块，然后还要对同一块内的修改排序(假设为单点修改)<br>在移动完l r指针后，再去移动时间轴指针t，类似地进行相应修改，基本思想其实是一致的。</p>
+<h2 id="树上莫队"><a href="#树上莫队" class="headerlink" title="树上莫队"></a>树上莫队</h2>
       
     </div>
     
@@ -444,6 +474,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分块/" rel="tag"><i class="fa fa-tag"></i> 分块</a>
+          
+            <a href="/tags/莫队/" rel="tag"><i class="fa fa-tag"></i> 莫队</a>
+          
+        </div>
       
 
       
@@ -521,8 +559,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -560,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -619,6 +666,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分块"><span class="nav-number">1.</span> <span class="nav-text">分块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫队"><span class="nav-number">2.</span> <span class="nav-text">莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带修莫队"><span class="nav-number">2.1.</span> <span class="nav-text">带修莫队</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树上莫队"><span class="nav-number">2.2.</span> <span class="nav-text">树上莫队</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
       
         <div class="back-to-top">

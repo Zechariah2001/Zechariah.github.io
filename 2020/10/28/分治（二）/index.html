@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/10/29/rnsKEPzu5e6d7L9.jpg">
-<meta property="og:updated_time" content="2020-10-31T13:47:58.667Z">
+<meta property="og:updated_time" content="2020-10-31T14:31:06.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分治（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/29/rnsKEPzu5e6d7L9.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2k
+                  2.1k
                 </span>
               
 
@@ -462,6 +462,7 @@
 <p>事实上，CDQ是可以不断套娃的，三维偏序问题还可以通过CDQ套CDQ来解决。<br>第一层CDQ与上面的过程类似，只不过我们不需要进行树状数组的操作，只是在原来的update和query处打上tag标记，表示这个位置是计入答案或者统计答案。<br>在排序完成后我们在CDQ内对同一区间进行第二层CDQ，此时的区间是以b为第一关键字，c为第二关键字排序后的结果，因此跟一层CDQ就非常类似的，唯独是在第二层CDQ中计入和统计答案时要注意第一层CDQ中打的标记，比如如果当前左区间的c小于等于右区间的c，但是第一层中并没有给他打标记，就说明当前右区间的元素实际上在第一层时是在左区间，于是就不能进行贡献统计。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CDQ2</span><span class="params">(Node *p, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (len == <span class="number">1</span>)<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	CDQ2(p, mid); CDQ2(p + mid, len - mid);</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = mid, k = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; mid &amp;&amp; j &lt; len) &#123;</span><br><span class="line">		<span class="keyword">if</span> (p[i].c &lt;= p[j].c) &#123;</span><br><span class="line">			sum += p[i].tag;</span><br><span class="line">			tmp[k++] = p[i++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (!p[j].tag)tt[p[j].tot] += sum;</span><br><span class="line">			tmp[k++] = p[j++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (j &lt; len) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!p[j].tag)tt[p[j].tot] += sum;</span><br><span class="line">		tmp[k++] = p[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; mid)tmp[k++] = p[i++];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)p[i] = tmp[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CDQ</span><span class="params">(Node *p, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (len == <span class="number">1</span>)<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	CDQ(p, mid); CDQ(p + mid, len - mid);</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = mid, k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; mid &amp;&amp; j &lt; len) &#123;</span><br><span class="line">		<span class="keyword">if</span> (p[i].b &lt;= p[j].b)tmp[k] = p[i], tmp[k++].tag = p[i++].cnt;</span><br><span class="line">		<span class="keyword">else</span> tmp[k] = p[j++], tmp[k++].tag = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (j &lt; len)tmp[k] = p[j++], tmp[k++].tag = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; mid)tmp[k] = p[i], tmp[k++].tag = p[i++].cnt;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)a[i] = p[i] = tmp[i];</span><br><span class="line">	CDQ2(a, len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以此类推，其实无论多少维的偏序问题我们都可以通过CDQ套娃来解决。</p>
+<h1 id="整体二分"><a href="#整体二分" class="headerlink" title="整体二分"></a>整体二分</h1><p>咕咕咕</p>
 
       
     </div>
@@ -615,7 +616,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -684,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDQ分治"><span class="nav-number">1.</span> <span class="nav-text">CDQ分治</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDQ分治求逆序数"><span class="nav-number">1.1.</span> <span class="nav-text">CDQ分治求逆序数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他问题"><span class="nav-number">1.2.</span> <span class="nav-text">其他问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDQ分治"><span class="nav-number">1.</span> <span class="nav-text">CDQ分治</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDQ分治求逆序数"><span class="nav-number">1.1.</span> <span class="nav-text">CDQ分治求逆序数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他问题"><span class="nav-number">1.2.</span> <span class="nav-text">其他问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整体二分"><span class="nav-number">2.</span> <span class="nav-text">整体二分</span></a></li></ol></div>
             
 
           </div>
