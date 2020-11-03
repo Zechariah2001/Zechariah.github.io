@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/03/3WQduv1NwFgoP9O.jpg">
-<meta property="og:updated_time" content="2020-11-03T08:19:01.571Z">
+<meta property="og:updated_time" content="2020-11-03T10:21:52.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/03/3WQduv1NwFgoP9O.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  412
+                  587
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -455,7 +455,7 @@
 <h1 id="DP类型"><a href="#DP类型" class="headerlink" title="DP类型"></a>DP类型</h1><p>DP的一般形式是表示出能代表出与后续或答案有关的当前的<strong>状态</strong>，并在这些状态中进行<strong>转移</strong><br>DP的难点在于<strong>状态的设计</strong>和<strong>转移的优化</strong>。<br>由于DP属于一种思想，不同的情况下状态设计和转移都不一样，下面对于每种DP都会给出问题来讲解。</p>
 <h2 id="序列DP"><a href="#序列DP" class="headerlink" title="序列DP"></a>序列DP</h2><p>将问题放在序列上，在序列上设计状态和转移，是一种非常常见的DP。<br>题目：<a href="https://www.luogu.com.cn/problem/P2519">洛谷P2519 [HAOI2011]problem a</a></p>
 <h3 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h3><p>求最少有多少人没说真话，可以先求最多有多少人说真话。<br>我们考虑将所有人的成绩排序后的一个序列A。<br>第i个人说的是真话，当且仅当$A_{a_i+1}=…=A_{n-b_i}$，将这个区间看成一条线段，这样的话n个人就是n条线段。<br>不难发现，如果两条线段相交但不重合，说明两个人中至少一人说了谎，而且对某一线段重合的线段个数不能超过线段的长度（包含的点数）。<br>这样的话，我们的问题就转化成，对于n个线段，选出最多的线段个数，使得这些线段要么不相交，要么完全重合且对于同一个线段重合的线段个数不超过该线段的长度。</p>
-<h3 id="状态设计及转移优化"><a href="#状态设计及转移优化" class="headerlink" title="状态设计及转移优化"></a>状态设计及转移优化</h3><p>将所有线段按双关键字排序。</p>
+<h3 id="状态设计及转移优化"><a href="#状态设计及转移优化" class="headerlink" title="状态设计及转移优化"></a>状态设计及转移优化</h3><p>重合的线段我们都放到一起，记一个总数并与长度取较小值，这样的话任意两条线段都是不重合的，那么就只用考虑<strong>不相交</strong>了<br>如何我们以右端点为第一关键字，以左端点为第二关键字进行排序，显然我们遍历所有线段，那么如何设计状态呢？<br>设dp[i]为右端点小于等于i的所有线段中能选的最多个数，那么转移方程显然为$dp[i]=\max\{dp[j]+cnt|j\le i-l\}$，其中l为线段的长度，cnt为前面提到的总数。<br>对每个i枚举j，复杂度为$O(n^2)$，所以我们要对这部分进行优化。</p>
 <h2 id="数位DP"><a href="#数位DP" class="headerlink" title="数位DP"></a>数位DP</h2><h2 id="概率DP"><a href="#概率DP" class="headerlink" title="概率DP"></a>概率DP</h2><h2 id="树形DP"><a href="#树形DP" class="headerlink" title="树形DP"></a>树形DP</h2><h2 id="状压DP"><a href="#状压DP" class="headerlink" title="状压DP"></a>状压DP</h2><h2 id="DP套DP"><a href="#DP套DP" class="headerlink" title="DP套DP"></a>DP套DP</h2><h1 id="DP的优化"><a href="#DP的优化" class="headerlink" title="DP的优化"></a>DP的优化</h1><h2 id="形式优化"><a href="#形式优化" class="headerlink" title="形式优化"></a>形式优化</h2><h2 id="决策单调性优化"><a href="#决策单调性优化" class="headerlink" title="决策单调性优化"></a>决策单调性优化</h2><h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><h2 id="凸单调性DP优化"><a href="#凸单调性DP优化" class="headerlink" title="凸单调性DP优化"></a>凸单调性DP优化</h2><h1 id="容斥DP"><a href="#容斥DP" class="headerlink" title="容斥DP"></a>容斥DP</h1>
       
     </div>
