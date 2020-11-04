@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/03/3WQduv1NwFgoP9O.jpg">
-<meta property="og:updated_time" content="2020-11-04T07:45:50.759Z">
+<meta property="og:updated_time" content="2020-11-04T12:29:30.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/03/3WQduv1NwFgoP9O.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.1k
+                  2.5k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  8
+                  10
                 </span>
               
             </div>
@@ -462,8 +462,21 @@
 <h2 id="概率DP"><a href="#概率DP" class="headerlink" title="概率DP"></a>概率DP</h2><p>概率DP是求事件概率或期望的DP的总称。<br>对于求概率问题，有时利用补集转化，或者将其转化为计数问题；<br>对于求期望问题，大多时候利用期望的<strong>线性性</strong>来解决问题。</p>
 <h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>条件概率$P(y|x)$<br>联合概率$P(y,x)$<br>$P(x,y)=P(y|x)P(x)=P(x)P(y)$<br>$P(x,y)=P(x|y)P(y)$<br>贝叶斯公式：$P(y|x)=\dfrac{P(x|y)P(y)}{P(x)}$</p>
 <h3 id="例题：期望的线性性"><a href="#例题：期望的线性性" class="headerlink" title="例题：期望的线性性"></a>例题：期望的线性性</h3><p><a href="https://www.luogu.com.cn/problem/P3239">洛谷P3239 [HNOI2015]亚瑟王</a><br>题目概述：给你$N$张牌，每张牌有一个发动概率$P_i$以及伤害$D_i$。共有$R$回合，每回合会按编号从小到大依次考虑本次游戏中还未发动的卡牌，依次尝试发动；如果发动成功，进入下一回合。求期望伤害之和。共$T$组数据。<br>$T\le 444,N\le 220,R\le 132$</p>
-<p>这个题如果直接去算每一局的期望，非常难设状态（需要状压），而根据期望的线性性，我们考虑每张牌被发动的概率，那么总伤害就为每张牌造成的期望伤害之和。<br>我们设dp[i][j]表示前i张牌中一共出了j张的概率，sump[x]表示x这张牌在整局游戏中被打出来的概率。<br>对于转移，首先我们来看sump的转移，我们枚举前i-1张牌中出牌数j，由题意可知i之前打出的j张牌都不会考虑到第i张牌（因为打出去以后本轮就结束了），同时也说明有r-j轮可能会考虑到第i张牌，于是我们的转移方程就出来了，$sump[i]=\sum\limits_{j=0}^rdp[i-1][j]\cdot(1-(1-p[i])^{r-j})$</p>
-<h2 id="树形DP"><a href="#树形DP" class="headerlink" title="树形DP"></a>树形DP</h2><h2 id="状压DP"><a href="#状压DP" class="headerlink" title="状压DP"></a>状压DP</h2><h2 id="DP套DP"><a href="#DP套DP" class="headerlink" title="DP套DP"></a>DP套DP</h2><h1 id="DP的优化"><a href="#DP的优化" class="headerlink" title="DP的优化"></a>DP的优化</h1><h2 id="形式优化"><a href="#形式优化" class="headerlink" title="形式优化"></a>形式优化</h2><h2 id="决策单调性优化"><a href="#决策单调性优化" class="headerlink" title="决策单调性优化"></a>决策单调性优化</h2><h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><h2 id="凸单调性DP优化"><a href="#凸单调性DP优化" class="headerlink" title="凸单调性DP优化"></a>凸单调性DP优化</h2><h1 id="容斥DP"><a href="#容斥DP" class="headerlink" title="容斥DP"></a>容斥DP</h1>
+<p>这个题如果直接去算每一局的期望，非常难设状态（需要状压），而根据期望的线性性，我们考虑每张牌被发动的概率，那么总伤害就为每张牌造成的期望伤害之和。<br>我们设dp[i][j]表示前i张牌中一共出了j张的概率，sump[x]表示x这张牌在整局游戏中被打出来的概率。<br>对于转移，首先我们来看sump的转移，我们枚举前i-1张牌中出牌数j，由题意可知i之前打出的j张牌都不会考虑到第i张牌（因为打出去以后本轮就结束了），同时也说明有r-j轮可能会考虑到第i张牌，于是我们的转移方程就出来了，$sump[i]=\sum\limits_{j=0}^rdp[i-1][j]\cdot(1-(1-p[i])^{r-j})$，此处要注意，我们将“中间某处选第i张牌”采用了补集转换的思想，因为求出“中间没有任何一处选第i张牌”显然是更方便的。<br>再来看看dp[i][j]的转移，这里显然要分两种情况讨论：是否选择了当前的第i张牌：</p>
+<ul>
+<li>没有选择，那么$dp[i][j]=dp[i-1][j]\cdot (1-p[i])^{r-j}$，与上面类似，这里是后面r-j轮都不选i</li>
+<li>若选择了，那么$dp[i][j]=dp[i-1][j-1]\cdot(1-(1-p[i])^{r-j+1})$，也是类似，前j-1张不可能选到i</li>
+</ul>
+<p>最后答案即为$\sum\limits_{i=1}^nsump[i]\times d[i]$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> p[N], dp[N][N], sump[N], sum[N][N];</span><br><span class="line"><span class="keyword">int</span> d[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T = fast_IO::read();</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">		<span class="built_in">memset</span>(sump, <span class="number">0</span> , <span class="keyword">sizeof</span>(sump));</span><br><span class="line">		<span class="keyword">int</span> n = fast_IO::read(), r = fast_IO::read();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lf%d"</span>, p + i, d + i);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			sum[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= r; ++j)</span><br><span class="line">				sum[i][j] = sum[i][j - <span class="number">1</span>] * (<span class="number">1</span> - p[i]);</span><br><span class="line">			<span class="comment">//注意到我们后面总是用到1-p[i]的幂，先预处理</span></span><br><span class="line">		&#125;</span><br><span class="line">		dp[<span class="number">1</span>][<span class="number">0</span>] = sum[<span class="number">1</span>][r];</span><br><span class="line">		dp[<span class="number">1</span>][<span class="number">1</span>] = sump[<span class="number">1</span>] = <span class="number">1</span> - sum[<span class="number">1</span>][r];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= r; ++j) &#123;</span><br><span class="line">				sump[i] += dp[i - <span class="number">1</span>][j] * (<span class="number">1</span> - sum[i][r - j]);</span><br><span class="line">				dp[i][j] += dp[i - <span class="number">1</span>][j] * sum[i][r - j];</span><br><span class="line">				<span class="keyword">if</span> (j)dp[i][j] += dp[i - <span class="number">1</span>][j - <span class="number">1</span>] * (<span class="number">1</span> - sum[i][r - j + <span class="number">1</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)ans += sump[i] * d[i];</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.10f\n"</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="树形DP"><a href="#树形DP" class="headerlink" title="树形DP"></a>树形DP</h2><p>树形DP是指基于树形结构的动态规划，一般有：</p>
+<ul>
+<li>树的直径：DP记录子树内的最长路</li>
+<li>树的重心：DP记录子树大小</li>
+<li>树上点权独立集：DP记录子树的根是否选择</li>
+<li></li>
+</ul>
+<h2 id="状压DP"><a href="#状压DP" class="headerlink" title="状压DP"></a>状压DP</h2><h2 id="DP套DP"><a href="#DP套DP" class="headerlink" title="DP套DP"></a>DP套DP</h2><h1 id="DP的优化"><a href="#DP的优化" class="headerlink" title="DP的优化"></a>DP的优化</h1><h2 id="形式优化"><a href="#形式优化" class="headerlink" title="形式优化"></a>形式优化</h2><h2 id="决策单调性优化"><a href="#决策单调性优化" class="headerlink" title="决策单调性优化"></a>决策单调性优化</h2><h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><h2 id="凸单调性DP优化"><a href="#凸单调性DP优化" class="headerlink" title="凸单调性DP优化"></a>凸单调性DP优化</h2><h1 id="容斥DP"><a href="#容斥DP" class="headerlink" title="容斥DP"></a>容斥DP</h1>
       
     </div>
     
