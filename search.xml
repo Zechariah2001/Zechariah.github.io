@@ -30,7 +30,15 @@
   <entry>
     <title><![CDATA[字符串（一）]]></title>
     <url>%2F2020%2F10%2F28%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>KMP</tag>
+        <tag>AC自动机</tag>
+        <tag>Trie</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[不讲道理算法]]></title>
