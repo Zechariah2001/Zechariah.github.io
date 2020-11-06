@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="KMP,AC自动机,Trie,">
+  <meta name="keywords" content="KMP,AC自动机,Trie,哈希,">
 
 
 
@@ -95,14 +95,14 @@
 
 
 
-<meta name="keywords" content="KMP,AC自动机,Trie">
+<meta name="keywords" content="KMP,AC自动机,Trie,哈希">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串（一）">
 <meta property="og:url" content="http://yoursite.com/2020/10/28/字符串（一）/index.html">
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/06/ebqDGynUwQBzVv2.jpg">
-<meta property="og:updated_time" content="2020-11-06T05:19:52.807Z">
+<meta property="og:updated_time" content="2020-11-06T07:34:41.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/06/ebqDGynUwQBzVv2.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  311
                 </span>
               
 
@@ -452,7 +452,11 @@
 
       
         <p><img src="https://i.loli.net/2020/11/06/ebqDGynUwQBzVv2.jpg" alt="194ca7a2caa6edc703ccf7980cadac16.jpg"><br><a id="more"></a></p>
-
+<h1 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h1><p>哈希的基本思想就是将信息量大的字符串压缩成信息量小的表达形式。<br>我们将字符串转化成一个整数，便于进行存储和比较，而且我们要保证对于不同的字符串，转化成的整数也是不同的。<br>那么具体如何转化呢？常用的方法是先将每个字符换成s[i]-‘a’+1，哈希模型为Hash(i)=Hash(i-1)<em>p+s[i]，其中p为素数，最终算出的Hash(n)即为字符串的哈希值，我们的任务就是构造哈希函数使得不同字符串的<em>*哈希冲突率</em></em>尽量小。</p>
+<h2 id="常见哈希方法"><a href="#常见哈希方法" class="headerlink" title="常见哈希方法"></a>常见哈希方法</h2><h3 id="自然溢出"><a href="#自然溢出" class="headerlink" title="自然溢出"></a>自然溢出</h3><h3 id="单哈希"><a href="#单哈希" class="headerlink" title="单哈希"></a>单哈希</h3><h3 id="双哈希"><a href="#双哈希" class="headerlink" title="双哈希"></a>双哈希</h3><h2 id="子串的哈希值"><a href="#子串的哈希值" class="headerlink" title="子串的哈希值"></a>子串的哈希值</h2><p>求出一个字符串的哈希值后，其子串的哈希值是可以O(1)求出的。</p>
+<h1 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h1><p>KMP主要用于字符串匹配，其复杂度为$O(N+M)$，其中N是主串的长度，M是模式串的长度。</p>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>我们求出当主串中字符串匹配到i时，若匹配失败，</p>
+<h2 id="next的构建"><a href="#next的构建" class="headerlink" title="next的构建"></a>next的构建</h2><h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><h2 id="扩展KMP"><a href="#扩展KMP" class="headerlink" title="扩展KMP"></a>扩展KMP</h2><h1 id="AC自动机"><a href="#AC自动机" class="headerlink" title="AC自动机"></a>AC自动机</h1><h1 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h1><h2 id="可持久化Trie树"><a href="#可持久化Trie树" class="headerlink" title="可持久化Trie树"></a>可持久化Trie树</h2><h1 id="后缀数组（SA）"><a href="#后缀数组（SA）" class="headerlink" title="后缀数组（SA）"></a>后缀数组（SA）</h1><h1 id="后缀自动机、后缀树（SAM）"><a href="#后缀自动机、后缀树（SAM）" class="headerlink" title="后缀自动机、后缀树（SAM）"></a>后缀自动机、后缀树（SAM）</h1>
       
     </div>
     
@@ -478,6 +482,8 @@
             <a href="/tags/AC自动机/" rel="tag"><i class="fa fa-tag"></i> AC自动机</a>
           
             <a href="/tags/Trie/" rel="tag"><i class="fa fa-tag"></i> Trie</a>
+          
+            <a href="/tags/哈希/" rel="tag"><i class="fa fa-tag"></i> 哈希</a>
           
         </div>
       
@@ -557,8 +563,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -596,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -655,6 +670,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#哈希"><span class="nav-number">1.</span> <span class="nav-text">哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见哈希方法"><span class="nav-number">1.1.</span> <span class="nav-text">常见哈希方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自然溢出"><span class="nav-number">1.1.1.</span> <span class="nav-text">自然溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单哈希"><span class="nav-number">1.1.2.</span> <span class="nav-text">单哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双哈希"><span class="nav-number">1.1.3.</span> <span class="nav-text">双哈希</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子串的哈希值"><span class="nav-number">1.2.</span> <span class="nav-text">子串的哈希值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KMP"><span class="nav-number">2.</span> <span class="nav-text">KMP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思想"><span class="nav-number">2.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next的构建"><span class="nav-number">2.2.</span> <span class="nav-text">next的构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配"><span class="nav-number">2.3.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展KMP"><span class="nav-number">2.4.</span> <span class="nav-text">扩展KMP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AC自动机"><span class="nav-number">3.</span> <span class="nav-text">AC自动机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trie树"><span class="nav-number">4.</span> <span class="nav-text">Trie树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可持久化Trie树"><span class="nav-number">4.1.</span> <span class="nav-text">可持久化Trie树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀数组（SA）"><span class="nav-number">5.</span> <span class="nav-text">后缀数组（SA）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀自动机、后缀树（SAM）"><span class="nav-number">6.</span> <span class="nav-text">后缀自动机、后缀树（SAM）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
       
         <div class="back-to-top">

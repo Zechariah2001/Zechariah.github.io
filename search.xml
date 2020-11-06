@@ -30,7 +30,7 @@
   <entry>
     <title><![CDATA[字符串（一）]]></title>
     <url>%2F2020%2F10%2F28%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[哈希哈希的基本思想就是将信息量大的字符串压缩成信息量小的表达形式。我们将字符串转化成一个整数，便于进行存储和比较，而且我们要保证对于不同的字符串，转化成的整数也是不同的。那么具体如何转化呢？常用的方法是先将每个字符换成s[i]-‘a’+1，哈希模型为Hash(i)=Hash(i-1)p+s[i]，其中p为素数，最终算出的Hash(n)即为字符串的哈希值，我们的任务就是构造哈希函数使得不同字符串的*哈希冲突率尽量小。 常见哈希方法自然溢出单哈希双哈希子串的哈希值求出一个字符串的哈希值后，其子串的哈希值是可以O(1)求出的。 KMPKMP主要用于字符串匹配，其复杂度为$O(N+M)$，其中N是主串的长度，M是模式串的长度。 基本思想我们求出当主串中字符串匹配到i时，若匹配失败， next的构建匹配扩展KMPAC自动机Trie树可持久化Trie树后缀数组（SA）后缀自动机、后缀树（SAM）]]></content>
       <categories>
         <category>小结</category>
       </categories>
@@ -38,6 +38,7 @@
         <tag>KMP</tag>
         <tag>AC自动机</tag>
         <tag>Trie</tag>
+        <tag>哈希</tag>
       </tags>
   </entry>
   <entry>
