@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/03/3WQduv1NwFgoP9O.jpg">
-<meta property="og:updated_time" content="2020-11-06T05:04:11.295Z">
+<meta property="og:updated_time" content="2020-11-12T09:29:21.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/03/3WQduv1NwFgoP9O.jpg">
@@ -466,8 +466,8 @@
 </ul>
 <p>于是我们的转移方程就出来了：</p>
 <ul>
-<li>$s[l]=s[r],dp[l][r]=min(dp[l+1][r],dp[l][r-1])$</li>
-<li>$s[l]\not=s[r],dp[l][r]=min(dp[l][r],dp[l][k]+dp[k+1][r]|l\le k&lt; r)$</li>
+<li>$s[l]=s[r],dp[l][r]=min\{dp[l+1][r],dp[l][r-1]\}$</li>
+<li>$s[l]\not=s[r],dp[l][r]=min\{dp[l][r],dp[l][k]+dp[k+1][r]|l\le k&lt; r\}$</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>; len &lt;= n; ++len) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>, r = len; r &lt;= n; ++l, ++r) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s[l] == s[r])dp[l][r] = min(dp[l + <span class="number">1</span>][r], dp[l][r - <span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = l; k &lt; r; ++k)</span><br><span class="line">				dp[l][r] = min(dp[l][r], dp[l][k] + dp[k + <span class="number">1</span>][r]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="数位DP"><a href="#数位DP" class="headerlink" title="数位DP"></a>数位DP</h2><p>数位DP常用于统计或查找一个区间满足条件的数，然后按数位顺序DP，一般需要仔细分情况讨论。<br>常见处理方式有：拆成[1,R]和[1,L)，记忆化，预处理等。<br><a href="https://www.luogu.com.cn/problem/P2657">洛谷P2657 [SCOI2009] windy 数</a></p>
