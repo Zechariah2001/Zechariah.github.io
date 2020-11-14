@@ -37,7 +37,13 @@
   <entry>
     <title><![CDATA[数学（一）]]></title>
     <url>%2F2020%2F10%2F28%2F%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[GCDGCD就是最大公约数，最大公约数和最小公约数的求法都非常简单，这里直接给出求法。最大公约数：通常采用辗转相除法，也可以使用更相减损术。我们主要用辗转相除法（欧几里得算法）。gcd具有一些性质：$\gcd(a,b)=\gcd(-a,b)$$\gcd(a,b)=\gcd(b,a\bmod b)$，这个性质应用于辗转相除法$\gcd(a,b)=\gcd(b, a -b)$，这个性质应用于更相减损术 12345ll GCD(ll a, ll b) &#123; while (a %= b) swap(a, b); return a;&#125; exGCD扩展欧几里得定律，用于求解形如$a\cdot x+b\cdot y=\gcd(a, b)$的不定方程。]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[字符串（一）]]></title>
