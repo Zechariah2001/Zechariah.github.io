@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg">
-<meta property="og:updated_time" content="2020-11-14T23:59:39.221Z">
+<meta property="og:updated_time" content="2020-11-15T13:26:45.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  759
+                  762
                 </span>
               
 
@@ -461,7 +461,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">GCD</span><span class="params">(ll a, ll b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (a %= b)</span><br><span class="line">        swap(a, b);</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="exGCD"><a href="#exGCD" class="headerlink" title="exGCD"></a>exGCD</h2><p>扩展欧几里得定律，用于求解形如$a\cdot x+b\cdot y=\gcd(a, b)$的<strong>不定方程</strong>。<br>下面我们来简单说明一下其原理：<br>由性质2可知$\gcd(a,b)=\gcd(b,a\bmod b)$<br>我们设$\gcd(b,a\bmod b)=b\cdot x’+(a\bmod b)\cdot y’$<br>则有$a\cdot x+b\cdot y=b\cdot x’+(a\bmod b)\cdot y’$<br>我们知道，$a\bmod b=a-b\cdot\lfloor \dfrac{a}{b}\rfloor$<br>由此得$a\cdot x + b\cdot y=a\cdot y’+b\cdot(x’-\lfloor\dfrac{a}{b}\rfloor)$<br>因此我们可以知道，$x,y$的<strong>一组可行解</strong>为$(x,y)=(y’,x’-\lfloor\dfrac{a}{b}\rfloor)$<br>那么其边界条件是什么呢？我们知道，欧几里得算法执行到最后$a’\bmod b’=0$，即$a’$一定是$b’$的整数倍，所以在我们递归下一次时，$y’$的系数实际上变成了0，而$x’$的系数为$b’$，且$b’=\gcd(a,b)$，因此边界条件为$x=1,y=0$。</p>
 <p>于是我们的解法就出来了，递归地实现欧几里得算法，当求到边界时设$x=1,y=0$，然后在回溯的过程中根据上述推导的公式一步步求解。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里要采用递归写法，因为要回溯</span></span><br><span class="line"><span class="function">ll <span class="title">EXGCD</span><span class="params">(ll a, ll b, ll &amp;x, ll &amp;y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">    ll gcd = EXGCD(b % a, a), tmpx = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmpx - a / b * y;</span><br><span class="line">    <span class="keyword">return</span> gcd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里要采用递归写法，因为要回溯</span></span><br><span class="line"><span class="function">ll <span class="title">exGCD</span><span class="params">(ll a, ll b, ll &amp;x, ll &amp;y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">		x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	ll gcd = exGCD(b, a % b, x, y), tmpx = x;</span><br><span class="line">	x = y;</span><br><span class="line">	y = tmpx - a / b * y;</span><br><span class="line">	<span class="keyword">return</span> gcd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>显然，这里我们求出了一组可行解，很容易得出该不定方程的通解为$x’=x+\dfrac{k\cdot b}{\gcd(a,b)},y’=y-\dfrac{k\cdot a}{\gcd(a,b)}$。</p>
 <h1 id="CRT"><a href="#CRT" class="headerlink" title="CRT"></a>CRT</h1><p>中国剩余定理，用于求解<strong>一元模方程组</strong>，即模意义下的一元方程组（每个方程的模数不同）<br>使用CRT的前提是所有模方程的模数<strong>互质</strong><br>即对于</p>
 <script type="math/tex; mode=display">
@@ -472,7 +472,7 @@ x\equiv a_2\pmod {m_2}\\
 x\equiv a_n\pmod {m_n}\\
 \end{cases}</script><p>其中$m_1,m_2,…,m_n$两两互质</p>
 <p>我们定义$M=\prod m_i$<br>考虑每一个方程，只要我们能求出$x_i$使得$x_i$是$\dfrac{M}{m_i}$的倍数且$x_i\equiv 1\pmod{m_i}$，那么最终结果就是$\sum a_i\cdot x_i\bmod M$<br>然后我们考虑一下我们对$x_i$的定义，我们会惊奇地发现，实际上$x_i=M_i^{-1}\cdot M_i$，其中$M_i^{-1}$为$M_i$在模$m_i$意义下的逆元<br>所以我们最终的解为$x=\sum a_i\cdot M_i^{-1}\cdot M_i\bmod M$，此处求的是x的最小正整数解，通解$x’=x + k\cdot M$。</p>
-
+<h2 id="exCRT"><a href="#exCRT" class="headerlink" title="exCRT"></a>exCRT</h2>
       
     </div>
     
@@ -698,7 +698,7 @@ x\equiv a_n\pmod {m_n}\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">1.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exGCD"><span class="nav-number">1.1.</span> <span class="nav-text">exGCD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRT"><span class="nav-number">2.</span> <span class="nav-text">CRT</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">1.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exGCD"><span class="nav-number">1.1.</span> <span class="nav-text">exGCD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRT"><span class="nav-number">2.</span> <span class="nav-text">CRT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exCRT"><span class="nav-number">2.1.</span> <span class="nav-text">exCRT</span></a></li></ol></li></ol></div>
             
 
           </div>
