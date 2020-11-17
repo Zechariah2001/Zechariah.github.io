@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg">
-<meta property="og:updated_time" content="2020-11-17T11:49:41.916Z">
+<meta property="og:updated_time" content="2020-11-17T12:34:31.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k
+                  1.3k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  6
                 </span>
               
             </div>
@@ -477,7 +477,18 @@ x\equiv a_2\pmod {m_2}\\
 x\equiv a_n\pmod {m_n}\\
 \end{cases}</script><p>其中$m_1,m_2,…,m_n$两两互质</p>
 <p>我们定义$M=\prod m_i$<br>考虑每一个方程，只要我们能求出$x_i$使得$x_i$是$M_i=\dfrac{M}{m_i}$的倍数且$x_i\equiv 1\pmod{m_i}$，那么最终结果就是$\sum a_i\cdot x_i\bmod M$<br>然后我们考虑一下我们对$x_i$的定义，我们会惊奇地发现，实际上$x_i=M_i^{-1}\cdot M_i$，其中$M_i^{-1}$为$M_i$在模$m_i$意义下的逆元<br>所以我们最终的解为$x=\sum a_i\cdot M_i^{-1}\cdot M_i\bmod M$，此处求的是x的最小正整数解，通解$x’=x + k\cdot M$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">ll m[N], a[N], M;</span><br><span class="line"><span class="function">ll <span class="title">mul</span><span class="params">(ll a, ll b)</span> </span>&#123;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; b; a = (a &lt;&lt; <span class="number">1</span>) % M, b &gt;&gt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)</span><br><span class="line">			(ans += a) %= M;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">EXGCD</span><span class="params">(ll a, ll b, ll &amp;x, ll &amp;y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">		x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	ll gcd = EXGCD(b, a % b, x, y), tmpx = x;</span><br><span class="line">	x = y;</span><br><span class="line">	y = ((tmpx - a / b * y) % M + M) % M;</span><br><span class="line">	<span class="keyword">return</span> gcd;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">CRT</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ll ans = <span class="number">0</span>, x, y;</span><br><span class="line">	M = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		m[i] = fast_IO::read(), a[i] = fast_IO::read();</span><br><span class="line">		M *= m[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		ll Mi = M / m[i];</span><br><span class="line">		EXGCD(Mi, m[i], x, y);<span class="comment">//m[i]互质，所以Mi与m[i]互质，满足exgcd的条件</span></span><br><span class="line">		(ans += mul(mul(a[i], x), Mi)) %= M;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="exCRT"><a href="#exCRT" class="headerlink" title="exCRT"></a>exCRT</h2><p>CRT的使用条件是m[i]互质，如果m[i]不互质，我们引入<strong>扩展中国剩余定理</strong>。</p>
+<h2 id="exCRT"><a href="#exCRT" class="headerlink" title="exCRT"></a>exCRT</h2><p>CRT的使用条件是m[i]互质，如果m[i]不互质，我们引入<strong>扩展中国剩余定理</strong>。<br>注意，exCRT的解法是完全跳出CRT思想的，不要认为exCRT是CRT的升级版。<br>首先我们来考虑只有两个模方程的模方程组</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x\equiv a_1\pmod{m_1}\\
+x\equiv a_2\pmod{m_2}
+\end{cases}</script><p>这两个方程显然可以写成</p>
+<script type="math/tex; mode=display">
+x=a_1+m_1\cdot y_1\\
+x=a_2+m_2\cdot y_2</script><p>所以有</p>
+<script type="math/tex; mode=display">
+a_1+m_1\cdot y_1=a_2+m_2\cdot y_2\\
+a_1-a_2=m_2\cdot y_2-m_1\cdot y_1</script><p>我们令$m_1\cdot a+m_2\cdot b=\gcd(m_1,m_2)$<br>当$\gcd(m_1,m_2)\not|(a_1-a_2)$无解，否则$y_1=-\dfrac{a_1-a_2}{\gcd(m_1,m_2)}m,y_2=\dfrac{a_1-a_2}{\gcd(m_1,m_2)}$<br>我们令$A=a_1+m_1\cdot y_1$，则该模方程组的解为$x\equiv A\pmod{\rm{lcm} (m_1,m_2)}$</p>
 
       
     </div>
