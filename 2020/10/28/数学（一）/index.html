@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg">
-<meta property="og:updated_time" content="2020-11-17T12:34:31.465Z">
+<meta property="og:updated_time" content="2020-11-17T14:38:21.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.3k
+                  1.4k
                 </span>
               
 
@@ -452,6 +452,7 @@
 
       
         <p><img src="https://i.loli.net/2020/11/12/lMGCvzAtV83FOXs.jpg" alt="356377.jpg"><br><a id="more"></a></p>
+<h1 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h1><p>$a\cdot x +b\cdot y=c,x,y\in N_+$成立的充要条件是$\gcd(a,b)|c$<br>该定理可推广至多个未知数方程。</p>
 <h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><p>GCD就是最大公约数，最大公约数和最小公约数的求法都非常简单，这里直接给出求法。<br>最大公约数：通常采用<strong>辗转相除法</strong>，也可以使用<strong>更相减损术</strong>。我们主要用辗转相除法（欧几里得算法）。<br>gcd具有一些性质：</p>
 <ol>
 <li>$\gcd(a,b)=\gcd(-a,b)$</li>
@@ -488,7 +489,7 @@ x=a_1+m_1\cdot y_1\\
 x=a_2+m_2\cdot y_2</script><p>所以有</p>
 <script type="math/tex; mode=display">
 a_1+m_1\cdot y_1=a_2+m_2\cdot y_2\\
-a_1-a_2=m_2\cdot y_2-m_1\cdot y_1</script><p>我们令$m_1\cdot a+m_2\cdot b=\gcd(m_1,m_2)$<br>当$\gcd(m_1,m_2)\not|(a_1-a_2)$无解，否则$y_1=-\dfrac{a_1-a_2}{\gcd(m_1,m_2)}m,y_2=\dfrac{a_1-a_2}{\gcd(m_1,m_2)}$<br>我们令$A=a_1+m_1\cdot y_1$，则该模方程组的解为$x\equiv A\pmod{\rm{lcm} (m_1,m_2)}$</p>
+a_1-a_2=m_2\cdot y_2-m_1\cdot y_1</script><p>我们令$m_1\cdot a+m_2\cdot b=\gcd(m_1,m_2)$<br>由裴蜀定理，当$\gcd(m_1,m_2)\not|(a_1-a_2)$无解，否则$y_1=-\dfrac{a_1-a_2}{\gcd(m_1,m_2)}m,y_2=\dfrac{a_1-a_2}{\gcd(m_1,m_2)}$<br>我们令$A=a_1+m_1\cdot y_1$，则该模方程组的解为$x\equiv A\pmod{ { \rm{lcm} } (m_1,m_2)}$<br>这时候相当于我们将这两个模方程合并了，那么推广一下，对任意个数的模方程都可以这样合并。</p>
 
       
     </div>
@@ -715,7 +716,7 @@ a_1-a_2=m_2\cdot y_2-m_1\cdot y_1</script><p>我们令$m_1\cdot a+m_2\cdot b=\gc
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">1.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exGCD"><span class="nav-number">1.1.</span> <span class="nav-text">exGCD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRT"><span class="nav-number">2.</span> <span class="nav-text">CRT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exCRT"><span class="nav-number">2.1.</span> <span class="nav-text">exCRT</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#裴蜀定理"><span class="nav-number">1.</span> <span class="nav-text">裴蜀定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">2.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exGCD"><span class="nav-number">2.1.</span> <span class="nav-text">exGCD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRT"><span class="nav-number">3.</span> <span class="nav-text">CRT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exCRT"><span class="nav-number">3.1.</span> <span class="nav-text">exCRT</span></a></li></ol></li></ol></div>
             
 
           </div>
