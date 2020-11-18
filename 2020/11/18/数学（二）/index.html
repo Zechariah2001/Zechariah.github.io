@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/18/oJ9lxQKgXZmapn1.jpg">
-<meta property="og:updated_time" content="2020-11-18T07:54:44.182Z">
+<meta property="og:updated_time" content="2020-11-18T08:13:54.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/18/oJ9lxQKgXZmapn1.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  674
+                  783
                 </span>
               
 
@@ -464,8 +464,12 @@
 <h3 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h3><p>当$ { \rm {ord} }_na=\phi(n)$时，称a为n的<strong>原根</strong>。<br><del>咕咕咕</del></p>
 <h2 id="BSGS算法"><a href="#BSGS算法" class="headerlink" title="BSGS算法"></a>BSGS算法</h2><p>懂了这些基础知识后，我们来看看BSGS算法是怎样求解的<br>首先使用BSGS的前提条件是<strong>P为素数</strong>，于是我们知道${ \rm {ord} }_PA\le \phi(P)$，所以我们就考虑$0\sim\phi(P)$的解。<br>我们知道，小于P的数可以表示成$x=a\lceil\sqrt{P}\rceil+b,0\le a,b &lt; \lceil\sqrt{P}\rceil$<br>那么原式子就可以变形为$A^{a\lceil\sqrt{P}\rceil}\equiv B\times A^{-b}\pmod P$<br>那么我们只需要枚举所有的b将$B\times A^{-b}$插入哈希表，然后枚举a在哈希表中查找$A^{a\lceil\sqrt{P}\rceil}$就行了。<br>复杂度为$O(\sqrt{P})$<br>当然，如果我们将x表示成$x=a\lceil\sqrt{P}\rceil-b,1\le a \le \lceil\sqrt{P}\rceil,0\le b&lt; \lceil\sqrt{P}\rceil$，就不用求A的逆元了<br>此时原式子变形为$A^{a\lceil\sqrt{P}\rceil}\equiv B\times A^b\pmod P$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">ksm</span><span class="params">(ll a, ll b, ll p)</span> </span>&#123;</span><br><span class="line">	ll ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; b; (a *= a) %= p, b &gt;&gt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>)(ans *= a) %= p;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">BSGS</span><span class="params">(ll A, ll B, ll P)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">map</span>&lt;ll, ll&gt;mp;</span><br><span class="line">	<span class="built_in">map</span>&lt;ll, <span class="keyword">bool</span>&gt;mmp;</span><br><span class="line">	B %= P;</span><br><span class="line">	ll s = <span class="built_in">ceil</span>(<span class="built_in">sqrt</span>(P));</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">0</span>; i &lt; s; ++i)</span><br><span class="line">		mp[B * ksm(A, i, P) % P] = i,</span><br><span class="line">		mmp[B * ksm(A, i, P) % P] = true;</span><br><span class="line">	A = ksm(A, s, P);</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= s; ++i) &#123;</span><br><span class="line">		ll now = ksm(A, i, P);</span><br><span class="line">		<span class="keyword">if</span> (mmp[now] &amp;&amp; i * s - mp[now] &gt;= <span class="number">0</span>)<span class="keyword">return</span> i * s - mp[now];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="exBSGS"><a href="#exBSGS" class="headerlink" title="exBSGS"></a>exBSGS</h2><p>当P不为素数时，直接BSGS就有问题了，因为可能会出现$A^k\equiv 0\pmod{P}$</p>
-
+<h2 id="exBSGS"><a href="#exBSGS" class="headerlink" title="exBSGS"></a>exBSGS</h2><p>当P不为素数时，直接BSGS就有问题了，因为可能会出现$A^k\equiv 0\pmod{P}$<br>当$\gcd(A,P)\not|B$时，仅当$B=1$时有解，其余均无解，而当$\gcd(A,P)=1$时直接进行BSGS，否则</p>
+<script type="math/tex; mode=display">
+A^x\equiv B\pmod{P}\\
+A^{x-1}\times\dfrac{A}{\gcd(A,P)}\equiv \dfrac{B}{\gcd(A,P)}\pmod{\dfrac{P}{\gcd(A,P)}}</script><p>反复进行直到$\gcd(A,P)=1$<br>也就是转化成</p>
+<script type="math/tex; mode=display">
+A^{x-t}\times\dfrac{A}{\prod\limits^{t}_{i=1}gcd_i}\equiv\dfrac{B}{\prod\limits^{t}_{i=1}gcd_i}\pmod{\dfrac{P}{\prod\limits^{t}_{i=1}gcd_i}}</script>
       
     </div>
     
