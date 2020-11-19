@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/18/oJ9lxQKgXZmapn1.jpg">
-<meta property="og:updated_time" content="2020-11-19T07:12:48.380Z">
+<meta property="og:updated_time" content="2020-11-19T07:20:40.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/18/oJ9lxQKgXZmapn1.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  914
+                  904
                 </span>
               
 
@@ -467,9 +467,10 @@
 <h2 id="exBSGS"><a href="#exBSGS" class="headerlink" title="exBSGS"></a>exBSGS</h2><p>当P不为素数时，直接BSGS就有问题了，因为可能会出现$A^k\equiv 0\pmod{P}$<br>当$\gcd(A,P)\not|B$时，仅当$B=1$时有解（显然至少有一个解为0），其余均无解，而当$\gcd(A,P)=1$时直接进行BSGS，否则</p>
 <script type="math/tex; mode=display">
 A^x\equiv B\pmod{P}\\
-A^{x-1}\times\dfrac{A}{\gcd(A,P)}\equiv \dfrac{B}{\gcd(A,P)}\pmod{\dfrac{P}{\gcd(A,P)}}</script><p>反复进行直到$\gcd(A,P)=1$<br>也就是转化成</p>
+A^{x-1}\times\dfrac{A}{\gcd(A,P)}\equiv \dfrac{B}{\gcd(A,P)}\pmod{\dfrac{P}{\gcd(A,P)}}\\
+A^{x-1}\equiv \dfrac{B}{\gcd(A,P)}\times(\dfrac{A}{\gcd(A,P)})^{-1}\pmod{\dfrac{P}{\gcd(A,P)}}\\</script><p>而这个式子可看作</p>
 <script type="math/tex; mode=display">
-A^{x-t}\times\dfrac{A}{\prod\limits^{t}_{i=1}gcd_i}\equiv\dfrac{B}{\prod\limits^{t}_{i=1}gcd_i}\pmod{\dfrac{P}{\prod\limits^{t}_{i=1}gcd_i}}</script><p>最终$\gcd(A,P)=1$时再进行BSGS就行了。<br>注意，最终我们BSGS求出的是$x-t$，我们在前面的过程中记录t的大小，最后加上BSGS的答案即可</p>
+A'\equiv B'\pmod{P'}</script><p>反复进行直到$\gcd(A’,P’)=1$，再进行BSGS就可以了。<br>注意，最终我们BSGS求出的是$x-t$，我们在前面的过程中记录t的大小，最后加上BSGS的答案即可</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">exBSGS</span><span class="params">(ll A, ll B, ll P)</span> </span>&#123;</span><br><span class="line">	ll x, y, gcd, add = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (B == <span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; (gcd = exGCD(A, P, x, y)) != <span class="number">1</span>; ++add) &#123;</span><br><span class="line">		<span class="keyword">if</span> (B % gcd)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		B /= gcd, P /= gcd;</span><br><span class="line">		exGCD(A / gcd, P, x, y);</span><br><span class="line">		x = (x % P + P) % P;</span><br><span class="line">		B = B * x % P;</span><br><span class="line">	&#125;</span><br><span class="line">	ll ans = BSGS(A, B, P);</span><br><span class="line">	<span class="keyword">if</span> (~ans)<span class="keyword">return</span> ans + add;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
