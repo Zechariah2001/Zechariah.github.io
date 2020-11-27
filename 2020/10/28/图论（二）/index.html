@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/10/28/cfIXVTd7yYDe8l1.jpg">
-<meta property="og:updated_time" content="2020-11-25T11:56:36.836Z">
+<meta property="og:updated_time" content="2020-11-27T07:25:25.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图论（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/28/cfIXVTd7yYDe8l1.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  16
+                  262
                 </span>
               
 
@@ -452,7 +452,23 @@
 
       
         <p><img src="https://i.loli.net/2020/10/28/cfIXVTd7yYDe8l1.jpg" alt="6c639ac0b259d154c3efc7498c4ba3ba.jpeg"><br><a id="more"></a></p>
-<h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><h2 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h2><h2 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h2><h1 id="费用流"><a href="#费用流" class="headerlink" title="费用流"></a>费用流</h1><h1 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h1>
+<h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><p>甚么是网络流？<br>在有向图G=(V, E)中：</p>
+<ul>
+<li>有唯一的一个<strong>源点</strong>S（入度为0，为出发点）</li>
+<li>有唯一的一个<strong>汇点</strong>T（出毒为0，为结束点）</li>
+<li>图中每条弧(u, v)都有一个非负<strong>容量</strong>c(u, v)</li>
+</ul>
+<p>满足上述条件的图G称为网络流图，记为$G=(V,E,C)$</p>
+<h2 id="可行流"><a href="#可行流" class="headerlink" title="可行流"></a>可行流</h2><p>每条弧(u, v)上给定一个实数f(u, v)满足：有$0\le f(u,v)\le c(u,v)$，则f(u, v)称为弧(u, v)上的<strong>流量</strong>。<br>如果有一组流量满足条件：</p>
+<ul>
+<li>源点s：流出量=整个网络流的流量</li>
+<li>汇点t：流入量=整个网络流的流量</li>
+<li>中间点：总流入量=总流出量</li>
+</ul>
+<p>那么整个网络中的流量称为一个<strong>可行流</strong>。</p>
+<h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><p>在所有的可行流中，流量最大的一个流（满足流量最大的可行流可能不止一个）的流量称为<strong>最大流</strong>。</p>
+<h3 id="求法"><a href="#求法" class="headerlink" title="求法"></a>求法</h3><p>最大流的求法非常多，最常用的应该是Dinic。</p>
+
       
     </div>
     
@@ -680,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流"><span class="nav-number">1.</span> <span class="nav-text">网络流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dinic"><span class="nav-number">1.1.</span> <span class="nav-text">Dinic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小割"><span class="nav-number">1.2.</span> <span class="nav-text">最小割</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#费用流"><span class="nav-number">2.</span> <span class="nav-text">费用流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上下界网络流"><span class="nav-number">3.</span> <span class="nav-text">上下界网络流</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流"><span class="nav-number">1.</span> <span class="nav-text">网络流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可行流"><span class="nav-number">1.1.</span> <span class="nav-text">可行流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流"><span class="nav-number">1.2.</span> <span class="nav-text">最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求法"><span class="nav-number">1.2.1.</span> <span class="nav-text">求法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

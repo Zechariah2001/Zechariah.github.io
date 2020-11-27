@@ -145,7 +145,7 @@
   <entry>
     <title><![CDATA[图论（二）]]></title>
     <url>%2F2020%2F10%2F28%2F%E5%9B%BE%E8%AE%BA%EF%BC%88%E4%BA%8C%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[网络流Dinic最小割费用流上下界网络流]]></content>
+    <content type="text"><![CDATA[网络流甚么是网络流？在有向图G=(V, E)中： 有唯一的一个源点S（入度为0，为出发点） 有唯一的一个汇点T（出毒为0，为结束点） 图中每条弧(u, v)都有一个非负容量c(u, v) 满足上述条件的图G称为网络流图，记为$G=(V,E,C)$ 可行流每条弧(u, v)上给定一个实数f(u, v)满足：有$0\le f(u,v)\le c(u,v)$，则f(u, v)称为弧(u, v)上的流量。如果有一组流量满足条件： 源点s：流出量=整个网络流的流量 汇点t：流入量=整个网络流的流量 中间点：总流入量=总流出量 那么整个网络中的流量称为一个可行流。 最大流在所有的可行流中，流量最大的一个流（满足流量最大的可行流可能不止一个）的流量称为最大流。 求法最大流的求法非常多，最常用的应该是Dinic。]]></content>
       <categories>
         <category>小结</category>
       </categories>
