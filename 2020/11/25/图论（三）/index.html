@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/25/UPYx1Ak4tzacnXp.png">
-<meta property="og:updated_time" content="2020-11-25T14:32:03.910Z">
+<meta property="og:updated_time" content="2020-11-27T07:08:26.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图论（三）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/25/UPYx1Ak4tzacnXp.png">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1k
+                  1.2k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  4
                 </span>
               
             </div>
@@ -463,6 +463,9 @@
 <h2 id="建图"><a href="#建图" class="headerlink" title="建图"></a>建图</h2><p>那么为什么要进行这样的转化呢？因为这样的话，我们就可以将“某元素取值为x”这样的一个表述抽象成一个点，通过连边的方式来构建不同元素取值之间的关系。<br>具体地，根据上面的例子，我们将每个点a拆成两个点a0和a1，分别表示“a取值为0”和“a取值为1”，对于“若A=x则B=y”，我们连有向边(Ax, By)，这样的话如果我们能在图上从点P走到点Q，就说明若命题P成立则命题Q成立。<br>那么显然，如果能从a0走到a1且能从a1走到a0，则必然矛盾，这一步我们可以用tarjan求强连通分量解决。<br>反之，则一定存在合法方案满足所有的二元逻辑运算式。</p>
 <h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><h3 id="O-N-M-求一组可行解"><a href="#O-N-M-求一组可行解" class="headerlink" title="O(N+M)求一组可行解"></a>O(N+M)求一组可行解</h3><p>首先当然是通过tarjan求强连通分量，最后如果有a0与a1在同一个强连通分量内，说明无解。<br>那么缩完点后，我们如何来找到一组合法的解呢？<br>这里先给出策略：缩点后按照<strong>逆拓扑序</strong>，即与拓扑序刚好相反的顺序找到一个未被染色的点并染成黑色，然后将<strong>与这个强连通分量中的点矛盾的所有强连通分量</strong>全部染成白色，重复这一过程，最后所有染成黑色的强连通分量里的点就是一组可行解。<br>那么如何证明这种策略的正确性呢？首先通过前面的缩点我们保证了强连通分量内没有矛盾，那么我们只需要证明染色的过程没有矛盾。<br>显然，我们在染黑色点的时候已然将其对立点所在联通块全部染成白色，染色过程不会产生矛盾，现在只需要说明我们的染色过程能够覆盖到每一个未知量。<br>我们假设某一个未知量的两个对应元素都被染成了白色，那么考虑我们的染色过程，某个点被染成白色必然是因为其对立点被染成了黑色，这就产生了矛盾，所以不存在同一个未知量的两个对应元素都被染成白色，所以这两个点必然是一白一黑。<br>如此，我们就证明了这个方法的正确性。</p>
 <p>那么具体如何来操作呢？实际上非常方便，因为我们在缩点的过程中会对所有强连通分量进行编号，而这个编号我们从小到大来编，这样的话越靠后的强连通分量获得的编号实际上越小（因为tarjan是用dfs实现的），因此强连通分量的编号实际上就是上面提到的“逆拓扑序”。那么结果就很明显了，对于未知量a，若$ltk[a_0] &lt; ltk[a_1]$，则$a=0$；若$ltk[a_1]&lt;ltk[a_0]$，则$a=1$</p>
+<h3 id="O-NM-求最小字典序解"><a href="#O-NM-求最小字典序解" class="headerlink" title="O(NM)求最小字典序解"></a>O(NM)求最小字典序解</h3><p>我们只需要枚举每一个未知量，若其取值合法就继续下去，否则取另一个值并继续下去。</p>
+<h3 id="关于O-NM-做法的一个优化"><a href="#关于O-NM-做法的一个优化" class="headerlink" title="关于O(NM)做法的一个优化"></a>关于O(NM)做法的一个优化</h3><p>如果我们能在遍历到x时就能判断出x是否能走到x’，就可以O(n+m)求解了，而这个预处理我们通过<strong>传递闭包</strong>实现。</p>
+<h4 id="传递闭包"><a href="#传递闭包" class="headerlink" title="传递闭包"></a>传递闭包</h4><p>什么是传递闭包？一个n顶点DAG的传递闭包可以定义为一个n阶布尔矩阵$T=\{t_{i,j}\}$，若从i到j存在一条路径，则$t_\{i,j\}=1$，否则$t_{i,j}=0$。<br>实际上，传递闭包揭示的是两点间的<strong>传递关系</strong>，即两点间是否存在直接或间接的关系。</p>
 
       
     </div>
@@ -687,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SAT"><span class="nav-number">1.</span> <span class="nav-text">2-SAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二元逻辑运算的转化"><span class="nav-number">1.1.</span> <span class="nav-text">二元逻辑运算的转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建图"><span class="nav-number">1.2.</span> <span class="nav-text">建图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解"><span class="nav-number">1.3.</span> <span class="nav-text">求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-N-M-求一组可行解"><span class="nav-number">1.3.1.</span> <span class="nav-text">O(N+M)求一组可行解</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SAT"><span class="nav-number">1.</span> <span class="nav-text">2-SAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二元逻辑运算的转化"><span class="nav-number">1.1.</span> <span class="nav-text">二元逻辑运算的转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建图"><span class="nav-number">1.2.</span> <span class="nav-text">建图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解"><span class="nav-number">1.3.</span> <span class="nav-text">求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-N-M-求一组可行解"><span class="nav-number">1.3.1.</span> <span class="nav-text">O(N+M)求一组可行解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-NM-求最小字典序解"><span class="nav-number">1.3.2.</span> <span class="nav-text">O(NM)求最小字典序解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于O-NM-做法的一个优化"><span class="nav-number">1.3.3.</span> <span class="nav-text">关于O(NM)做法的一个优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传递闭包"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">传递闭包</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
