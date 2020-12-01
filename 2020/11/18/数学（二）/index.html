@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/18/oJ9lxQKgXZmapn1.jpg">
-<meta property="og:updated_time" content="2020-12-01T08:35:34.158Z">
+<meta property="og:updated_time" content="2020-12-01T09:10:29.540Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/18/oJ9lxQKgXZmapn1.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.6k
+                  1.8k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  8
                 </span>
               
             </div>
@@ -498,8 +498,13 @@ C_n^m\pmod{p_1^{k_1}}\\
 C_n^m\pmod{p_2^{k_2}}\\
 ...\\
 C_n^m\pmod{p_t^{k_t}}
-\end{cases}</script><p>假设我们当前要求$C_n^m\pmod{p^{k}}$即$\dfrac{n!}{m!(n-m)!}\pmod{p^k}$<br>那么这东西可以直接求解吗？显然是不能的，因为求a对p的逆元的前提条件是gcd(a,p)=1</p>
-
+\end{cases}</script><p>假设我们当前要求$C_n^m\pmod{p^{k}}$即$\dfrac{n!}{m!(n-m)!}\pmod{p^k}$<br>那么这东西可以直接求解吗？显然是不能的，因为a对p的逆元存在的前提条件是gcd(a,p)=1<br>所以我们对这个式子变形，改成如下形式</p>
+<script type="math/tex; mode=display">
+C_n^m\equiv\dfrac{\dfrac{n!}{p^x}}{\dfrac{m!}{p^y}\times\dfrac{(n-m)!}{p^z}}\times p^{x-y-z}\pmod{p}</script><p>其中$\dfrac{x!}{p^y}$表示x!除掉其中所有的质因子p，且质因子p的个数为y。<br>不难证明，$x\ge y+z$，因此我们提出来的p的幂用快速幂求解即可。<br>现在的问题只剩下如何求解$\dfrac{x!}{p^y}\pmod{p^k}$了<br>而x!中p的倍数显然有$\lfloor\dfrac{x}{p}\rfloor$个，于是我们就得到</p>
+<script type="math/tex; mode=display">
+\dfrac{x!}{p^{\lfloor\frac{x}{p}\rfloor}}=(\lfloor\dfrac{x}{p}\rfloor)!\prod\limits_{i=1,i\not\equiv 0\pmod{p}}^{n}i</script><p>而最终我们要的结果是在模$p^k$意义下的，所以对于最右边求积的部分，我们可以将其改写成</p>
+<script type="math/tex; mode=display">
+</script>
       
     </div>
     
