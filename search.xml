@@ -60,7 +60,7 @@
   <entry>
     <title><![CDATA[字符串（二）]]></title>
     <url>%2F2020%2F11%2F12%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88%E4%BA%8C%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[后缀数组（SA）后缀自动机、后缀树（SAM）]]></content>
+    <content type="text"><![CDATA[后缀数组（SA）首先需要了解几个字符串中的基本定义： 子串：字符串s中任意截取的一段字符串t称t为s的子串 后缀：字符串s中从任一位置到字符串末尾的子串称为后缀，记为suf(i) 后缀数组：将s的所有后缀按照字典序进行排序，后缀对应的下标组成后缀数组，记sa[i]表示排名为i的后缀起始位置，rk[i]表示起始位置为i的后缀排名 SA求法这里给出一种常用解法。 基本思想：我们通过倍增的思想，对每个位置以长度为1的子串开始排序，每次将排序的长度翻倍，这样的话就能利用上一次排序的结果通过$\log n$次双关键字排序得到新的排序结果，而这里的排序我们选择基数排序来降低复杂度。 12345678910111213141516171819202122232425262728void radix_sort() &#123; memset(tong, 0, sizeof(int) * (m + 1)); //b存储第一关键字，其内顺序由第二关键字决定 for (int i = 1; i &lt;= n; ++i)++tong[rk[b[i]]]; for (int i = 1; i &lt;= m; ++i)tong[i] += tong[i - 1]; for (int i = n; i; --i)sa[tong[rk[b[i]]]--] = b[i];&#125;void getsa() &#123; m = 27; for (int i = 1; i &lt;= n; ++i) b[i] = i, rk[i] = s[i] - 'a' + 1; radix_sort(); for (int k = 1; k &lt;= n; k &lt;&lt;= 1) &#123; int tot = 0; for (int i = n - k + 1; i &lt;= n; ++i)b[++tot] = i;//没有第二关键字的排名靠前 for (int i = 1; i &lt;= n; ++i) if (sa[i] &gt; k)//枚举第二关键字 b[++tot] = sa[i] - k;//sa[i] - k是第一关键字 radix_sort();//求出sa swap(b, rk);//b是旧的rk，以此计算新的rk存储在rk中 rk[sa[tot = 1]] = 1; for (int i = 2; i &lt;= n; ++i) if (b[sa[i]] == b[sa[i - 1]] &amp;&amp; b[sa[i] + k] == b[sa[i - 1] + k])rk[sa[i]] = tot;//两个关键字都与前一个相同，排名也相同 else rk[sa[i]] = ++tot; if (tot == n)break; m = tot; &#125;&#125; LCP求法后缀数组最重要的作用就是可以求LCP 后缀自动机、后缀树（SAM）]]></content>
       <categories>
         <category>小结</category>
       </categories>
