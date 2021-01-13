@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/12/5cNKXTxZWpBLGDF.jpg">
-<meta property="og:updated_time" content="2021-01-13T10:08:14.396Z">
+<meta property="og:updated_time" content="2021-01-13T10:47:46.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/12/5cNKXTxZWpBLGDF.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k
+                  1.4k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  6
                 </span>
               
             </div>
@@ -479,6 +479,8 @@ h[i]\ge h[i-1]-1</script><p>我们设k=sa[rk[i-1]-1]，显然LCP(rk[i-1],rk[k])=
 <li>$s[k]=s[i-1]$<br>此时suf(i)是suf(i-1)去掉首字符得到的，suf(k+1)是suf(k)去掉首字符得到的，因此suf(i)和suf(k+1)之间的排名关系与suf(i-1)和suf(k)之间的排名关系相同，所以rk[k+1]&lt; rk[i]，而且，LCP(rk[k+1],rk[i])=LCP(rk[k],rk[i-1])-1=h[i-1]-1<br>根据定义，h[i]=LCP(rk[i],rk[i]-1)<br>接下来只要证明$\max\{LCP(rk[i], j)|j&lt; rk[i]\}=LCP(rk[i],rk[i]-1)$<br>又因为rk[k+1]&lt;=rk[i]-1，就可得出h[i]&gt;=LCP(rk[k+1],rk[i])=h[i-1]-1<br>而这个证明非常简单，根据字典序，suf(sa[j])的前h[i]个字符只能是suf(sa[rk[i]-1])的前h[i]个字符变小形成，这就保证了j减小的过程中LCP(rk[i],j)不会变大。</li>
 </ol>
 <h3 id="求LCP"><a href="#求LCP" class="headerlink" title="求LCP"></a>求LCP</h3><p>有了上面的性质和定理，我们就可以在线性复杂度内求出height数组<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getheight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)rk[sa[i]] = i;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="comment">//这里i枚举的是位置而不是排名</span></span><br><span class="line">		<span class="keyword">if</span> (rk[i] == <span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">int</span> j = sa[rk[i] - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span> (k)--k;<span class="comment">//h[i]&gt;=h[i-1]-1，因此从h[i-1]-1开始检验</span></span><br><span class="line">		<span class="keyword">while</span> (i + k &lt;= n &amp;&amp; j + k &lt;= n &amp;&amp; s[i + k] == s[j + k])++k;<span class="comment">//直接找</span></span><br><span class="line">		height[rk[i]] = k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>根据LCP Theorem和height的定义，$LCP(i,j)=\min\{height[k]|i&lt;k\le j\}$<br>我们用ST表来维护height的区间最小值，即可做到O(1)查询LCP</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCP</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r)<span class="keyword">return</span> n - sa[l] + <span class="number">1</span>;</span><br><span class="line">	++l;</span><br><span class="line">	<span class="keyword">if</span> (l &gt; r)swap(l, r);</span><br><span class="line">	<span class="keyword">int</span> k = r - l + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> min(ST[l][k], ST[r - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][k]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)ST[i][<span class="number">0</span>] = height[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>, lim = log2(n - <span class="number">1</span>) + <span class="number">1</span>; j &lt;= lim; ++j)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span> &lt;= n; ++i)</span><br><span class="line">			ST[i][j] = min(ST[i][j - <span class="number">1</span>], ST[i + (<span class="number">1</span> &lt;&lt; j - <span class="number">1</span>)][j - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="后缀自动机、后缀树（SAM）"><a href="#后缀自动机、后缀树（SAM）" class="headerlink" title="后缀自动机、后缀树（SAM）"></a>后缀自动机、后缀树（SAM）</h1>
       
     </div>
