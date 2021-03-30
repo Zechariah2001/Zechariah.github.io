@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[图论（四）]]></title>
+    <url>%2F2021%2F03%2F30%2F%E5%9B%BE%E8%AE%BA%EF%BC%88%E5%9B%9B%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[图论杂记杂技 竞赛图（有向完全图）竞赛图即有向完全图指的是任意两点间有且仅有一条有向边的图。性质： 竞赛图没有自环、二元环；若竞赛图存在环，则一定存在三元环；若存在一个环大于三元，则一定存在另一个三元的小环。 任意竞赛图都有哈密顿路径（经过所有点一次的路径）。 图存在哈密顿回路的充要条件是强连通。 哈密顿问题中，对于n阶竞赛图，当n大于等于2时一定存在哈密顿道路 兰道定理兰道定理用于判定竞赛图。将一个竞赛图的每一个点的出度从小到大排序后得到的序列称为竞赛图的比分序列。]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线性基]]></title>
     <url>%2F2020%2F12%2F02%2F%E7%BA%BF%E6%80%A7%E5%9F%BA%2F</url>
     <content type="text"><![CDATA[线性基线性基用于求解这样的问题：在n个数中选任意个数，求满足某个性质的异或和。什么是线性基？线性基是一个数集，其中若干个数异或起来可以得到原数集中任何一个数。 性质原数集中任意一个数都可以由线性基里面的一些数异或得到。线性基里面任意个数异或起来都不等于0.线性基里面数的个数唯一，且在保证前面性质的基础上个数最少。 构造这里直接给出线性基的构造方法 1234567891011void _insert(ll x) &#123; //插入数x for (ll i = 50; ~i; --i) &#123; if (!((x &gt;&gt; i) &amp; 1))continue; if (base[i])x ^= base[i]; else &#123; base[i] = x; break; &#125; &#125;&#125; 问题求解最大值直接从高位到低位贪心，如果异或当前的线性基可以使得答案变大就异或。即1234567ll getmax() &#123; ll ans = 0; for (ll i = 50; ~i; --i) if ((ans ^ base[i]) &gt; ans) ans ^= base[i]; return ans;&#125; 为什么这样做是对的呢？考虑我们上面的构造过程，P[i]一定是考虑了更高位的线性基的，所以只要保证当前位会使答案增加即可，低位的总贡献无论如何都不会比一个高位的贡献大。 区间查询最大值在求最大值的基础上，我们可以得到序列中求区间最大值的算法，该算法还支持动态扩大区间。我们构造前缀线性基，即对每个位置i构造[1,i]的线性基，并且记录线性基上插入的数字的位置，保证这个位置尽量靠后。更多实现细节看模板1234567891011121314151617181920212223242526272829303132void _insert(int x, int loc) &#123; //做前缀线性基，先复制[1,loc-1]的，在这个基础上插入x for (int i = 0; i &lt;= 31; ++i) base[loc][i] = base[loc - 1][i], pos[loc][i] = pos[loc - 1][i]; for (int i = 31, now = loc; ~i; --i) &#123; if (!(x &gt;&gt; i))continue; if (base[loc][i] == 0) &#123; base[loc][i] = x; pos[loc][i] = now; break; &#125; //pos记录线性基中插入的数在原序列的位置，尽量保留靠后的数 //由于其中保留的数只可能是之前插入的，所以保存的位置不会超过loc if (now &gt; pos[loc][i]) &#123; jh(now, pos[loc][i]); jh(x, base[loc][i]); &#125; x ^= base[loc][i]; &#125;&#125;int query(int l, int r) &#123; if (l &gt; r)jh(l, r); int ans = 0; //最终查询的时候，只需要查看r处的线性基，由于前面我们保证了线性基中的数位置尽量靠后 //所以只用看线性基中的数是否&gt;=l即可 for (int i = 31; ~i; --i) &#123; if (pos[r][i] &gt;= l &amp;&amp; (base[r][i] ^ ans) &gt; ans) ans ^= base[r][i]; &#125; return ans;&#125; 最小值这个很显然。如果是问线性基能异或出的最小值，那就是最小的base如果是问原数集能异或出的最小值，那就再看看有没有数不能插入线性基，如果有，最小值就是0。 第k小值在前面构造的线性基的基础上进行改进处理，使得每一位上的线性基最高位就是这一位。123456void presolve() &#123; for (ll i = 50; ~i; --i) for (int j = 0; j &lt; i; ++j) if (base[i] &gt;&gt; j) &amp; 1) base[i] ^= base[j];&#125; 查询的时候，就可以通过k的二进制来选择是否异或上某个线性基了。1234567891011121314ll query(int k) &#123; //tot为线性基中插入的元素个数 //如果插入元素比元素总数少，说明可以异或出0，特判一下 if (k == 1 &amp;&amp; tot &lt; n)return 0; //线性基求解的是不为0的第k小，因此如果有0就应该求第k-1小 if (tot &lt; n)--k; ll ans = 0; presolve(); for (ll i = 0; i &lt; 50; ++i) if (base[i]) &#123; if (k &amp; 1)ans ^= base[i]; k &gt;&gt;= 1; &#125;&#125; 判断一个数能否被线性基异或得出尝试将这个数插入线性基，能插入说明不能，不能插入说明能。]]></content>
@@ -199,8 +210,8 @@
         <category>小结</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>数据结构</tag>
+        <tag>线段树</tag>
         <tag>树状数组</tag>
         <tag>可持久化</tag>
         <tag>树链剖分</tag>
@@ -245,9 +256,9 @@
         <category>题目</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>思路</tag>
         <tag>线段树</tag>
-        <tag>数据结构</tag>
         <tag>扫描线</tag>
       </tags>
   </entry>
