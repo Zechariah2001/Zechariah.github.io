@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[杂记（一）]]></title>
+    <url>%2F2021%2F03%2F31%2F%E6%9D%82%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[UVA1451 平均值 Average题目地址 Description给定一个长度为n的01串，选一个长度至少为L的连续子串，使得子串中数字的平均值最大。如果有多解，子串长度应尽量小；如果仍有多解，起点编号尽量小。序列中的字符编号为1~n，因此[1,n]就是完整的字符串。$1\le n\le 100000,1\le L\le 1000$。 Solution 1设01串的前缀和为sum，则[l,r]的平均值可以表示为$\dfrac{sum[r]-sum[l-1]}{r-(l-1)}$，该式可以看作是点(l-1,sum[l-1])和(r,sum[r])的斜率表达式，那么题意就可以转化为：给定n+1个节点（l-1的范围和r的范围取并后的集合大小是n+1），要求选出两个节点使得他们的横坐标之差至少为L，且斜率最大，若有多解取横坐标之差最小的，若还有多解取横坐标较小的。对于每个点x，我们只考虑横坐标比x小的点，那么显然我们取到的决策点就是过x且与左边所有点下的凸包的切点，因此我们需要在枚举x的过程中动态维护x-1的下凸包（注意，不是维护x的凸包）。那么如何快速找到这个切点呢？比较直接的想法是直接二分，这并没有问题，复杂度是$O(n\log n)$也可以接受，但实际上由于sum是随着x的增大而单调不降的，所以很容易证明这个问题具有决策单调性，也就是说随着x的增大决策点是单调不降的，因此我们可以用一个单调队列，尾部维护凸包，头部维护决策点。 Source Code1234567891011121314151617181920212223int main() &#123; int T = fast_IO::read(); while (T--) &#123; int n = fast_IO::read(), L = fast_IO::read(); scanf("%s", s + 1); for (int i = 1; i &lt;= n; ++i)sum[i] = sum[i - 1] + (s[i] ^ 48); //max&#123;(sum[j]-sum[i-1])/(j-(i-1))|j&gt;=i+L-1&#125; int ansl = 1, ansr = L; int head = 0, tail = 0; for (int i = 0; i &lt;= n - L; ++i) &#123; while (tail - head &gt; 1 &amp;&amp; (sum[i - 1] - sum[q[tail - 2] - 1]) * (i - q[tail - 1]) &gt;= (sum[i - 1] - sum[q[tail - 1] - 1]) * (i - q[tail - 2]))--tail; q[tail++] = i; while (tail - head &gt; 1 &amp;&amp; (sum[i + L - 1] - sum[q[head + 1] - 1]) * (i + L - q[head]) &gt;= (sum[i + L - 1] - sum[q[head] - 1]) * (i + L - q[head + 1]))++head; ll tmp = (sum[i + L - 1] - sum[q[head] - 1]) * (ansr - ansl + 1) - (sum[ansr] - sum[ansl - 1]) * (i + L - q[head]); if (tmp &gt; 0 || (tmp == 0 &amp;&amp; i + L - q[head] &lt; ansr - ansl + 1)) &#123; ansl = q[head]; ansr = i + L - 1; &#125; &#125; printf("%d %d\n", ansl, ansr); &#125; return 0;&#125; Solution 2还有一种比较明显的解法是二分平均值，验证只需要将每个元素都减去平均值，判断有没有一个长度至少为len的区间使得区间和为0即可。]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[图论（四）]]></title>
     <url>%2F2021%2F03%2F30%2F%E5%9B%BE%E8%AE%BA%EF%BC%88%E5%9B%9B%EF%BC%89%2F</url>
     <content type="text"><![CDATA[图论杂记杂技 竞赛图（有向完全图）竞赛图即有向完全图指的是任意两点间有且仅有一条有向边的图。性质： 竞赛图没有自环、二元环；若竞赛图存在环，则一定存在三元环；若存在一个环大于三元，则一定存在另一个三元的小环。 任意竞赛图都有哈密顿路径（经过所有点一次的路径）。 图存在哈密顿回路的充要条件是强连通。 哈密顿问题中，对于n阶竞赛图，当n大于等于2时一定存在哈密顿道路 竞赛图中入度小的点一定能够达到入度大于等于该点的点，其缩点后的DAG中只有一个source、一个sink 兰道定理兰道定理用于判定竞赛图。将一个竞赛图的每一个点的出度从小到大排序后得到的序列称为竞赛图的比分序列。兰道定理： 一个长度为n的序列s=\{s_1\le s_2\le...\le s_n\},n\ge 1是合法的比分序列当且仅当：\\ \forall 1\le k\le n,\sum\limits_{i=1}^{k}s_i\ge C_k^2\\ 当k=n时这个式子必须取等号]]></content>
@@ -256,8 +264,8 @@
         <category>题目</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>思路</tag>
+        <tag>数据结构</tag>
         <tag>线段树</tag>
         <tag>扫描线</tag>
       </tags>

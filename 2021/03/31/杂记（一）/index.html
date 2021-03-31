@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="图论,网络流,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -95,18 +95,16 @@
 
 
 
-<meta name="keywords" content="图论,网络流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图论（二）">
-<meta property="og:url" content="http://yoursite.com/2020/10/28/图论（二）/index.html">
+<meta property="og:title" content="杂记（一）">
+<meta property="og:url" content="http://yoursite.com/2021/03/31/杂记（一）/index.html">
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:image" content="https://i.loli.net/2020/10/28/cfIXVTd7yYDe8l1.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/11/28/4JSya2sjPAgiYtq.png">
-<meta property="og:updated_time" content="2021-01-16T06:02:27.340Z">
+<meta property="og:image" content="https://i.loli.net/2021/03/31/9YbX6ZLRQ7gH8c5.jpg">
+<meta property="og:updated_time" content="2021-03-31T11:27:18.670Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图论（二）">
-<meta name="twitter:image" content="https://i.loli.net/2020/10/28/cfIXVTd7yYDe8l1.jpg">
+<meta name="twitter:title" content="杂记（一）">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/31/9YbX6ZLRQ7gH8c5.jpg">
 
 
 
@@ -136,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/10/28/图论（二）/">
+  <link rel="canonical" href="http://yoursite.com/2021/03/31/杂记（一）/">
 
 
 
 
 
-  <title>图论（二） | Zechariah's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>杂记（一） | Zechariah's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -311,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/28/图论（二）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/31/杂记（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zechariah">
@@ -328,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图论（二）</h1>
+          <h1 class="post-title" itemprop="name headline">杂记（一）</h1>
         
 
         <div class="post-meta">
@@ -340,8 +338,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-28T16:30:31+08:00">
-                2020-10-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-31T19:07:45+08:00">
+                2021-03-31
               </time>
             
 
@@ -381,8 +379,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/10/28/图论（二）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/10/28/图论（二）/" itemprop="commentCount"></span>
+                <a href="/2021/03/31/杂记（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/03/31/杂记（一）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -390,7 +388,7 @@
 
           
           
-             <span id="/2020/10/28/图论（二）/" class="leancloud_visitors" data-flag-title="图论（二）">
+             <span id="/2021/03/31/杂记（一）/" class="leancloud_visitors" data-flag-title="杂记（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -415,7 +413,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.6k
+                  716
                 </span>
               
 
@@ -431,7 +429,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  3
                 </span>
               
             </div>
@@ -452,39 +450,13 @@
       
 
       
-        <p><img src="https://i.loli.net/2020/10/28/cfIXVTd7yYDe8l1.jpg" alt="6c639ac0b259d154c3efc7498c4ba3ba.jpeg"><br><a id="more"></a></p>
-<h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><p>甚么是网络流？<br>在有向图G=(V, E)中：</p>
-<ul>
-<li>有唯一的一个<strong>源点</strong>S（入度为0，为出发点）</li>
-<li>有唯一的一个<strong>汇点</strong>T（出毒为0，为结束点）</li>
-<li>图中每条弧(u, v)都有一个非负<strong>容量</strong>c(u, v)</li>
-</ul>
-<p>满足上述条件的图G称为网络流图，记为$G=(V,E,C)$</p>
-<h2 id="可行流"><a href="#可行流" class="headerlink" title="可行流"></a>可行流</h2><p>每条弧(u, v)上给定一个实数f(u, v)满足：有$0\le f(u,v)\le c(u,v)$，则f(u, v)称为弧(u, v)上的<strong>流量</strong>。<br>如果有一组流量满足条件：</p>
-<ul>
-<li>源点s：流出量=整个网络流的流量</li>
-<li>汇点t：流入量=整个网络流的流量</li>
-<li>中间点：总流入量=总流出量</li>
-</ul>
-<p>那么整个网络中的流量称为一个<strong>可行流</strong>。</p>
-<h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><p>在所有的可行流中，流量最大的一个流（满足流量最大的可行流可能不止一个）的流量称为<strong>最大流</strong>。</p>
-<h3 id="求法"><a href="#求法" class="headerlink" title="求法"></a>求法</h3><p>最大流的求法非常多，最常用的应该是Dinic。<br>Dinic算法是在FF/EK算法的基础上优化的。</p>
-<h4 id="Ford-Fulkerson算法"><a href="#Ford-Fulkerson算法" class="headerlink" title="Ford-Fulkerson算法"></a>Ford-Fulkerson算法</h4><p>在这里我们引入<strong>残余容量</strong>和<strong>增广路</strong>的概念：<br>残余容量是指当前的网络流图中边的容量-边的流量，增广路则是指从源点到汇点的一条所有边的残余容量都不为0的路径。<br>显然，直接去找增广路然后尽可能地增大流量这种做法是有问题的，比如下面这张图<br><img src="https://i.loli.net/2020/11/28/4JSya2sjPAgiYtq.png" alt="image.png"></p>
-<p>如果我们找到的增广路是1-&gt;2-&gt;3-&gt;4，最终得到的答案是1，而显然这里1-&gt;3-&gt;4和1-&gt;2-&gt;4得到的答案是2。<br>如何解决呢？对于每一条边我们都添上一条反向边，每当将某条边的流量增加时，增加其反向边的容量，增加的容量与增加的流量相同。<br>为何正确？考虑上面那张图，我们无法求出正确答案无非就是因为3-&gt;4这条边满流了，而满流的原因是1-&gt;2流过了2-&gt;3，因此如果能从1-&gt;3流到2-&gt;4，相当于中间的2-&gt;3这条边根本就没有选到，也就是说，我们撤销了2-&gt;3中的一部分流量。简要概括就是，对于一条流量本不该那么大的边，我们可以通过连到尾端的边对其进行撤销的操作。</p>
-<p>FF算法的复杂度是$O(Mf)$，用bfs实现的FF算法即Edmond-Karp算法的复杂度是$O(nm^2)$</p>
-<h4 id="Dinic算法"><a href="#Dinic算法" class="headerlink" title="Dinic算法"></a>Dinic算法</h4><p>在前面算法的基础上，就有了Dinic算法。<br>我们每次将网络流图进行<strong>分层</strong>，每个点只能走到比这个点高一层的点，进行dfs找增广路，重复操作直到没有增广路。<br>如何分层？如果一条边(u, v)的容量不为0，且v还没有被分层，那么v就是u的下一层。</p>
-<p>模板<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist, <span class="number">-1</span>, <span class="keyword">sizeof</span>(dist));</span><br><span class="line">    <span class="built_in">memset</span>(flag, <span class="number">0</span>, <span class="keyword">sizeof</span>(flag));</span><br><span class="line">    q[++tail] = st; dist[st] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (head &lt;= tail) &#123;</span><br><span class="line">        <span class="keyword">int</span>  k = q[head++];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> e = p[k]; e; e = nt[e]) &#123;</span><br><span class="line">            <span class="keyword">int</span> kk = b[e];</span><br><span class="line">            <span class="keyword">if</span> (w[e] &gt; <span class="number">0</span> &amp;&amp; dist[kk] == <span class="number">-1</span>) &#123;</span><br><span class="line">                dist[kk] = dist[k] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (!flag[kk]) &#123;</span><br><span class="line">                    flag[kk] = <span class="literal">true</span>;</span><br><span class="line">                    q[++tail] = kk;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dist[ed] &gt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> minv)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == ed)<span class="keyword">return</span> minv;</span><br><span class="line">    <span class="keyword">int</span> flow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = p[x], tmp; e &amp;&amp; minv; e = nt[e]) &#123;</span><br><span class="line">        <span class="keyword">int</span> k = b[e];</span><br><span class="line">        <span class="keyword">if</span> (dist[k] == dist[x] + <span class="number">1</span> &amp;&amp; w[e] &gt; <span class="number">0</span> &amp;&amp; (tmp = dfs(k, min(w[e], minv - flow)))) &#123;</span><br><span class="line">            w[e] -= tmp;</span><br><span class="line">            w[e ^ <span class="number">1</span>] += tmp;</span><br><span class="line">            flow += tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flow &lt; minv)dist[x] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> flow;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Dinic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (bfs())</span><br><span class="line">        ans += dfs();</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上面的代码中有几处优化：</p>
-<ul>
-<li>flow表示当前点x流出的流量，显然在x处尽量流完可以避免走重复路</li>
-<li>若最终x点流出的流量比增广路（准确说应该是多路增广路）上的流量小，后面一定不可能再增广到x点了，于是将这个点的分层去掉，相当于跳过这个点</li>
-</ul>
-<p>还有一种<strong>当前弧优化</strong>，即在dfs过程中记录每个点增广到哪一条边，去更新前向星建图中的$first[x]$，这样是避免重复访问不必要的边，但通常优化不是很大，也没必要用。</p>
-<h3 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h3><p>什么是最小割？就是一张网络流图，割掉一些边使得源点与汇点不连通，割掉的这些边的容量和的最小值。<br>一个著名的定理：最大流=最小割。所以求最小割我们只需要求最大流就行了。</p>
-<h4 id="最小割的割边"><a href="#最小割的割边" class="headerlink" title="最小割的割边"></a>最小割的割边</h4><p>求出了最小割，我们还想知道具体是割了哪些边。<br>只需要从源点沿着残量网络标记下所有经过的点，标记过的点和未标记过的点之间的连边就是割掉的边。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    vis[x] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = p[x]; e; e = nt[e]) &#123;</span><br><span class="line">        <span class="keyword">int</span> k = b[e];</span><br><span class="line">        <span class="keyword">if</span> (vis[k])<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (w[e])dfs(k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getans</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    dfs(st);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)</span><br><span class="line">        <span class="keyword">if</span> (vis[edge[i].x] ^ vis[edge[i].y])</span><br><span class="line">            ans[++tot] = edge[i].id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="最小费用最大流"><a href="#最小费用最大流" class="headerlink" title="最小费用最大流"></a>最小费用最大流</h2><p>最小费用最大流问题建立在最大流问题的基础之上，对每条边赋予一个单位流量的费用，问达成最大流时的最小总费用是多少。<br>根据我们求最大流的方法，每次我们找出一条增广路，保证这条增广路上单位流量费用的和最小，产生的贡献即为$flow\cdot fee$。<br>至于反向边的费用，自然是边的费用的相反数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(dist));</span><br><span class="line">    <span class="built_in">memset</span>(flag, <span class="number">0</span>, <span class="keyword">sizeof</span>(flag));</span><br><span class="line">    q[<span class="number">1</span>] = st, dist[st] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">1</span>, tail = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (head &lt;= tail) &#123;</span><br><span class="line">        <span class="keyword">int</span> k = q[head++];</span><br><span class="line">        flag[k] = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> e = p[k]; e; e = nt[e]) &#123;</span><br><span class="line">            <span class="keyword">int</span> kk = b[e];</span><br><span class="line">            <span class="keyword">if</span> (w[e] &gt; <span class="number">0</span> &amp;&amp; dist[kk] - dist[k] &gt; w[e]) &#123;</span><br><span class="line">                dist[kk] = dist[k] + w[e];</span><br><span class="line">                <span class="keyword">if</span> (!flag[kk]) &#123;</span><br><span class="line">                    flag[kk] = <span class="literal">true</span>;</span><br><span class="line">                    q[++tail] = kk;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dist[ed] != <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MCF</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxflow = <span class="number">0</span>, mincost = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (bfs()) &#123;</span><br><span class="line">        <span class="keyword">int</span> minn = INF;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = ed; i != st; i = b[pre[i] ^ <span class="number">1</span>])minn = min(minn, w[pre[i]]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = ed; i != st; i = b[pre[i] ^ <span class="number">1</span>]) &#123;</span><br><span class="line">            w[pre[i]] -= minn;</span><br><span class="line">            w[pre[i] ^ <span class="number">1</span>] += minn;</span><br><span class="line">        &#125;</span><br><span class="line">        maxflow += minn;</span><br><span class="line">        mincost += minn * dist[ed];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mincost;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h2>
+        <p><img src="https://i.loli.net/2021/03/31/9YbX6ZLRQ7gH8c5.jpg" alt="43146571_p0.jpg"><br><a id="more"></a></p>
+<h1 id="UVA1451-平均值-Average"><a href="#UVA1451-平均值-Average" class="headerlink" title="UVA1451 平均值 Average"></a>UVA1451 平均值 Average</h1><p><a href="https://www.luogu.com.cn/problem/UVA1451">题目地址</a></p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>给定一个长度为n的01串，选一个长度至少为L的连续子串，使得子串中数字的平均值最大。如果有多解，子串长度应尽量小；如果仍有多解，起点编号尽量小。序列中的字符编号为1~n，因此[1,n]就是完整的字符串。$1\le n\le 100000,1\le L\le 1000$。</p>
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h2><p>设01串的前缀和为sum，则[l,r]的平均值可以表示为$\dfrac{sum[r]-sum[l-1]}{r-(l-1)}$，该式可以看作是点(l-1,sum[l-1])和(r,sum[r])的斜率表达式，那么题意就可以转化为：给定n+1个节点（l-1的范围和r的范围取并后的集合大小是n+1），要求选出两个节点使得他们的横坐标之差至少为L，且斜率最大，若有多解取横坐标之差最小的，若还有多解取横坐标较小的。<br>对于每个点x，我们只考虑横坐标比x小的点，那么显然我们取到的决策点就是过x且与左边所有点下的凸包的切点，因此我们需要在枚举x的过程中动态维护<strong>x-1</strong>的下凸包（注意，不是维护x的凸包）。<br>那么如何快速找到这个切点呢？比较直接的想法是直接二分，这并没有问题，复杂度是$O(n\log n)$也可以接受，但实际上由于sum是随着x的增大而单调不降的，所以很容易证明这个问题具有决策单调性，也就是说随着x的增大决策点是单调不降的，因此我们可以用一个单调队列，尾部维护凸包，头部维护决策点。</p>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T = fast_IO::read();</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = fast_IO::read(), L = fast_IO::read();</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)sum[i] = sum[i - <span class="number">1</span>] + (s[i] ^ <span class="number">48</span>);</span><br><span class="line">        <span class="comment">//max&#123;(sum[j]-sum[i-1])/(j-(i-1))|j&gt;=i+L-1&#125;</span></span><br><span class="line">        <span class="keyword">int</span> ansl = <span class="number">1</span>, ansr = L;</span><br><span class="line">        <span class="keyword">int</span> head = <span class="number">0</span>, tail = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - L; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (tail - head &gt; <span class="number">1</span> &amp;&amp; (sum[i - <span class="number">1</span>] - sum[q[tail - <span class="number">2</span>] - <span class="number">1</span>]) * (i - q[tail - <span class="number">1</span>]) &gt;= (sum[i - <span class="number">1</span>] - sum[q[tail - <span class="number">1</span>] - <span class="number">1</span>]) * (i - q[tail - <span class="number">2</span>]))--tail;</span><br><span class="line">            q[tail++] = i;</span><br><span class="line">            <span class="keyword">while</span> (tail - head &gt; <span class="number">1</span> &amp;&amp; (sum[i + L - <span class="number">1</span>] - sum[q[head + <span class="number">1</span>] - <span class="number">1</span>]) * (i + L - q[head]) &gt;= (sum[i + L - <span class="number">1</span>] - sum[q[head] - <span class="number">1</span>]) * (i + L - q[head + <span class="number">1</span>]))++head;</span><br><span class="line">            ll tmp = (sum[i + L - <span class="number">1</span>] - sum[q[head] - <span class="number">1</span>]) * (ansr - ansl + <span class="number">1</span>) - (sum[ansr] - sum[ansl - <span class="number">1</span>]) * (i + L - q[head]);</span><br><span class="line">            <span class="keyword">if</span> (tmp &gt; <span class="number">0</span> || (tmp == <span class="number">0</span> &amp;&amp; i + L - q[head] &lt; ansr - ansl + <span class="number">1</span>)) &#123;</span><br><span class="line">                ansl = q[head];</span><br><span class="line">                ansr = i + L - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, ansl, ansr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h2><p>还有一种比较明显的解法是二分平均值，验证只需要将每个元素都减去平均值，判断有没有一个长度至少为len的区间使得区间和为0即可。</p>
+
       
     </div>
     
@@ -503,14 +475,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/图论/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
-          
-            <a href="/tags/网络流/" rel="tag"><i class="fa fa-tag"></i> 网络流</a>
-          
-        </div>
-      
 
       
       
@@ -520,8 +484,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/10/27/图论（一）/" rel="next" title="图论（一）">
-                <i class="fa fa-chevron-left"></i> 图论（一）
+              <a href="/2021/03/30/图论（四）/" rel="next" title="图论（四）">
+                <i class="fa fa-chevron-left"></i> 图论（四）
               </a>
             
           </div>
@@ -529,10 +493,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/10/28/分治（一）/" rel="prev" title="分治（一）">
-                分治（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流"><span class="nav-number">1.</span> <span class="nav-text">网络流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可行流"><span class="nav-number">1.1.</span> <span class="nav-text">可行流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流"><span class="nav-number">1.2.</span> <span class="nav-text">最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求法"><span class="nav-number">1.2.1.</span> <span class="nav-text">求法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ford-Fulkerson算法"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Ford-Fulkerson算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dinic算法"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Dinic算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小割"><span class="nav-number">1.2.2.</span> <span class="nav-text">最小割</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最小割的割边"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">最小割的割边</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小费用最大流"><span class="nav-number">1.3.</span> <span class="nav-text">最小费用最大流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下界网络流"><span class="nav-number">1.4.</span> <span class="nav-text">上下界网络流</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UVA1451-平均值-Average"><span class="nav-number">1.</span> <span class="nav-text">UVA1451 平均值 Average</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.2.</span> <span class="nav-text">Solution 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code"><span class="nav-number">1.2.1.</span> <span class="nav-text">Source Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 2</span></a></li></ol></li></ol></div>
             
 
           </div>
