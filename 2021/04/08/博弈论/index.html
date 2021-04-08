@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2021/04/08/eDgiZOoYKCtf7Mp.jpg">
-<meta property="og:updated_time" content="2021-04-08T14:14:54.367Z">
+<meta property="og:updated_time" content="2021-04-08T14:37:27.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博弈论">
 <meta name="twitter:image" content="https://i.loli.net/2021/04/08/eDgiZOoYKCtf7Mp.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  567
+                  773
                 </span>
               
 
@@ -475,7 +475,13 @@
 {\rm mex}(\{ {\rm SG}(y_1),{\rm SG}(y_2),...,{\rm SG}(y_k)\}) & k > 0
 \end{cases}</script><p>对于由$n$个有向图游戏组成的组合游戏，设它们的起点分别为$s_1,s_2,…,s_n$，则有<strong>SG定理</strong>：</p>
 <script type="math/tex; mode=display">
-当且仅当{\rm SG}(s_1)\oplus{\rm SG}(s_2)\oplus ... \oplus{\rm SG}(s_n)\not=0时，先手必胜</script>
+当且仅当{\rm SG}(s_1)\oplus{\rm SG}(s_2)\oplus ... \oplus{\rm SG}(s_n)\not=0时，先手必胜</script><h2 id="Nim博弈"><a href="#Nim博弈" class="headerlink" title="Nim博弈"></a>Nim博弈</h2><p>给定n堆物品，第i堆物品有a[i]个，两名玩家轮流行动，每次可以取走任一堆的任意个物品，可以取完但不能不取，取走最后一件物品者胜，问先手是否有必胜策略。<br>首先给出结论：当且仅当$a[1]\oplus a[2]\oplus…\oplus a[n]\not=0$时先手必胜。<br>显然可以证明下面三个结论：</p>
+<ul>
+<li>没有后继的状态是必败状态，此时$a[1]\oplus a[2]\oplus…\oplus a[n]=0$</li>
+<li>对于$a[1]\oplus a[2]\oplus…\oplus a[n]\not=0$的局面一定存在某种取法使得取后$a[1]\oplus a[2]\oplus…\oplus a[n]=0$</li>
+<li>对于$a[1]\oplus a[2]\oplus…\oplus a[n]=0$的局面一定不存在某种取法使得取后$a[1]\oplus a[2]\oplus…\oplus a[n]=0$</li>
+</ul>
+
       
     </div>
     
@@ -697,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博弈论"><span class="nav-number">1.</span> <span class="nav-text">博弈论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#公平组合游戏"><span class="nav-number">1.1.</span> <span class="nav-text">公平组合游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博弈图（有向图游戏）和状态"><span class="nav-number">1.2.</span> <span class="nav-text">博弈图（有向图游戏）和状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SG函数"><span class="nav-number">1.3.</span> <span class="nav-text">SG函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博弈论"><span class="nav-number">1.</span> <span class="nav-text">博弈论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#公平组合游戏"><span class="nav-number">1.1.</span> <span class="nav-text">公平组合游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博弈图（有向图游戏）和状态"><span class="nav-number">1.2.</span> <span class="nav-text">博弈图（有向图游戏）和状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SG函数"><span class="nav-number">1.3.</span> <span class="nav-text">SG函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nim博弈"><span class="nav-number">1.4.</span> <span class="nav-text">Nim博弈</span></a></li></ol></li></ol></div>
             
 
           </div>
