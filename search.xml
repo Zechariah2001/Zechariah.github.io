@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[博弈论]]></title>
+    <url>%2F2021%2F04%2F08%2F%E5%8D%9A%E5%BC%88%E8%AE%BA%2F</url>
+    <content type="text"><![CDATA[博弈论博弈论主要研究的是：在一个游戏中，进行游戏的多位玩家的策略。 公平组合游戏公平组合游戏的定义如下： 游戏有两人参与，二者轮流做出决策，双方均知道游戏的完整信息。 任意一个游戏者在某一确定状态可以作出的决策集合只与当前的状态有关，而与游戏者无关。 游戏中的同一个状态不可能多次抵达，游戏以玩家无法行动为结束，且游戏一定会在有限步后以非平局结束。 博弈图（有向图游戏）和状态博弈中可能出现的某一局面称为一个状态。将每个状态视为一个节点，再从每个状态向它的后继状态连边，我们就可以得到一个博弈状态图。定义必胜状态为先手必胜状态，必败状态为先手必败状态，则有： 没有后继状态的状态是必败状态 一个状态是必胜状态当且仅当存在一个后继状态为必败状态 一个状态时必败状态当且仅当它的所有后继状态都是必胜状态 显然，当博弈图是一个DAG的时候我们可以直接逆拓扑出所有状态是必胜还是必败。博弈图也被称为有向图游戏，其实质为在一个DAG上有唯一的起点，起点上有一个棋子，两位玩家分别将棋子沿有向边移动，无法移动者输。任何一个公平组合游戏都可以转化为有向图游戏。 SG函数定义$mex$函数为集合中最小的非负整数，即 {\rm mex}(S)=\min\{x\}\;(x\not\in S,x\in N)对于状态$x$和它的所有$k$个后继状态$y_1,y_2,…,y_k$，定义SG函数 {\rm SG}(x)=\begin{cases} 0 & k=0\\ {\rm mex}(\{ {\rm SG}(y_1),{\rm SG}(y_2),...,{\rm SG}(y_k)\}) & k > 0 \end{cases}对于由$n$个有向图游戏组成的组合游戏，设它们的起点分别为$s_1,s_2,…,s_n$，则有SG定理： 当且仅当{\rm SG}(s_1)\oplus{\rm SG}(s_2)\oplus ... \oplus{\rm SG}(s_n)\not=0时，先手必胜]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[杂记（一）]]></title>
     <url>%2F2021%2F03%2F31%2F%E6%9D%82%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
     <content type="text"><![CDATA[UVA1451 平均值 Average题目地址 Description给定一个长度为n的01串，选一个长度至少为L的连续子串，使得子串中数字的平均值最大。如果有多解，子串长度应尽量小；如果仍有多解，起点编号尽量小。序列中的字符编号为1~n，因此[1,n]就是完整的字符串。$1\le n\le 100000,1\le L\le 1000$。 Solution 1设01串的前缀和为sum，则[l,r]的平均值可以表示为$\dfrac{sum[r]-sum[l-1]}{r-(l-1)}$，该式可以看作是点(l-1,sum[l-1])和(r,sum[r])的斜率表达式，那么题意就可以转化为：给定n+1个节点（l-1的范围和r的范围取并后的集合大小是n+1），要求选出两个节点使得他们的横坐标之差至少为L，且斜率最大，若有多解取横坐标之差最小的，若还有多解取横坐标较小的。对于每个点x，我们只考虑横坐标比x小的点，那么显然我们取到的决策点就是过x且与左边所有点的下凸包的切点，因此我们需要在枚举x的过程中动态维护x-1的下凸包（注意，不是维护x的凸包）。那么如何快速找到这个切点呢？比较直接的想法是直接二分，这并没有问题，复杂度是$O(n\log n)$也可以接受，但实际上由于sum是随着x的增大而单调不降的，所以很容易证明这个问题具有决策单调性，也就是说随着x的增大决策点是单调不降的，因此我们可以用一个单调队列，尾部维护凸包，头部维护决策点。 Source Code1234567891011121314151617181920212223int main() &#123; int T = fast_IO::read(); while (T--) &#123; int n = fast_IO::read(), L = fast_IO::read(); scanf("%s", s + 1); for (int i = 1; i &lt;= n; ++i)sum[i] = sum[i - 1] + (s[i] ^ 48); //max&#123;(sum[j]-sum[i-1])/(j-(i-1))|j&gt;=i+L-1&#125; int ansl = 1, ansr = L; int head = 0, tail = 0; for (int i = 0; i &lt;= n - L; ++i) &#123; while (tail - head &gt; 1 &amp;&amp; (sum[i - 1] - sum[q[tail - 2] - 1]) * (i - q[tail - 1]) &gt;= (sum[i - 1] - sum[q[tail - 1] - 1]) * (i - q[tail - 2]))--tail; q[tail++] = i; while (tail - head &gt; 1 &amp;&amp; (sum[i + L - 1] - sum[q[head + 1] - 1]) * (i + L - q[head]) &gt;= (sum[i + L - 1] - sum[q[head] - 1]) * (i + L - q[head + 1]))++head; ll tmp = (sum[i + L - 1] - sum[q[head] - 1]) * (ansr - ansl + 1) - (sum[ansr] - sum[ansl - 1]) * (i + L - q[head]); if (tmp &gt; 0 || (tmp == 0 &amp;&amp; i + L - q[head] &lt; ansr - ansl + 1)) &#123; ansl = q[head]; ansr = i + L - 1; &#125; &#125; printf("%d %d\n", ansl, ansr); &#125; return 0;&#125; Solution 2还有一种比较明显的解法是二分平均值，验证只需要将每个元素都减去平均值，判断有没有一个长度至少为len的区间使得区间和为0即可。]]></content>
@@ -218,8 +229,8 @@
         <category>小结</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>线段树</tag>
+        <tag>数据结构</tag>
         <tag>树状数组</tag>
         <tag>可持久化</tag>
         <tag>树链剖分</tag>
@@ -264,10 +275,10 @@
         <category>题目</category>
       </categories>
       <tags>
-        <tag>思路</tag>
-        <tag>数据结构</tag>
         <tag>线段树</tag>
+        <tag>数据结构</tag>
         <tag>扫描线</tag>
+        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
