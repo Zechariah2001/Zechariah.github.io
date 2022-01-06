@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[积性函数]]></title>
+    <url>%2F2022%2F01%2F06%2F%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[积性函数若函数$f:N\to R$，满足对于任意一对互质的正整数$p,q(\gcd(p,q)=1)$，都有$f(pq)=f(p)f(q)$，则称$f$为积性函数。根据积性函数的定义，$f(x)$可以表示成下面的形式 f(p_1^{k_1}p_2^{k_2}p_3^{k_3}...p_{n}^{k_n})=f(p_1^{k_1})f(p_2^{k_2})f(p_3^{k_3})...f(p_{n}^{k_n})积性函数的求法：欧拉筛。1234567891011121314151617181920void Euler(int n) &#123; f[1] = 1; //calc_f(x, p)快速计算，f(x^p) for (int i = 2; i &lt;= n; ++i) &#123; if (!flag[i])prime[++*prime] = i, f[i] = calc_f(i, 1); for (int j = 1; j &lt;= *prime; ++j) &#123; int to = i * prime[j]; if (to &gt; n)break; flag[to] = true; if (i % prime[j] == 0) &#123; cnt[to] = cnt[i] + 1;//prime[j]是i最小的素因子，此时i已经有prime[j]因子，所以这里需要将素因子为prime[j]的这一项去掉，把次数+1乘回来 f[to] = f[i] / calc_f(prime[j], cnt[i]) * calc_f(prime[j], cnt[to]); break; &#125; //如果prime[j]不是i的素因子，也就是说to相比i增加了一个素因子，所以直接乘上f(prime[j]) cnt[to] = 1; f[to] = f[i] * calc_f(prime[j], 1); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>莫比乌斯反演</tag>
+        <tag>积性函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[wqs二分]]></title>
     <url>%2F2021%2F07%2F29%2Fwqs%E4%BA%8C%E5%88%86%2F</url>
     <content type="text"><![CDATA[wqs二分wqs二分是用于求解这样一类问题的：1有若干个物品，要求选出m个物品，且选的时候有某种限制，求出最佳方案。 设$g(i)$表示选$i$个物品的最佳方案wqs二分适用的条件是，将所有的$(i,g(i))$画在二维平面上，这些点是上凸或下凸的。这种题的特点是如果不限制选物品的个数，可以很容易求出来。由于$(i,g(i))$构成一个凸壳，我们考虑二分一个斜率$k$，因为凸壳上斜率是单调的，通过斜率的变化可以找到决策点。当二分出一个$k$的时候，要找到其对应的最优决策点，我们发现与凸壳相切且斜率为$k$的直线的纵截距是$f(x)=g(x)-kx$，$x$就是我们要求的最优决策点。考察一下$f(x)$的意义，选出$x$个物品后最优价值为$f(x)=g(x)-kx$，其实就是原本的物品全都减掉$k$的价值后求出的最大价值，那么根据前面说的，这里就没有个数限制，非常好求。求出最大价值的同时可以求出$x$，这就是我们二分的依据了，根据$x$和要求的$m$之间的大小关系以及凸壳的斜率变化方向，改变二分的边界。]]></content>
@@ -313,10 +326,10 @@
         <category>题目</category>
       </categories>
       <tags>
+        <tag>思路</tag>
         <tag>数据结构</tag>
         <tag>线段树</tag>
         <tag>扫描线</tag>
-        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
