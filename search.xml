@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[积性函数]]></title>
     <url>%2F2022%2F01%2F06%2F%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[积性函数若函数$f:N\to R$，满足对于任意一对互质的正整数$p,q(\gcd(p,q)=1)$，都有$f(pq)=f(p)f(q)$，则称$f$为积性函数。根据积性函数的定义，$f(x)$可以表示成下面的形式 f(p_1^{k_1}p_2^{k_2}p_3^{k_3}...p_{n}^{k_n})=f(p_1^{k_1})f(p_2^{k_2})f(p_3^{k_3})...f(p_{n}^{k_n})积性函数的求法：欧拉筛。1234567891011121314151617181920void Euler(int n) &#123; f[1] = 1; //calc_f(x, p)快速计算，f(x^p) for (int i = 2; i &lt;= n; ++i) &#123; if (!flag[i])prime[++*prime] = i, f[i] = calc_f(i, 1); for (int j = 1; j &lt;= *prime; ++j) &#123; int to = i * prime[j]; if (to &gt; n)break; flag[to] = true; if (i % prime[j] == 0) &#123; cnt[to] = cnt[i] + 1;//prime[j]是i最小的素因子，此时i已经有prime[j]因子，所以这里需要将素因子为prime[j]的这一项去掉，把次数+1乘回来 f[to] = f[i] / calc_f(prime[j], cnt[i]) * calc_f(prime[j], cnt[to]); break; &#125; //如果prime[j]不是i的素因子，也就是说to相比i增加了一个素因子，所以直接乘上f(prime[j]) cnt[to] = 1; f[to] = f[i] * calc_f(prime[j], 1); &#125; &#125;&#125; 莫比乌斯反演已知$g(n)$的因数和$f(n)=\sum\limits_{d|n}g(d)$，通过$f$反求$g$。 g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)其中$\mu$成为莫比乌斯系数，定义为 \mu(n)=\begin{cases} 1&n=1\\ (-1)^k&n=p_1p_2p_3...p_k\\ 0&其他 \end{cases}=\begin{cases} (-1)^k&n无平方因子\\ 0&n有平方因子 \end{cases}那么我们有莫比乌斯反演定理 f(n)=\sum\limits_{d|n}g(d)\Leftrightarrow g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)]]></content>
+    <content type="text"><![CDATA[积性函数若函数$f:N\to R$，满足对于任意一对互质的正整数$p,q(\gcd(p,q)=1)$，都有$f(pq)=f(p)f(q)$，则称$f$为积性函数。根据积性函数的定义，$f(x)$可以表示成下面的形式 f(p_1^{k_1}p_2^{k_2}p_3^{k_3}...p_{n}^{k_n})=f(p_1^{k_1})f(p_2^{k_2})f(p_3^{k_3})...f(p_{n}^{k_n})积性函数的求法：欧拉筛。1234567891011121314151617181920void Euler(int n) &#123; f[1] = 1; //calc_f(x, p)快速计算，f(x^p) for (int i = 2; i &lt;= n; ++i) &#123; if (!flag[i])prime[++*prime] = i, f[i] = calc_f(i, 1); for (int j = 1; j &lt;= *prime; ++j) &#123; int to = i * prime[j]; if (to &gt; n)break; flag[to] = true; if (i % prime[j] == 0) &#123; cnt[to] = cnt[i] + 1;//prime[j]是i最小的素因子，此时i已经有prime[j]因子，所以这里需要将素因子为prime[j]的这一项去掉，把次数+1乘回来 f[to] = f[i] / calc_f(prime[j], cnt[i]) * calc_f(prime[j], cnt[to]); break; &#125; //如果prime[j]不是i的素因子，也就是说to相比i增加了一个素因子，所以直接乘上f(prime[j]) cnt[to] = 1; f[to] = f[i] * calc_f(prime[j], 1); &#125; &#125;&#125; 莫比乌斯反演已知$g(n)$的因数和$f(n)=\sum\limits_{d|n}g(d)$，通过$f$反求$g$。 g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)其中$\mu$称为莫比乌斯函数，定义为 \mu(n)=\begin{cases} 1&n=1\\ (-1)^k&n=p_1p_2p_3...p_k\\ 0&其他 \end{cases}=\begin{cases} (-1)^k&n无平方因子\\ 0&n有平方因子 \end{cases}那么我们有莫比乌斯反演定理1 f(n)=\sum\limits_{d|n}g(d)\Leftrightarrow g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)若存在正整数$N$使得$\forall n\in N,f(n)=g(n)=0$，则有莫比乌斯定理2 f(n)=\sum\limits_{n|m,m\le N}g(m)\Leftrightarrow g(n)=\sum\limits_{n|m,m\le N}\mu(\dfrac{m}{n})f(m)TIPS:$\sum\limits_{d|d’}d\mu(\dfrac{d’}{d})=\phi(d’)$]]></content>
       <categories>
         <category>小结</category>
       </categories>
@@ -326,10 +326,10 @@
         <category>题目</category>
       </categories>
       <tags>
-        <tag>思路</tag>
         <tag>数据结构</tag>
         <tag>线段树</tag>
         <tag>扫描线</tag>
+        <tag>思路</tag>
       </tags>
   </entry>
   <entry>
