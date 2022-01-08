@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:description" content="积性函数若函数$f:N\to R$，满足对于任意一对互质的正整数$p,q(\gcd(p,q)=1)$，都有$f(pq)=f(p)f(q)$，则称$f$为积性函数。根据积性函数的定义，$f(x)$可以表示成下面的形式  f(p_1^{k_1}p_2^{k_2}p_3^{k_3}...p_{n}^{k_n})=f(p_1^{k_1})f(p_2^{k_2})f(p_3^{k_3})...f(p_{n}">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:updated_time" content="2022-01-07T15:49:09.930Z">
+<meta property="og:updated_time" content="2022-01-08T11:48:48.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="积性函数">
 <meta name="twitter:description" content="积性函数若函数$f:N\to R$，满足对于任意一对互质的正整数$p,q(\gcd(p,q)=1)$，都有$f(pq)=f(p)f(q)$，则称$f$为积性函数。根据积性函数的定义，$f(x)$可以表示成下面的形式  f(p_1^{k_1}p_2^{k_2}p_3^{k_3}...p_{n}^{k_n})=f(p_1^{k_1})f(p_2^{k_2})f(p_3^{k_3})...f(p_{n}">
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  473
+                  619
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  3
                 </span>
               
             </div>
@@ -455,7 +455,15 @@
         <h1 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h1><p>若函数$f:N\to R$，满足对于任意一对互质的正整数$p,q(\gcd(p,q)=1)$，都有$f(pq)=f(p)f(q)$，则称$f$为积性函数。<br>根据积性函数的定义，$f(x)$可以表示成下面的形式</p>
 <script type="math/tex; mode=display">
 f(p_1^{k_1}p_2^{k_2}p_3^{k_3}...p_{n}^{k_n})=f(p_1^{k_1})f(p_2^{k_2})f(p_3^{k_3})...f(p_{n}^{k_n})</script><p>积性函数的求法：欧拉筛。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Euler</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//calc_f(x, p)快速计算，f(x^p)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!flag[i])prime[++*prime] = i, f[i] = calc_f(i, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= *prime; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> to = i * prime[j];</span><br><span class="line">            <span class="keyword">if</span> (to &gt; n)<span class="keyword">break</span>;</span><br><span class="line">            flag[to] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[to] = cnt[i] + <span class="number">1</span>;<span class="comment">//prime[j]是i最小的素因子，此时i已经有prime[j]因子，所以这里需要将素因子为prime[j]的这一项去掉，把次数+1乘回来</span></span><br><span class="line">                f[to] = f[i] / calc_f(prime[j], cnt[i]) * calc_f(prime[j], cnt[to]);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果prime[j]不是i的素因子，也就是说to相比i增加了一个素因子，所以直接乘上f(prime[j])</span></span><br><span class="line">            cnt[to] = <span class="number">1</span>;</span><br><span class="line">            f[to] = f[i] * calc_f(prime[j], <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h1><p>已知$g(n)$的因数和$f(n)=\sum\limits_{d|n}g(d)$，通过$f$反求$g$。</p>
+<p>常见积性函数：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+1(n)&=1\\
+id(n)&=n\\
+\epsilon(n)&=[n=1]\\
+\phi(n)&=\sum\limits_{i=1}^n[\gcd(n,i)=1]\\
+d(n)&=\sum\limits_{i=1}^n[i|n]
+\end{align}</script><h1 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h1><p>已知$g(n)$的因数和$f(n)=\sum\limits_{d|n}g(d)$，通过$f$反求$g$。</p>
 <script type="math/tex; mode=display">
 g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)</script><p>其中$\mu$称为莫比乌斯函数，定义为</p>
 <script type="math/tex; mode=display">
@@ -471,7 +479,15 @@ g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)</script><p>其中$\mu$称为莫比�
 f(n)=\sum\limits_{d|n}g(d)\Leftrightarrow g(n)=\sum\limits_{d|n}\mu(\dfrac{n}{d})f(d)</script><p>若存在正整数$N$使得$\forall n\in N,f(n)=g(n)=0$，则有莫比乌斯定理2</p>
 <script type="math/tex; mode=display">
 f(n)=\sum\limits_{n|m,m\le N}g(m)\Leftrightarrow g(n)=\sum\limits_{n|m,m\le N}\mu(\dfrac{m}{n})f(m)</script><p>TIPS:$\sum\limits_{d|d’}d\mu(\dfrac{d’}{d})=\phi(d’)$</p>
-
+<h1 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h1><p>设$f:N\to R,g:N\to R$是两个函数，则它们的迪利克雷卷积为</p>
+<script type="math/tex; mode=display">
+(f*g)(n)=\sum\limits_{d|n}f(d)h(\dfrac{n}{d})</script><p>命题：若$f(n),g(n)$是积性函数，则$h(n)=(f<em>g)(n)$也是积性函数。<br>定理：$f=g</em>1\Leftrightarrow g=f*\mu$<br>狄利克雷卷积符合交换律、结合律。<br>一些公式</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\epsilon&=\mu*1\\
+id&=\phi*1\\
+\phi&=\mu*id
+\end{align}</script>
       
     </div>
     
@@ -697,7 +713,7 @@ f(n)=\sum\limits_{n|m,m\le N}g(m)\Leftrightarrow g(n)=\sum\limits_{n|m,m\le N}\m
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#积性函数"><span class="nav-number">1.</span> <span class="nav-text">积性函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">2.</span> <span class="nav-text">莫比乌斯反演</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#积性函数"><span class="nav-number">1.</span> <span class="nav-text">积性函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">2.</span> <span class="nav-text">莫比乌斯反演</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#狄利克雷卷积"><span class="nav-number">3.</span> <span class="nav-text">狄利克雷卷积</span></a></li></ol></div>
             
 
           </div>
