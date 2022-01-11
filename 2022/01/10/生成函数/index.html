@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:description" content="生成函数常生成函数 A(x)=\sum\limits_{n\ge0}a_nx^n设$S=\{a_1,a_2,…,a_k\}$，且$a_i$可以取的次数集合为$M_i$，记$F_i(x)=\sum\limits_{u\in M_i}x^u$，则从$S$中取$n$个元素组成集合的方案数$g(n)$的常生成函数$G(x)=\sum\limits_{i\ge 0}g(i)x^i$满足  G(x)=\pro">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:updated_time" content="2022-01-11T10:40:52.064Z">
+<meta property="og:updated_time" content="2022-01-11T12:36:03.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成函数">
 <meta name="twitter:description" content="生成函数常生成函数 A(x)=\sum\limits_{n\ge0}a_nx^n设$S=\{a_1,a_2,…,a_k\}$，且$a_i$可以取的次数集合为$M_i$，记$F_i(x)=\sum\limits_{u\in M_i}x^u$，则从$S$中取$n$个元素组成集合的方案数$g(n)$的常生成函数$G(x)=\sum\limits_{i\ge 0}g(i)x^i$满足  G(x)=\pro">
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  271
+                  284
                 </span>
               
 
@@ -460,10 +460,12 @@ G(x)=\prod\limits_{i=1}^kF_i(x)</script><p>形式幂级数$A(x)$的逆元：$A(x
 A(x)=\sum\limits_{i\ge0}x^i=(1-x)^{-1}\\
 A(x)=\sum\limits_{i\ge0}a^ix^i=(1-ax)^{-1}\\
 A(x)=\sum\limits_{i\ge0}\begin{pmatrix}i+k-1\\i\end{pmatrix}x^i=[(1-x)^k]^{-1}</script><h2 id="指数生成函数"><a href="#指数生成函数" class="headerlink" title="指数生成函数"></a>指数生成函数</h2><script type="math/tex; mode=display">
-A(x)=\sum\limits_{n\ge 0}a_n\dfrac{x^n}{n!}\\
-\exp(x)=\sum\limits_{n\ge 0}\dfrac{x^n}{n!}</script><p>设$S=\{a_1,a_2,…,a_k\}$，且$a_i$可以取的次数集合为$M_i$，记$F_i=\sum\limits_{u\in M_i}\dfrac{x^u}{u!}$，则从$S$中取$n$个元素排成一列的方案数$g(n)$的指数生成函数$G(x)=\sum\limits_{i\ge 0}g(i)\dfrac{x^i}{i!}$，满足</p>
+A(x)=\sum\limits_{n\ge 0}a_n\dfrac{x^n}{n!}</script><p>设$S=\{a_1,a_2,…,a_k\}$，且$a_i$可以取的次数集合为$M_i$，记$F_i=\sum\limits_{u\in M_i}\dfrac{x^u}{u!}$，则从$S$中取$n$个元素排成一列的方案数$g(n)$的指数生成函数$G(x)=\sum\limits_{i\ge 0}g(i)\dfrac{x^i}{i!}$，满足</p>
 <script type="math/tex; mode=display">
-G(x)=\prod\limits_{i=1}^kF_i(x)</script>
+G(x)=\prod\limits_{i=1}^kF_i(x)</script><p>公式：</p>
+<script type="math/tex; mode=display">
+\exp(x)=\sum\limits_{i\ge0}\dfrac{x^i}{i!}\\
+\exp(ax)=\sum\limits_{i\ge0}a^i\dfrac{x^i}{i!}</script>
       
     </div>
     
