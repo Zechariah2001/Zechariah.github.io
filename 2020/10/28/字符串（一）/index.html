@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/06/ebqDGynUwQBzVv2.jpg">
-<meta property="og:updated_time" content="2022-01-20T10:23:34.510Z">
+<meta property="og:updated_time" content="2022-01-25T06:17:26.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串（一）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/06/ebqDGynUwQBzVv2.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.4k
+                  2.5k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  10
+                  11
                 </span>
               
             </div>
@@ -452,12 +452,16 @@
 
       
         <p><img src="https://i.loli.net/2020/11/06/ebqDGynUwQBzVv2.jpg" alt="194ca7a2caa6edc703ccf7980cadac16.jpg"><br><a id="more"></a></p>
-<h1 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h1><p>哈希的基本思想就是将信息量大的字符串压缩成信息量小的表达形式。<br>我们将字符串转化成一个整数，便于进行存储和比较，而且我们要保证对于不同的字符串，转化成的整数也是不同的。<br>那么具体如何转化呢？常用的方法是对每个字符换成一一对应的数字idx(s[i])，哈希模型为Hash(i)=Hash(i-1)<em>p+idx(s[i])，其中p为素数，最终算出的Hash(n)即为字符串的哈希值，我们的任务就是构造哈希函数使得不同字符串的<em>*哈希冲突率</em></em>尽量小。</p>
-<h2 id="常见哈希方法"><a href="#常见哈希方法" class="headerlink" title="常见哈希方法"></a>常见哈希方法</h2><h3 id="自然溢出"><a href="#自然溢出" class="headerlink" title="自然溢出"></a>自然溢出</h3><p>利用unsigned long long 自然溢出，直接用Hash[i]=Hash[i-1]*p+idx(s[i])</p>
-<h3 id="单哈希"><a href="#单哈希" class="headerlink" title="单哈希"></a>单哈希</h3><p>自己规定模数，Hash[i]=(Hash[i-1]*p+idx(s[i]))%mod<br>这里mod也为素数，且mod越大哈希冲突率越小</p>
-<h3 id="双哈希"><a href="#双哈希" class="headerlink" title="双哈希"></a>双哈希</h3><p>我们将同一个字符串用不同的模数哈希两次构成一个pair，这样的话就更加保险。</p>
+<h1 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h1><p>Hash是一种单射函数，将各种东西映射成一个整数值。<br>字符串Hash就是指将字符串映射成一个整数值的方法，通常用于比较字符串是否相等。<br>定义$H(S)$表示将字符串$S$通过方法$H$映射成的整数值。<br>Hash并不能保证当$H(S)=H(T)$时$S=T$，当出现$H(S)=H(T),S\not=T$时我们称出现了哈希冲突，在构造Hash方法的时候要尽量避免哈希冲突。</p>
+<p>我们常说的Hash字符串通常是指将字符串看成若干进制下的整数，然后将整数对一个比较大的质数取模后的结果作为哈希值，称为多项式取模Hash。<br>根据生日悖论，模哈中使用的模数$Mod$最好超过Hash检验次数的平方。</p>
+<h2 id="常见哈希方法"><a href="#常见哈希方法" class="headerlink" title="常见哈希方法"></a>常见哈希方法</h2><h3 id="自然溢出"><a href="#自然溢出" class="headerlink" title="自然溢出"></a>自然溢出</h3><p>利用unsigned long long 自然溢出，直接用Hash[i]=Hash[i-1]*p+idx(s[i])<br>但$2^{64}$本身是一个合数，选择合数作为模数相当于选了很多小模数，若其因子中包含零点就会很容易构造哈希冲突。</p>
+<h3 id="单哈希"><a href="#单哈希" class="headerlink" title="单哈希"></a>单哈希</h3><p>自己规定模数，Hash[i]=(Hash[i-1]*p+idx(s[i]))%mod<br>这里mod也为素数，且mod越大哈希冲突率越小<br>但是单模Hash也有比较容易的方法构造Hash冲突。</p>
+<h3 id="双（多）哈希"><a href="#双（多）哈希" class="headerlink" title="双（多）哈希"></a>双（多）哈希</h3><p>我们将同一个字符串用不同的模数哈希两（多）次构成一个pair，这样的话就更加保险。<br>目前没有已知的比较好的方法构造多模哈希冲突。</p>
 <h2 id="子串的哈希值"><a href="#子串的哈希值" class="headerlink" title="子串的哈希值"></a>子串的哈希值</h2><p>求出一个字符串的哈希值后，其子串的哈希值是可以O(1)求出的。</p>
-<h1 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h1><h2 id="Border"><a href="#Border" class="headerlink" title="Border"></a>Border</h2><p>如果字符串$S$的同长度的前缀和后缀完全相同，即$Prefix[i]=Suffix[i]$则称此前缀（后缀）为一个Boader，有时也把Boader的长度简称Boader。<br>特别地，字符串本身也可以是它的Boader，视具体情况而定。</p>
+<script type="math/tex; mode=display">
+H(S[L,R])=\sum\limits_{i=L}^RS[i]\times B^{R-i}\pmod{Mod}</script><p>令$F(i)=H(Prefix[i])$<br>则</p>
+<script type="math/tex; mode=display">
+H(S[L,R])=F(R)-F(L-1)\times B^{R-L+1}</script><h1 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h1><h2 id="Border"><a href="#Border" class="headerlink" title="Border"></a>Border</h2><p>如果字符串$S$的同长度的前缀和后缀完全相同，即$Prefix[i]=Suffix[i]$则称此前缀（后缀）为一个Boader，有时也把Boader的长度简称Boader。<br>特别地，字符串本身也可以是它的Boader，视具体情况而定。</p>
 <p>对于字符串$S$和正整数$p$，如果有$S[i]=S[i-p]$，对于$p&lt;i\le \left|S\right|$成立，则称$p$为字符串$S$的一个周期。<br>若字符串$\left|S\right|$的周期$p$满足$p|\left|S\right|$，则称$p$为$\left|S\right|$的一个循环节。</p>
 <p>重要性质：</p>
 <ul>
@@ -713,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#哈希"><span class="nav-number">1.</span> <span class="nav-text">哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见哈希方法"><span class="nav-number">1.1.</span> <span class="nav-text">常见哈希方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自然溢出"><span class="nav-number">1.1.1.</span> <span class="nav-text">自然溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单哈希"><span class="nav-number">1.1.2.</span> <span class="nav-text">单哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双哈希"><span class="nav-number">1.1.3.</span> <span class="nav-text">双哈希</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子串的哈希值"><span class="nav-number">1.2.</span> <span class="nav-text">子串的哈希值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KMP"><span class="nav-number">2.</span> <span class="nav-text">KMP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Border"><span class="nav-number">2.1.</span> <span class="nav-text">Border</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next数组"><span class="nav-number">2.2.</span> <span class="nav-text">next数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next的构建"><span class="nav-number">2.3.</span> <span class="nav-text">next的构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.4.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配"><span class="nav-number">2.5.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展KMP"><span class="nav-number">2.6.</span> <span class="nav-text">扩展KMP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trie树"><span class="nav-number">3.</span> <span class="nav-text">Trie树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可持久化Trie树"><span class="nav-number">3.1.</span> <span class="nav-text">可持久化Trie树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AC自动机"><span class="nav-number">4.</span> <span class="nav-text">AC自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">4.1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配-1"><span class="nav-number">4.2.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板（暴力假模板）"><span class="nav-number">4.3.</span> <span class="nav-text">模板（暴力假模板）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步理解AC自动机"><span class="nav-number">4.4.</span> <span class="nav-text">进一步理解AC自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度正确的AC自动机"><span class="nav-number">4.5.</span> <span class="nav-text">复杂度正确的AC自动机</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#哈希"><span class="nav-number">1.</span> <span class="nav-text">哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见哈希方法"><span class="nav-number">1.1.</span> <span class="nav-text">常见哈希方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自然溢出"><span class="nav-number">1.1.1.</span> <span class="nav-text">自然溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单哈希"><span class="nav-number">1.1.2.</span> <span class="nav-text">单哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双（多）哈希"><span class="nav-number">1.1.3.</span> <span class="nav-text">双（多）哈希</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子串的哈希值"><span class="nav-number">1.2.</span> <span class="nav-text">子串的哈希值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KMP"><span class="nav-number">2.</span> <span class="nav-text">KMP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Border"><span class="nav-number">2.1.</span> <span class="nav-text">Border</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next数组"><span class="nav-number">2.2.</span> <span class="nav-text">next数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next的构建"><span class="nav-number">2.3.</span> <span class="nav-text">next的构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.4.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配"><span class="nav-number">2.5.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展KMP"><span class="nav-number">2.6.</span> <span class="nav-text">扩展KMP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trie树"><span class="nav-number">3.</span> <span class="nav-text">Trie树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可持久化Trie树"><span class="nav-number">3.1.</span> <span class="nav-text">可持久化Trie树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AC自动机"><span class="nav-number">4.</span> <span class="nav-text">AC自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">4.1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配-1"><span class="nav-number">4.2.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板（暴力假模板）"><span class="nav-number">4.3.</span> <span class="nav-text">模板（暴力假模板）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步理解AC自动机"><span class="nav-number">4.4.</span> <span class="nav-text">进一步理解AC自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度正确的AC自动机"><span class="nav-number">4.5.</span> <span class="nav-text">复杂度正确的AC自动机</span></a></li></ol></li></ol></div>
             
 
           </div>
