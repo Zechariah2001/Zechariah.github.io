@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:description" content="第一类斯特林数第一类斯特林数为有$k$个轮换的$n$元置换的方案数，表示为$\begin{bmatrix}n\\m\end{bmatrix}$或$c(n,m)$。递推公式  \begin{bmatrix}n\\k\end{bmatrix}=(n-1)\times\begin{bmatrix}n-1\\k\end{bmatrix}+\begin{bmatrix}n-1\\k-1\end{bmatri">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:updated_time" content="2022-02-09T11:04:38.533Z">
+<meta property="og:updated_time" content="2022-02-09T12:24:28.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯特林数">
 <meta name="twitter:description" content="第一类斯特林数第一类斯特林数为有$k$个轮换的$n$元置换的方案数，表示为$\begin{bmatrix}n\\m\end{bmatrix}$或$c(n,m)$。递推公式  \begin{bmatrix}n\\k\end{bmatrix}=(n-1)\times\begin{bmatrix}n-1\\k\end{bmatrix}+\begin{bmatrix}n-1\\k-1\end{bmatri">
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  943
+                  1.1k
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  5
                 </span>
               
             </div>
@@ -480,7 +480,11 @@ x^n=\sum\limits_{k=0}^n\begin{Bmatrix}n\\k\end{Bmatrix}x^{\underline{k}}</script
 \begin{Bmatrix}n\\k\end{Bmatrix}=\sum\limits_{i=0}^k\dfrac{(-1)^i}{i!}\dfrac{(k-i)^n
 }{(k-i)!}=\sum\limits_{i=0}^kA_iB_{k-i}</script><p>明显的卷积形式，用FFT/NTT/MTT求解。</p>
 <p>快速计算一列可以利用生成函数计算，直接求多项式快速幂即可。</p>
-<h1 id="整数分拆"><a href="#整数分拆" class="headerlink" title="整数分拆"></a>整数分拆</h1><p>将$n$个无标号的球分配到$k$个无标号的盒子中的方案数，记为$p(n,k)$。<br>递推公式</p>
+<h1 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h1><p>两类斯特林数之间的联系：</p>
+<script type="math/tex; mode=display">
+x^n=\sum\limits_{k=0}^nS_2(n,k)x^{\underline{k}}即\begin{pmatrix}x^0\\x^1\\x^2\\...\end{pmatrix}=\begin{pmatrix}S_2(0,0)\\S_2(1,0)&S_2(1,1)\\S_2(2,0)&S_2(2,1)&S_2(2,2)\\...&...&...&...\end{pmatrix}\begin{pmatrix}x^{\underline 0}\\x^{\underline 1}\\x^{\underline 2}\\...\end{pmatrix}\\
+x^{\underline{n}}=\sum\limits_{k=0}^nS_1(n,k)x^k即\begin{pmatrix}x^{\underline 0}\\x^{\underline 1}\\x^{\underline 2}\\...\end{pmatrix}=\begin{pmatrix}S_1(0,0)\\S_1(1,0)&S_1(1,1)\\S_1(2,0)&S_1(2,1)&S_1(2,2)\\...&...&...&...\end{pmatrix}\begin{pmatrix}x^0\\x^1\\x^2\\...\end{pmatrix}\\
+\sum_{k\ge0}S_2(n,k)S_1(k,m)=[n=m]即\begin{pmatrix}S_1(0,0)\\S_1(1,0)&S_1(1,1)\\S_1(2,0)&S_1(2,1)&S_1(2,2)\\...&...&...&...\end{pmatrix}\begin{pmatrix}S_2(0,0)\\S_2(1,0)&S_2(1,1)\\S_2(2,0)&S_2(2,1)&S_2(2,2)\\...&...&...&...\end{pmatrix}=I</script><h1 id="整数分拆"><a href="#整数分拆" class="headerlink" title="整数分拆"></a>整数分拆</h1><p>将$n$个无标号的球分配到$k$个无标号的盒子中的方案数，记为$p(n,k)$。<br>递推公式</p>
 <script type="math/tex; mode=display">
 p(n,k)=p(n-1,k-1)+p(n-k,k)</script><p>关于$n$的常生成函数</p>
 <script type="math/tex; mode=display">
@@ -718,7 +722,7 @@ p(n)=\sum_{k\ge1}(-1)^{k-1}(p(n-\dfrac{3k^2-k}{2})+p(n-\dfrac{3k^2+k}{2}))</scri
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一类斯特林数"><span class="nav-number">1.</span> <span class="nav-text">第一类斯特林数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二类斯特林数"><span class="nav-number">2.</span> <span class="nav-text">第二类斯特林数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整数分拆"><span class="nav-number">3.</span> <span class="nav-text">整数分拆</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一类斯特林数"><span class="nav-number">1.</span> <span class="nav-text">第一类斯特林数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二类斯特林数"><span class="nav-number">2.</span> <span class="nav-text">第二类斯特林数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#斯特林反演"><span class="nav-number">3.</span> <span class="nav-text">斯特林反演</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整数分拆"><span class="nav-number">4.</span> <span class="nav-text">整数分拆</span></a></li></ol></div>
             
 
           </div>
