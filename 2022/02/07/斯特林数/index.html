@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:description" content="第一类斯特林数第一类斯特林数为有$k$个轮换的$n$元置换的方案数，表示为$\begin{bmatrix}n\\m\end{bmatrix}$或$c(n,m)$。递推公式  \begin{bmatrix}n\\k\end{bmatrix}=(n-1)\times\begin{bmatrix}n-1\\k\end{bmatrix}+\begin{bmatrix}n-1\\k-1\end{bmatri">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:updated_time" content="2022-02-09T12:25:16.111Z">
+<meta property="og:updated_time" content="2022-02-09T12:27:19.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯特林数">
 <meta name="twitter:description" content="第一类斯特林数第一类斯特林数为有$k$个轮换的$n$元置换的方案数，表示为$\begin{bmatrix}n\\m\end{bmatrix}$或$c(n,m)$。递推公式  \begin{bmatrix}n\\k\end{bmatrix}=(n-1)\times\begin{bmatrix}n-1\\k\end{bmatrix}+\begin{bmatrix}n-1\\k-1\end{bmatri">
@@ -484,7 +484,8 @@ x^n=\sum\limits_{k=0}^n\begin{Bmatrix}n\\k\end{Bmatrix}x^{\underline{k}}</script
 <script type="math/tex; mode=display">
 x^n=\sum\limits_{k=0}^nS_2(n,k)x^{\underline{k}}即\begin{pmatrix}x^0\\x^1\\x^2\\...\end{pmatrix}=\begin{pmatrix}S_2(0,0)\\S_2(1,0)&S_2(1,1)\\S_2(2,0)&S_2(2,1)&S_2(2,2)\\...&...&...&...\end{pmatrix}\begin{pmatrix}x^{\underline 0}\\x^{\underline 1}\\x^{\underline 2}\\...\end{pmatrix}\\
 x^{\underline{n}}=\sum\limits_{k=0}^nS_1(n,k)x^k即\begin{pmatrix}x^{\underline 0}\\x^{\underline 1}\\x^{\underline 2}\\...\end{pmatrix}=\begin{pmatrix}S_1(0,0)\\S_1(1,0)&S_1(1,1)\\S_1(2,0)&S_1(2,1)&S_1(2,2)\\...&...&...&...\end{pmatrix}\begin{pmatrix}x^0\\x^1\\x^2\\...\end{pmatrix}\\
-\sum_{k\ge0}S_2(n,k)S_1(k,m)=[n=m]即\begin{pmatrix}S_1(0,0)\\S_1(1,0)&S_1(1,1)\\S_1(2,0)&S_1(2,1)&S_1(2,2)\\...&...&...&...\end{pmatrix}\begin{pmatrix}S_2(0,0)\\S_2(1,0)&S_2(1,1)\\S_2(2,0)&S_2(2,1)&S_2(2,2)\\...&...&...&...\end{pmatrix}=I</script><h1 id="整数分拆"><a href="#整数分拆" class="headerlink" title="整数分拆"></a>整数分拆</h1><p>将$n$个无标号的球分配到$k$个无标号的盒子中的方案数，记为$p(n,k)$。<br>递推公式</p>
+\sum_{k\ge0}S_2(n,k)S_1(k,m)=[n=m]即S_1\times S_2=S_2\times S_1=I</script><p>斯特林反演：<br>如果数列$f,g$满足$f_n=\sum\limits_{i=0}^nS_2(n,i)g_i$，则$g_n=\sum\limits_{i=0}^nS_1(n,i)f_i$，反之也成立。</p>
+<h1 id="整数分拆"><a href="#整数分拆" class="headerlink" title="整数分拆"></a>整数分拆</h1><p>将$n$个无标号的球分配到$k$个无标号的盒子中的方案数，记为$p(n,k)$。<br>递推公式</p>
 <script type="math/tex; mode=display">
 p(n,k)=p(n-1,k-1)+p(n-k,k)</script><p>关于$n$的常生成函数</p>
 <script type="math/tex; mode=display">
