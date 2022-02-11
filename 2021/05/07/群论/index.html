@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2021/05/07/ut2KiwoMUqx7zXm.jpg">
-<meta property="og:updated_time" content="2022-02-11T07:03:13.034Z">
+<meta property="og:updated_time" content="2022-02-11T11:55:50.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="群论">
 <meta name="twitter:image" content="https://i.loli.net/2021/05/07/ut2KiwoMUqx7zXm.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  641
+                  900
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  4
                 </span>
               
             </div>
@@ -485,17 +485,27 @@ a_{q_1} & a_{q_2} & ... & a_{q_n}
 \begin{pmatrix}
 a_1 & a_2 & ... & a_{m - 1} & a_m\\
 a_2 & a_3 & ... & a_m & a_1
-\end{pmatrix}</script><p>若两个循环置换不含有相同的元素，称他们是<strong>不相交</strong>的，有：<br>任意一个置换都可以分解为若干个不相交的循环置换的乘积，如</p>
+\end{pmatrix}</script><p>若两个循环置换不含有相同的元素，称他们是<strong>不相交</strong>的，有：<br>任意一个置换都可以分解为若干个不相交的循环置换的复合，如</p>
 <script type="math/tex; mode=display">
 \begin{pmatrix}
 a_1 & a_2 & a_3 & a_4 & a_5\\
 a_3 & a_1 & a_2 & a_5 & a_4
 \end{pmatrix}=
-(a_1\;a_3\;a_2)\circ(a_4\;a_5)</script><h2 id="Burnside引理"><a href="#Burnside引理" class="headerlink" title="Burnside引理"></a>Burnside引理</h2><p>设$A$和$B$为有限集合，$X=B^A$。$G$是$A$上的置换群，则：</p>
+(a_1\;a_3\;a_2)\circ(a_4\;a_5)</script><p>设$g_i=(a_i,a_{i+1},…,a_m,a_1,a_2,…,a_{i-1})$，定义$G=\{g_0,g_1,…,g_{n-1}\}$称为正$n$边形的旋转群。</p>
+<h3 id="群对集合的作用"><a href="#群对集合的作用" class="headerlink" title="群对集合的作用"></a>群对集合的作用</h3><p>设$(G,\circ)$是一个群，其单位元为$e$，$X$是一个集合，群$G$对集合$X$的一个作用是一个$G\times X$到$X$的映射$f$，满足：</p>
+<ul>
+<li>$\forall x\in X.f(e,x)=x$</li>
+<li>$\forall g,h\in G.f(h\circ g,x)=f(h,f(g,x))$</li>
+</ul>
+<p>简记$f(g,x)$为$g_f(x)$。<br>$X$上的$G$关系：$R_G=\{(x,y)|x,y\in X\land(\exists g\in G.y=g(x))\}$<br>$R_G$是等价关系，它将$X$划分为若干个等价类，每个等价类称为$X$上的一个$G$-轨道。</p>
+<h2 id="Burnside引理"><a href="#Burnside引理" class="headerlink" title="Burnside引理"></a>Burnside引理</h2><p>设有限群$(G,\circ)$作用在有限集$X$上，则$X$上的$G$-轨道数量为</p>
 <script type="math/tex; mode=display">
-\left|X/G\right|=\dfrac{1}{\left|G\right|}\sum\limits_{g\in G}\left|X^g\right|</script><p>其中</p>
+N=\dfrac{1}{\left|G\right|}\sum\limits_{g\in G}\Psi(g)\\
+\Psi(g)=\sum\limits_{x\in X}[g(x)=x]</script><p>例如对于正$n$边形的旋转群$g$，有</p>
 <script type="math/tex; mode=display">
-X^g=\{x|x\in X,g(x)=x\}</script>
+\Psi(g_i)=m^{g_i环数量}=m^{(n,i)}</script><p>一个经典问题是给一个$n$元环的节点涂上颜色，有$m$种颜色，通过旋转相同的涂色方案为同一个方案，求方案数。</p>
+<script type="math/tex; mode=display">
+N=\dfrac{1}{n}\sum\limits_{i=0}^{n-1}m^{(n,i)}=\dfrac{1}{n}\sum\limits_{d|n}\phi(d)m^{\frac{n}{d}}</script>
       
     </div>
     
@@ -723,7 +733,7 @@ X^g=\{x|x\in X,g(x)=x\}</script>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#等价类"><span class="nav-number">1.</span> <span class="nav-text">等价类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#置换群"><span class="nav-number">2.</span> <span class="nav-text">置换群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#群的定义"><span class="nav-number">2.1.</span> <span class="nav-text">群的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#置换"><span class="nav-number">2.2.</span> <span class="nav-text">置换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#置换的定义"><span class="nav-number">2.2.1.</span> <span class="nav-text">置换的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#置换的复合"><span class="nav-number">2.2.2.</span> <span class="nav-text">置换的复合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#置换群-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">置换群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环置换"><span class="nav-number">2.2.4.</span> <span class="nav-text">循环置换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Burnside引理"><span class="nav-number">2.3.</span> <span class="nav-text">Burnside引理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#等价类"><span class="nav-number">1.</span> <span class="nav-text">等价类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#置换群"><span class="nav-number">2.</span> <span class="nav-text">置换群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#群的定义"><span class="nav-number">2.1.</span> <span class="nav-text">群的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#置换"><span class="nav-number">2.2.</span> <span class="nav-text">置换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#置换的定义"><span class="nav-number">2.2.1.</span> <span class="nav-text">置换的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#置换的复合"><span class="nav-number">2.2.2.</span> <span class="nav-text">置换的复合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#置换群-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">置换群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环置换"><span class="nav-number">2.2.4.</span> <span class="nav-text">循环置换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#群对集合的作用"><span class="nav-number">2.2.5.</span> <span class="nav-text">群对集合的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Burnside引理"><span class="nav-number">2.3.</span> <span class="nav-text">Burnside引理</span></a></li></ol></li></ol></div>
             
 
           </div>
