@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="数学,幂级数,">
 
 
 
@@ -95,13 +95,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zechariah&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/数论/index.html">
+<meta name="description" content="集合幂级数给每个$S\in 2^A$赋予一个权值$w(S)$，则定义它关联的集合幂级数为  f(x)=\sum_{S\in 2^A}w(S)x^{id(S)}与、或、异或卷积定义两个形式幂级数$f(x)=\sum\limits_{i=0}^{2^n-1}a_ix^i,g(x)=\sum\limits_{i=0}^{2^n-1}b_ix^i$的积为$h(x)=\sum\limits_{i=0}^{2">
+<meta name="keywords" content="数学,幂级数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速沃尔什变换">
+<meta property="og:url" content="http://yoursite.com/2022/02/17/快速沃尔什变换/index.html">
 <meta property="og:site_name" content="Zechariah&#39;s blog">
+<meta property="og:description" content="集合幂级数给每个$S\in 2^A$赋予一个权值$w(S)$，则定义它关联的集合幂级数为  f(x)=\sum_{S\in 2^A}w(S)x^{id(S)}与、或、异或卷积定义两个形式幂级数$f(x)=\sum\limits_{i=0}^{2^n-1}a_ix^i,g(x)=\sum\limits_{i=0}^{2^n-1}b_ix^i$的积为$h(x)=\sum\limits_{i=0}^{2">
 <meta property="og:locale" content="zh_Hans">
+<meta property="og:updated_time" content="2022-02-18T05:53:42.879Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zechariah&#39;s blog">
+<meta name="twitter:title" content="快速沃尔什变换">
+<meta name="twitter:description" content="集合幂级数给每个$S\in 2^A$赋予一个权值$w(S)$，则定义它关联的集合幂级数为  f(x)=\sum_{S\in 2^A}w(S)x^{id(S)}与、或、异或卷积定义两个形式幂级数$f(x)=\sum\limits_{i=0}^{2^n-1}a_ix^i,g(x)=\sum\limits_{i=0}^{2^n-1}b_ix^i$的积为$h(x)=\sum\limits_{i=0}^{2">
 
 
 
@@ -131,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/数论/">
+  <link rel="canonical" href="http://yoursite.com/2022/02/17/快速沃尔什变换/">
 
 
 
 
 
-  <title>Tag: 数论 | Zechariah's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>快速沃尔什变换 | Zechariah's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -156,7 +161,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <!--<a href="https://github.com/Zechariah2001"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>-->
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,78 +297,273 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>数论<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/快速沃尔什变换/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zechariah">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zechariah's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/11/18/数学（二）/" itemprop="url">
-              
-                <span itemprop="name">数学（二）</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">快速沃尔什变换</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-18T14:12:20+08:00" content="2020-11-18">
-          11-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-02-17T12:55:45+08:00">
+                2022-02-17
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小结/" itemprop="url" rel="index">
+                    <span itemprop="name">小结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/02/17/快速沃尔什变换/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2022/02/17/快速沃尔什变换/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2022/02/17/快速沃尔什变换/" class="leancloud_visitors" data-flag-title="快速沃尔什变换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/10/28/数学（一）/" itemprop="url">
-              
-                <span itemprop="name">数学（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-28T16:42:00+08:00" content="2020-10-28">
-          10-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="集合幂级数"><a href="#集合幂级数" class="headerlink" title="集合幂级数"></a>集合幂级数</h1><p>给每个$S\in 2^A$赋予一个权值$w(S)$，则定义它关联的集合幂级数为</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{S\in 2^A}w(S)x^{id(S)}</script><h2 id="与、或、异或卷积"><a href="#与、或、异或卷积" class="headerlink" title="与、或、异或卷积"></a>与、或、异或卷积</h2><p>定义两个形式幂级数$f(x)=\sum\limits_{i=0}^{2^n-1}a_ix^i,g(x)=\sum\limits_{i=0}^{2^n-1}b_ix^i$的积为$h(x)=\sum\limits_{i=0}^{2^n-1}c_ix^i$，其中$c_k=\sum_{i\otimes j=k}a_ib_j$，$\otimes$可以为$\&amp;,|,\oplus$中的一种，分别称为对应的积为与、或、异或卷积。</p>
+<h2 id="快速沃尔什变换（FMT-FWT）"><a href="#快速沃尔什变换（FMT-FWT）" class="headerlink" title="快速沃尔什变换（FMT/FWT）"></a>快速沃尔什变换（FMT/FWT）</h2><h3 id="与卷积"><a href="#与卷积" class="headerlink" title="与卷积"></a>与卷积</h3><p>求解$C_k=\sum\limits_{i\&amp;j=k}A_iB_j$<br>考虑找到一种操作$\mathcal{F}(A)$，使得其满足如下条件：</p>
+<ul>
+<li>$\mathcal{F}(A)$存在逆变换$\mathcal{F}^{-1}(\mathcal{F}(A))=A$</li>
+<li>$\mathcal{F}(A)_i\times \mathcal{F}(B)_i=\mathcal{F}(C)_i$</li>
+<li>$\mathcal{F}(A+B)=\mathcal{F}(A)+\mathcal{F}(B)$</li>
+</ul>
+<p>将$A,B,C$分成$[0,2^{n-1}-1],[2^{n-1},2^n-1]$两部分，分别记作$A_0,A_1,B_0,B_1,C_0,C_1$。<br>很明显有</p>
+<script type="math/tex; mode=display">
+\mathcal{F}(C_0)=\mathcal{F}(A_0)\times \mathcal{F}(B_0)+\mathcal{F}(A_0)\times \mathcal{F}(B_1)+\mathcal{F}(A_1)\times \mathcal{F}(B_0)\\
+\mathcal{F}(C_1)=\mathcal{F}(A_1)\times \mathcal{F}(B_1)</script><p>这里$\times$表示每一位相乘，进一步化简得</p>
+<script type="math/tex; mode=display">
+(\mathcal{F}(C_0)+\mathcal{F}(C_1))=(\mathcal{F}(A_0)+\mathcal{F}(A_1))\times(\mathcal{F}(B_0)+\mathcal{F}(B_1))\\
+\mathcal{F}(C_1)=\mathcal{F}(A_1)\times \mathcal{F}(B_1)</script><p>所以$\mathcal{F}$操作可以为</p>
+<script type="math/tex; mode=display">
+\mathcal{F}(C)=(\mathcal{F}(C_0)+\mathcal{F}(C_1),\mathcal{F}(C_1))\\
+\mathcal{F}^{-1}(C)=(\mathcal{F}^{-1}(C_0)-\mathcal{F}^{-1}(C_1),\mathcal{F}^{-1}(C_1))</script><p>正逆变换复杂度都是$O(n2^n)$。</p>
+<h3 id="或卷积"><a href="#或卷积" class="headerlink" title="或卷积"></a>或卷积</h3><p>求解$C_k=\sum\limits_{i|j-k}A_iB_j$<br>和$\&amp;$卷积相同的思路，需要满足</p>
+<script type="math/tex; mode=display">
+\mathcal{F}(C_0)=\mathcal{F}(A_0)\times \mathcal{F}(B_0)\\
+(\mathcal{F}(C_0)+\mathcal{F}(C_1))=(\mathcal{F}(A_0)+\mathcal{F}(A_1))\times(\mathcal{F}(B_0)+\mathcal{F}(B_1))</script><p>得到的$\mathcal{F}$操作为</p>
+<script type="math/tex; mode=display">
+\mathcal{F}(C)=(\mathcal{F}(C_0), \mathcal{F}(C_1)+\mathcal{F}(C_0))\\
+\mathcal{F}^{-1}(C)=(\mathcal{F}^{-1}(C_0),\mathcal{F}^{-1}(C_1)-\mathcal{F}^{-1}(C_0))</script><h3 id="异或卷积"><a href="#异或卷积" class="headerlink" title="异或卷积"></a>异或卷积</h3><p>求解$C_k=\sum\limits_{i\oplus j=k}A_iB_j$<br>和$\&amp;$卷积相同的思路，需要满足</p>
+<script type="math/tex; mode=display">
+\mathcal{F}(C_0)=\mathcal{F}(A_0)\times \mathcal{F}(B_0)+\mathcal{F}(A_1)\times \mathcal{F}(B_1)\\
+\mathcal{F}(C_1)=\mathcal{F}(A_0)\times \mathcal{F}(B_1)+\mathcal{F}(A_1)\times \mathcal{F}(B_0)</script><p>即</p>
+<script type="math/tex; mode=display">
+(\mathcal{F}(C_0)+\mathcal{F}(C_1))=(\mathcal{F}(A_0)+\mathcal{F}(A_1))\times(\mathcal{F}(B_0)+\mathcal{F}(B_1))\\
+(\mathcal{F}(C_0)-\mathcal{F}(C_1))=(\mathcal{F}(A_0)-\mathcal{F}(A_1))\times(\mathcal{F}(B_0)-\mathcal{F}(B_1))</script><p>得到的$\mathcal{F}$操作为</p>
+<script type="math/tex; mode=display">
+\mathcal{F}(C)=(\mathcal{F}(C_0)+\mathcal{F}(C_1),\mathcal{F}(C_0)-\mathcal{F}(C_1))\\
+\mathcal{F}^{-1}(C)=\dfrac{1}{2}(\mathcal{F}^{-1}(C_0)+\mathcal{F}^{-1}(C_1),\mathcal{F}^{-1}(C_0)-\mathcal{F}^{-1}(C_1))</script><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>找到一种关于集合幂级数的可逆变换$\mathcal{F}$，使得$h(x)=f(x)g(x)$满足<br>$[x^i]\mathcal{F}(h(x))=[x^i]\mathcal{F}(f(x))\cdot[x^i]\mathcal{F}(g(x))\;(0\le i&lt;2^n)$</p>
+<p>假设$f(x)=f_0(x)+x^{2^{n-1}}f_1(x)$，则$\mathcal{F}$为：</p>
+<ul>
+<li>与卷积：$\mathcal{F}(f)=(\mathcal{F}(f_0)+\mathcal{F}(f_1))+x^{2^{n-1}}\mathcal{F}(f_1)$</li>
+<li>或卷积：$\mathcal{F}(f)=\mathcal{F}(f_0)+x^{2^{n-1}}(\mathcal{F}(f_0)+\mathcal{F}(f_1))$</li>
+<li>异或卷积：$\mathcal{F}(f)=(\mathcal{F}(f_0)+\mathcal{F}(f_1))+x^{2^{n-1]}}(\mathcal{F}(f_0)-\mathcal{F}(f_1))$</li>
+</ul>
+<p>它们的逆运算：</p>
+<ul>
+<li>与卷积：$\mathcal{F}^{-1}(f)=(\mathcal{F}^{-1}(f_0)-\mathcal{F}^{-1}(f_1))+x^{2^{n-1}}\mathcal{F}(f_1)$</li>
+<li>或卷积：$\mathcal{F}^{-1}(f)=\mathcal{F}^{-1}(f_0)+x^{2^{n-1}}(\mathcal{F}^{-1}(f_1)-\mathcal{F}^{-1}(f_0))$</li>
+<li>异或卷积：$\mathcal{F}^{-1}(f)=\dfrac{1}{2}((\mathcal{F}^{-1}(f_0)+\mathcal{F}^{-1}(f_1))+x^{2^{n-1}}(\mathcal{F}^{-1}(f_0)-\mathcal{F}^{-1}(f_1)))$</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Or_FWT</span>(<span class="title">T</span> <span class="title">f</span>[], <span class="title">int</span> <span class="title">n</span>, <span class="title">int</span> <span class="title">opt</span>) &#123;</span><span class="comment">//opt=1为正变换</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>, mid = <span class="number">1</span>; len &lt;= n; len &lt;&lt;= <span class="number">1</span>, mid &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += len) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; mid; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (opt == <span class="number">1</span>)f[i + j + mid] = ADD(f[i + j + mid], f[i + j]);</span><br><span class="line">                <span class="keyword">else</span> f[i + j + mid] = DEL(f[i + j + mid], f[i + j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">And_FWT</span>(<span class="title">T</span> <span class="title">f</span>[], <span class="title">int</span> <span class="title">n</span>, <span class="title">int</span> <span class="title">opt</span>) &#123;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>, mid = <span class="number">1</span>; len &lt;= n; len &lt;&lt;= <span class="number">1</span>, mid &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += len) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; mid; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (opt == <span class="number">1</span>)f[i + j] = ADD(f[i + j], f[i + j + mid]);</span><br><span class="line">                <span class="keyword">else</span> f[i + j] = DEL(f[i + j], f[i + j + mid]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Xor_FWT</span>(<span class="title">T</span> <span class="title">f</span>[], <span class="title">int</span> <span class="title">n</span>, <span class="title">int</span> <span class="title">opt</span>) &#123;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>, mid = <span class="number">1</span>; len &lt;= n; len &lt;&lt;= <span class="number">1</span>, mid &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += len) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; mid; ++j) &#123;</span><br><span class="line">                f[i + j] = ADD(f[i + j], f[i + j + mid]);</span><br><span class="line">                f[i + j + mid] = DEL(f[i + j], ADD(f[i + j + mid], f[i + j + mid]));</span><br><span class="line">                <span class="keyword">if</span> (opt != <span class="number">1</span>) &#123;</span><br><span class="line">                    (f[i + j] *= mod + <span class="number">1</span> &gt;&gt; <span class="number">1</span>) %= mod;</span><br><span class="line">                    (f[i + j + mid] *= mod + <span class="number">1</span> &gt;&gt; <span class="number">1</span>) %= mod;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+    
+    
+    
+    <div>
+          
+            
+          
+    </div>
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+          
+            <a href="/tags/幂级数/" rel="tag"><i class="fa fa-tag"></i> 幂级数</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/07/斯特林数/" rel="next" title="斯特林数">
+                <i class="fa fa-chevron-left"></i> 斯特林数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -371,6 +571,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -391,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -497,6 +713,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#集合幂级数"><span class="nav-number">1.</span> <span class="nav-text">集合幂级数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与、或、异或卷积"><span class="nav-number">1.1.</span> <span class="nav-text">与、或、异或卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速沃尔什变换（FMT-FWT）"><span class="nav-number">1.2.</span> <span class="nav-text">快速沃尔什变换（FMT/FWT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与卷积"><span class="nav-number">1.2.1.</span> <span class="nav-text">与卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#或卷积"><span class="nav-number">1.2.2.</span> <span class="nav-text">或卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异或卷积"><span class="nav-number">1.2.3.</span> <span class="nav-text">异或卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
       
         <div class="back-to-top">
@@ -722,6 +954,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
