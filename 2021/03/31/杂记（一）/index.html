@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2021/03/31/9YbX6ZLRQ7gH8c5.jpg">
-<meta property="og:updated_time" content="2022-02-09T12:49:33.353Z">
+<meta property="og:updated_time" content="2022-04-06T03:07:53.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杂记（一）">
 <meta name="twitter:image" content="https://i.loli.net/2021/03/31/9YbX6ZLRQ7gH8c5.jpg">
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.9k
+                  2k
                 </span>
               
 
@@ -493,7 +493,8 @@ x_n=x_1-(a_1+a_2+...+a_{n-1}-(n-1)w)
 V-E+F = 2</script><p>其中V为顶点数，E为边数，F为面数</p>
 <h1 id="组合数中的几个公式"><a href="#组合数中的几个公式" class="headerlink" title="组合数中的几个公式"></a>组合数中的几个公式</h1><script type="math/tex; mode=display">
 k\begin{pmatrix}n\\k\end{pmatrix}=n\begin{pmatrix}n-1\\k-1\end{pmatrix}\\
-\sum\limits_{i=0}^n\begin{pmatrix}n\\i\end{pmatrix}(k-1)^{n-i}=k^n</script>
+\sum\limits_{i=0}^n\begin{pmatrix}n\\i\end{pmatrix}(k-1)^{n-i}=k^n</script><h1 id="随机排列"><a href="#随机排列" class="headerlink" title="随机排列"></a>随机排列</h1><p>在随机排列的时候用random_shuffle是可以被卡掉的。<br>使用如下方式排列<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">mt19937 <span class="title">rng</span><span class="params">(chrono::steady_clock::now().time_since_epoch().count())</span></span>;</span><br><span class="line">shuffle(a + <span class="number">1</span>, a + n + <span class="number">1</span>, rng);</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -713,7 +714,7 @@ k\begin{pmatrix}n\\k\end{pmatrix}=n\begin{pmatrix}n-1\\k-1\end{pmatrix}\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UVA1451-平均值-Average"><span class="nav-number">1.</span> <span class="nav-text">UVA1451 平均值 Average</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.2.</span> <span class="nav-text">Solution 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code"><span class="nav-number">1.2.1.</span> <span class="nav-text">Source Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七夕祭"><span class="nav-number">2.</span> <span class="nav-text">七夕祭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description-1"><span class="nav-number">2.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">Source Code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几何学中的欧拉公式"><span class="nav-number">3.</span> <span class="nav-text">几何学中的欧拉公式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合数中的几个公式"><span class="nav-number">4.</span> <span class="nav-text">组合数中的几个公式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UVA1451-平均值-Average"><span class="nav-number">1.</span> <span class="nav-text">UVA1451 平均值 Average</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.2.</span> <span class="nav-text">Solution 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code"><span class="nav-number">1.2.1.</span> <span class="nav-text">Source Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七夕祭"><span class="nav-number">2.</span> <span class="nav-text">七夕祭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description-1"><span class="nav-number">2.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">Source Code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几何学中的欧拉公式"><span class="nav-number">3.</span> <span class="nav-text">几何学中的欧拉公式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合数中的几个公式"><span class="nav-number">4.</span> <span class="nav-text">组合数中的几个公式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机排列"><span class="nav-number">5.</span> <span class="nav-text">随机排列</span></a></li></ol></div>
             
 
           </div>
