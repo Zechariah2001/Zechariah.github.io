@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:description" content="集合幂级数给每个$S\in 2^A$赋予一个权值$w(S)$，则定义它关联的集合幂级数为  f(x)=\sum_{S\in 2^A}w(S)x^{id(S)}与、或、异或卷积定义两个形式幂级数$f(x)=\sum\limits_{i=0}^{2^n-1}a_ix^i,g(x)=\sum\limits_{i=0}^{2^n-1}b_ix^i$的积为$h(x)=\sum\limits_{i=0}^{2">
 <meta property="og:locale" content="zh_Hans">
-<meta property="og:updated_time" content="2022-04-14T02:42:14.492Z">
+<meta property="og:updated_time" content="2022-04-15T16:21:12.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速沃尔什变换">
 <meta name="twitter:description" content="集合幂级数给每个$S\in 2^A$赋予一个权值$w(S)$，则定义它关联的集合幂级数为  f(x)=\sum_{S\in 2^A}w(S)x^{id(S)}与、或、异或卷积定义两个形式幂级数$f(x)=\sum\limits_{i=0}^{2^n-1}a_ix^i,g(x)=\sum\limits_{i=0}^{2^n-1}b_ix^i$的积为$h(x)=\sum\limits_{i=0}^{2">
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.6k
+                  1.9k
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  8
+                  10
                 </span>
               
             </div>
@@ -556,7 +556,11 @@ p_1*q_1
 <script type="math/tex; mode=display">
 \mathcal{F}(C_0)=(\mathcal{F}(p_0)\times\mathcal{F}(q_0)+\mathcal{F}(p_1)\times\mathcal{F}(q_1))+x^{2^{L-1}}(\mathcal{F}(p_0)\times\mathcal{F}(q_0)-\mathcal{F}(p_1)\times\mathcal{F}(q_1))\\
 \mathcal{F}(C_1)=(\mathcal{F}(p_1)\times\mathcal{F}(q_0)+\mathcal{F}(p_0)\times\mathcal{F}(q_1))+x^{2^{L-1}}(\mathcal{F}(p_1)\times\mathcal{F}(q_0)-\mathcal{F}(p_0)\times\mathcal{F}(q_1))</script><p>最后将$\mathcal{F}(C_0)$和$\mathcal{F}(C_1)$用IFWT还原即可。</p>
-
+<h1 id="子集卷积（FST）"><a href="#子集卷积（FST）" class="headerlink" title="子集卷积（FST）"></a>子集卷积（FST）</h1><p>设集合幂级数$f(x)=\sum\limits_{i=0}^{2^{n-1}}a_ix^i,g(x)=\sum\limits_{i=0}^{2^{n-1}}b_ix^i$，定义卷积$h(x)=f(x)g(x)$，其中$h(x)=\sum\limits_{i=0}^{2^n}c_ix^i$满足</p>
+<script type="math/tex; mode=display">
+c_k=\sum\limits_{i|j=k,i\&j=0}a_ib_j</script><p>将$f(x)$扩展为二元多项式$f(x,y)=\sum\limits_{i=0}^{2^n-1}a_ix^iy^{\text{cnt}(i)}=\sum\limits_{i=0}^{2^n-1}\sum\limits_{j=0}^{n}a_{i,j}x^iy^j$，则以上表达式改写为$h(x)=\sum\limits_{i=0}^{2^n-1}\sum\limits_{j=0}^nc_{i,j}x^iy^j$，其中</p>
+<script type="math/tex; mode=display">
+c_{i,j}=\sum\limits_{u|v=i,p+q=j}a_{u,p}b_{v,q}=\sum\limits_{p+q=j}\sum\limits_{u|v=i}a_{u,p}b_{v,q}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">FST</span>(<span class="title">T</span> <span class="title">ans</span>[], <span class="title">T</span> <span class="title">a</span>[], <span class="title">T</span> <span class="title">b</span>[], <span class="title">int</span> <span class="title">m</span>, <span class="title">int</span> <span class="title">n</span>) &#123;</span></span><br><span class="line">    <span class="comment">//结果的幂次在2^m内</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)f[cnt[i]][i] = a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)g[cnt[i]][i] = b[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        Or_FWT(f[i], n, <span class="number">1</span>);</span><br><span class="line">        Or_FWT(g[i], n, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i + j &lt;= m; ++j) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; ++k) &#123;</span><br><span class="line">                h[i + j][k] = ADD(h[i + j][k], f[i][k] * g[j][k] % mod);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        Or_FWT(h[i], n, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        ans[i] = h[cnt[i]][i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -780,7 +784,7 @@ p_1*q_1
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#集合幂级数"><span class="nav-number">1.</span> <span class="nav-text">集合幂级数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与、或、异或卷积"><span class="nav-number">1.1.</span> <span class="nav-text">与、或、异或卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速沃尔什变换（FMT-FWT）"><span class="nav-number">1.2.</span> <span class="nav-text">快速沃尔什变换（FMT/FWT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与卷积"><span class="nav-number">1.2.1.</span> <span class="nav-text">与卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#或卷积"><span class="nav-number">1.2.2.</span> <span class="nav-text">或卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异或卷积"><span class="nav-number">1.2.3.</span> <span class="nav-text">异或卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分治FWT"><span class="nav-number">1.3.</span> <span class="nav-text">分治FWT</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#集合幂级数"><span class="nav-number">1.</span> <span class="nav-text">集合幂级数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与、或、异或卷积"><span class="nav-number">1.1.</span> <span class="nav-text">与、或、异或卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速沃尔什变换（FMT-FWT）"><span class="nav-number">1.2.</span> <span class="nav-text">快速沃尔什变换（FMT/FWT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与卷积"><span class="nav-number">1.2.1.</span> <span class="nav-text">与卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#或卷积"><span class="nav-number">1.2.2.</span> <span class="nav-text">或卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异或卷积"><span class="nav-number">1.2.3.</span> <span class="nav-text">异或卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分治FWT"><span class="nav-number">1.3.</span> <span class="nav-text">分治FWT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子集卷积（FST）"><span class="nav-number">2.</span> <span class="nav-text">子集卷积（FST）</span></a></li></ol></div>
             
 
           </div>
