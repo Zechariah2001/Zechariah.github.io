@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2020/11/12/5cNKXTxZWpBLGDF.jpg">
-<meta property="og:updated_time" content="2021-01-13T10:51:15.266Z">
+<meta property="og:updated_time" content="2022-04-21T06:23:11.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/12/5cNKXTxZWpBLGDF.jpg">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.4k
+                  2k
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  9
                 </span>
               
             </div>
@@ -452,6 +452,19 @@
 
       
         <p><img src="https://i.loli.net/2020/11/12/5cNKXTxZWpBLGDF.jpg" alt="8202bbc4fd236726eab9a919e9f34a9d.jpg"><br><a id="more"></a></p>
+<h1 id="马拉车（Manacher）与回文自动机（PAM）"><a href="#马拉车（Manacher）与回文自动机（PAM）" class="headerlink" title="马拉车（Manacher）与回文自动机（PAM）"></a>马拉车（Manacher）与回文自动机（PAM）</h1><h2 id="回文串"><a href="#回文串" class="headerlink" title="回文串"></a>回文串</h2><p>反转串$R(S)$：一个字符串$S=S[1]S[2]…S[n]$，其反转串$R(S)=S[n]…S[2]S[1]$<br>回文串：满足$S=R(S)$的字符串<br>回文中心：奇数长度的回文串为$\dfrac{n+1}{2}$，偶数长度的回文串为$\dfrac{n}{2}$和$\dfrac{n}{2}+1$之间<br>回文半径：回文中心到左右端点的距离。<br>回文与Border：回文串$S$的回文前（后）缀等价于其Border。</p>
+<h2 id="Manacher"><a href="#Manacher" class="headerlink" title="Manacher"></a>Manacher</h2><p>首先为了避免讨论奇偶长度，将字符串$S$的首尾以及相邻两字符之间插入一个$S$字符集以外的字符$*$，得到<br>$S^{*}=*S[1]*S[2]*…*S[n]*$。<br>在$S^*$上重新定义极长回文串为长度为奇数且最大，且满足$S=R(S)$的字符串。</p>
+<p>定义$Len[i]$为以$i$为回文中心的最大回文半径，为Manacher的求解目标。<br>定义最右回文串$P$为所有已求得的回文串中，右端点最大的回文串。<br>设已经求出$Len[1],Len[2],…,Len[i-1]$，此时的$P$为$S^*[L,R]$，回文中心为$p$，对$i$和$p,R$的关系进行讨论：</p>
+<ul>
+<li>$i&gt;R$，则从$i$处向左右暴力扩展，得到回文半径$Len[i]$以及新的$P$；</li>
+<li>$i\le R$，这就意味着$i\in(p,R]$，因此在$[L,p)$可以找到$i$的对称位置$j=2p-i$，而$Len[j]$是已经求过的，所以继续根据$Len[j]$的情况讨论：<ul>
+<li>$Len[j]&lt; j-L+1$，说明以$j$为回文中心的极长回文串并没有超出$P$的范围，所以$Len[i]=Len[j]$；</li>
+<li>$Len[j]\ge j-L+1$，说明以$j$为回文中心的极长回文串可能会超出$P$的范围，而根据$p$对称过去的部分在$R$后面，并没有考察过，因此$Len[i]$首先继承了$Len[j]$中不超过$P$的范围，即$j-L+1$这部分，然后从这个状态继续向左右暴力扩展。</li>
+</ul>
+</li>
+</ul>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>对于$i&gt;R$和$Len[j]\ge j-L+1$的情况，暴力扩展操作每进行一次都会使得$R$增加，而$R$的最大值为$\left|S^*\right|$，因此总复杂度为$O(\left|S^*\right|)$。</p>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>首先是可以求$Len[i]$，即每个位置的回文半径。<br>可以求本质不同的回文子串的数量，因为本质不同的回文子串只会在$R$增大的时候增加，所以可以得到一个性质：<br>对于长度为$n$的字符串$S$，其本质不同的回文子串个数最多只有$n$个。</p>
 <h1 id="后缀数组（SA）"><a href="#后缀数组（SA）" class="headerlink" title="后缀数组（SA）"></a>后缀数组（SA）</h1><p>首先需要了解几个字符串中的基本定义：</p>
 <ul>
 <li>子串：字符串s中任意截取的一段字符串t称t为s的子串</li>
@@ -709,7 +722,7 @@ h[i]\ge h[i-1]-1</script><p>我们设k=sa[rk[i-1]-1]，显然LCP(rk[i-1],rk[k])=
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀数组（SA）"><span class="nav-number">1.</span> <span class="nav-text">后缀数组（SA）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SA求法"><span class="nav-number">1.1.</span> <span class="nav-text">SA求法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP求法"><span class="nav-number">1.2.</span> <span class="nav-text">LCP求法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LCP-Lemma"><span class="nav-number">1.2.1.</span> <span class="nav-text">LCP Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCP-Theorem"><span class="nav-number">1.2.2.</span> <span class="nav-text">LCP Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Height数组"><span class="nav-number">1.2.3.</span> <span class="nav-text">Height数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求LCP"><span class="nav-number">1.2.4.</span> <span class="nav-text">求LCP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀自动机、后缀树（SAM）"><span class="nav-number">2.</span> <span class="nav-text">后缀自动机、后缀树（SAM）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#马拉车（Manacher）与回文自动机（PAM）"><span class="nav-number">1.</span> <span class="nav-text">马拉车（Manacher）与回文自动机（PAM）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回文串"><span class="nav-number">1.1.</span> <span class="nav-text">回文串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manacher"><span class="nav-number">1.2.</span> <span class="nav-text">Manacher</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">1.2.1.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用途"><span class="nav-number">1.2.2.</span> <span class="nav-text">用途</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀数组（SA）"><span class="nav-number">2.</span> <span class="nav-text">后缀数组（SA）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SA求法"><span class="nav-number">2.1.</span> <span class="nav-text">SA求法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP求法"><span class="nav-number">2.2.</span> <span class="nav-text">LCP求法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LCP-Lemma"><span class="nav-number">2.2.1.</span> <span class="nav-text">LCP Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCP-Theorem"><span class="nav-number">2.2.2.</span> <span class="nav-text">LCP Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Height数组"><span class="nav-number">2.2.3.</span> <span class="nav-text">Height数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求LCP"><span class="nav-number">2.2.4.</span> <span class="nav-text">求LCP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀自动机、后缀树（SAM）"><span class="nav-number">3.</span> <span class="nav-text">后缀自动机、后缀树（SAM）</span></a></li></ol></div>
             
 
           </div>
