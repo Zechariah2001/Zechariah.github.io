@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="数据结构,线段树,树状数组,可持久化,树链剖分,">
+  <meta name="keywords" content="线段树,数据结构,树状数组,可持久化,树链剖分,">
 
 
 
@@ -95,7 +95,7 @@
 
 
 
-<meta name="keywords" content="数据结构,线段树,树状数组,可持久化,树链剖分">
+<meta name="keywords" content="线段树,数据结构,树状数组,可持久化,树链剖分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构（二）">
 <meta property="og:url" content="http://yoursite.com/2020/10/22/数据结构（二）/index.html">
@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1577236179,2299906822&fm=26&gp=0.jpg">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/pic/20236.png">
 <meta property="og:image" content="https://i.loli.net/2020/11/12/1TnHqdYQwFPgBmr.png">
-<meta property="og:updated_time" content="2021-05-10T11:05:31.394Z">
+<meta property="og:updated_time" content="2022-05-29T02:54:11.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构（二）">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/22/hBkruSdw3oDzEqQ.jpg">
@@ -467,7 +467,7 @@
 <p>另外，对a的<strong>差分数组</strong>用树状数组可以实现a数组的区间修改和单点查询，只用update(l, delta),update(r+1, -delta)就行了。</p>
 <h2 id="树状数组的区间修改、区间查询"><a href="#树状数组的区间修改、区间查询" class="headerlink" title="树状数组的区间修改、区间查询"></a>树状数组的区间修改、区间查询</h2><p>树状数组也可以实现区间修改、区间查询。<br>考察差分数组表示前缀和，即</p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^{n}a_i=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{i}d_j=\sum\limits_{i=1}^{n}(n-i+1)\cdot d_i=(n+1)\sum\limits_{i=1}^{n}\cdot d_i-\sum\limits_{i=1}^{n}i\cdot d_i</script><p>前面的部分非常好维护，直接维护差分数组，后面的部分需要再维护一个$x\cdot d_x$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, ll data)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k = x;</span><br><span class="line">	<span class="keyword">while</span> (x &lt;= n) &#123;</span><br><span class="line">		c[x] += data;<span class="comment">//维护差分数组</span></span><br><span class="line">		c2[x] += data * k<span class="comment">//维护x*d[x]</span></span><br><span class="line">		x += lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> k = x;</span><br><span class="line">	<span class="keyword">while</span> (x) &#123;</span><br><span class="line">		ans += (k + <span class="number">1</span>) * c[x] - c2[x];</span><br><span class="line">		x -= lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+\sum\limits_{i=1}^{n}a_i=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{i}d_j=\sum\limits_{i=1}^{n}(n-i+1)\cdot d_i=(n+1)\sum\limits_{i=1}^{n}\cdot d_i-\sum\limits_{i=1}^{n}i\cdot d_i</script><p>前面的部分非常好维护，直接维护差分数组，后面的部分需要再维护一个$x\cdot d_x$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, ll data)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k = x;</span><br><span class="line">	<span class="keyword">while</span> (x &lt;= n) &#123;</span><br><span class="line">		c[x] += data;<span class="comment">//维护差分数组</span></span><br><span class="line">		c2[x] += data * k;<span class="comment">//维护x*d[x]</span></span><br><span class="line">		x += lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> k = x;</span><br><span class="line">	<span class="keyword">while</span> (x) &#123;</span><br><span class="line">		ans += (k + <span class="number">1</span>) * c[x] - c2[x];</span><br><span class="line">		x -= lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h1><p>线段树是一种非常常用的数据结构，且变化极多，这里先说最基础的线段树。<br>线段树，顾名思义，将区间分成一段一段，来达到区间操作的目的，那么如何分段呢？<br>考虑将区间[l,r]分成两半[l,mid]、[mid+1,r]，这样相当于将区间对半分，那么很显然，对每个区间都这样分段，最终的段数为$O(n\log n)$。<br>当我们进行区间操作时，从最大的区间开始，以此去找对应要操作的区间：</p>
 <ul>
 <li>[l,r]包含在当前区间的左区间内，就接着往左区间走</li>
@@ -510,9 +510,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
-          
             <a href="/tags/线段树/" rel="tag"><i class="fa fa-tag"></i> 线段树</a>
+          
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
           
             <a href="/tags/树状数组/" rel="tag"><i class="fa fa-tag"></i> 树状数组</a>
           
@@ -625,7 +625,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
