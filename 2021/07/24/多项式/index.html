@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Zechariah&#39;s blog">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://i.loli.net/2021/07/24/LDiVk9fcmQ65zrd.jpg">
-<meta property="og:updated_time" content="2022-02-07T16:30:30.247Z">
+<meta property="og:updated_time" content="2022-12-28T03:18:25.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多项式">
 <meta name="twitter:image" content="https://i.loli.net/2021/07/24/LDiVk9fcmQ65zrd.jpg">
@@ -590,7 +590,7 @@ x\equiv x_3+k_3AB\pmod{ABC}</script><figure class="highlight cpp"><table><tr><td
 <p>其他运算也是类似的先分别求答案再合并。</p>
 <h1 id="拉格朗日插值"><a href="#拉格朗日插值" class="headerlink" title="拉格朗日插值"></a>拉格朗日插值</h1><h2 id="拉格朗日插值定理"><a href="#拉格朗日插值定理" class="headerlink" title="拉格朗日插值定理"></a>拉格朗日插值定理</h2><p>$n$个点值$(x_i,y_i),(1\le i\le n)$，满足$x_i\not=x_j,(i\not=j)$，它们唯一确定一个$n-1$次多项式$f(x)$</p>
 <script type="math/tex; mode=display">
-f(x)=\sum\limits_{i=1}^ny_i\prod\limits_{j\not=i}\dfrac{x-x_j   }{x_i-x_j}</script><p>如果已知$x_i=i$的连续$n$个点值，就可以$O(n)$地求出任意一个点值$f(x_0)$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//求出f(x)，已知x=0~n的点值</span></span><br><span class="line">    <span class="comment">//处理分母，这里逆元可以递推，偷懒就快速幂</span></span><br><span class="line">    muln[<span class="number">1</span>] = mod - <span class="number">1</span>, mulp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        muln[i] = (mod - muln[i - <span class="number">1</span>] * ks(i, mod - <span class="number">2</span>) % mod) % mod;</span><br><span class="line">        mulp[i] = mulp[i - <span class="number">1</span>] * ksm(i,mod - <span class="number">2</span>) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//处理分子</span></span><br><span class="line">    L[<span class="number">0</span>] = x, R[n] = x - n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        L[i] = L[i - <span class="number">1</span>] * ((x - i + mod) % mod) % mod;</span><br><span class="line">        R[n - i] = R[n - i + <span class="number">1</span>] * ((x - n + i + mod) % mod) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">            (ans += f[i] * R[<span class="number">1</span>] % mod * muln[n] % mod) %= mod;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == n)</span><br><span class="line">            (ans += f[i] * L[n - <span class="number">1</span>] % mod * mulp[n] % mod) %= mod;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            (ans += f[i] * L[i - <span class="number">1</span>] % mod * R[i + <span class="number">1</span>] % mod * muln[n - i] % mod * mulp[i] % mod) %= mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+f(x)=\sum\limits_{i=1}^ny_i\prod\limits_{j\not=i}\dfrac{x-x_j   }{x_i-x_j}</script><p>如果已知$x_i=i$的连续$n$个点值，就可以$O(n)$地求出任意一个点值$f(x_0)$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//求出f(x)，已知x=0~n的点值</span></span><br><span class="line">    <span class="comment">//处理分母，这里逆元可以递推，偷懒就快速幂</span></span><br><span class="line">    muln[<span class="number">1</span>] = mod - <span class="number">1</span>, mulp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        muln[i] = (mod - muln[i - <span class="number">1</span>] * ksm(i, mod - <span class="number">2</span>) % mod) % mod;</span><br><span class="line">        mulp[i] = mulp[i - <span class="number">1</span>] * ksm(i,mod - <span class="number">2</span>) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//处理分子</span></span><br><span class="line">    L[<span class="number">0</span>] = x, R[n] = x - n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        L[i] = L[i - <span class="number">1</span>] * ((x - i + mod) % mod) % mod;</span><br><span class="line">        R[n - i] = R[n - i + <span class="number">1</span>] * ((x - n + i + mod) % mod) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">            (ans += f[i] * R[<span class="number">1</span>] % mod * muln[n] % mod) %= mod;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == n)</span><br><span class="line">            (ans += f[i] * L[n - <span class="number">1</span>] % mod * mulp[n] % mod) %= mod;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            (ans += f[i] * L[i - <span class="number">1</span>] % mod * R[i + <span class="number">1</span>] % mod * muln[n - i] % mod * mulp[i] % mod) %= mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="牛顿迭代"><a href="#牛顿迭代" class="headerlink" title="牛顿迭代"></a>牛顿迭代</h1><p>给定多项式$g(x)$，求满足$g(f(x))=0$的形式幂级数$f(x)$。<br>牛顿迭代用于求解$f(x)$前$n$项。</p>
 <ul>
 <li>$n=1$时，解$g(a_0)=0$得到$a_0$</li>
@@ -738,7 +738,7 @@ f(x)\equiv f_0(x)(1-\ln(f_0(x))+h(x))\pmod{x^{2n}}</script><figure class="highli
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -749,7 +749,7 @@ f(x)\equiv f_0(x)(1-\ln(f_0(x))+h(x))\pmod{x^{2n}}</script><figure class="highli
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -759,7 +759,7 @@ f(x)\equiv f_0(x)(1-\ln(f_0(x))+h(x))\pmod{x^{2n}}</script><figure class="highli
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -862,7 +862,7 @@ f(x)\equiv f_0(x)(1-\ln(f_0(x))+h(x))\pmod{x^{2n}}</script><figure class="highli
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
