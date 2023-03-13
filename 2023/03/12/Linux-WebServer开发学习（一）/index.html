@@ -104,7 +104,7 @@
 <meta property="og:description" content="GCC工作流程及编译选项 GCC工作流程      gcc编译选项 说明     -E 预处理指定的源文件，不进行编译   -S 编译指定的源文件，不进行汇编   -c 编译、汇编指定的源文件，不进行链接   -o [file1] [file2] / [file1] -o [file2] 将文件file2编译成可执行文件file1   -I [directory] 指定include文件的搜索目录">
 <meta property="og:locale" content="zh_Hans">
 <meta property="og:image" content="https://s2.loli.net/2023/03/12/Ch96fBbU8cvrweP.png">
-<meta property="og:updated_time" content="2023-03-12T09:37:00.515Z">
+<meta property="og:updated_time" content="2023-03-13T07:41:47.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux WebServer开发学习（一）">
 <meta name="twitter:description" content="GCC工作流程及编译选项 GCC工作流程      gcc编译选项 说明     -E 预处理指定的源文件，不进行编译   -S 编译指定的源文件，不进行汇编   -c 编译、汇编指定的源文件，不进行链接   -o [file1] [file2] / [file1] -o [file2] 将文件file2编译成可执行文件file1   -I [directory] 指定include文件的搜索目录">
@@ -417,7 +417,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  717
+                  1.3k
                 </span>
               
 
@@ -433,7 +433,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  4
                 </span>
               
             </div>
@@ -560,6 +560,57 @@
 <h2 id="动态库的使用"><a href="#动态库的使用" class="headerlink" title="动态库的使用"></a>动态库的使用</h2><p>与静态库不同，动态库不会将库中的代码打包到可执行文件中，而是保存动态库的相关信息，在程序运行时将动态库加载到内存里。<br>系统加载可执行代码的时候能够知道依赖的库名，但还需要知道绝对路径，该路径需要从系统的动态载入器获取。对于elf格式的可执行程序，是由ld-linux.so来完成的，搜索顺序为 DT_RPATH段$\to$环境变量LD_LIBRARY_PATH$\to$/etc/ld.so.cache文件列表$\to$/lib/,/usr/lib/，找到库文件后将其载入内存。  </p>
 <p>添加环境变量的命令为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:动态库所在的绝对路径</span><br></pre></td></tr></table></figure></p>
 <p>临时添加环境变量只需在终端中输入命令，用户级永久化需要在根目录下.bashrc文件最后添加以上命令，然后输入以下指令以启用配置。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">source</span> <span class="selector-class">.bashrc</span></span><br><span class="line">或</span><br><span class="line">. <span class="selector-class">.bashrc</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Makefile文件命名和规则"><a href="#Makefile文件命名和规则" class="headerlink" title="Makefile文件命名和规则"></a>Makefile文件命名和规则</h2><h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><p>makefile或者Makefile</p>
+<h3 id="Makefile规则"><a href="#Makefile规则" class="headerlink" title="Makefile规则"></a>Makefile规则</h3><ul>
+<li><p>一个Makefile文件中可以有一个或者多个规则</p>
+<ul>
+<li>目标：最终要生成的文件（伪目标除外）</li>
+<li>依赖：生成目标所需要的文件或目标</li>
+<li>命令：通过执行命令对依赖操作生成目标（命令前必须Tab缩进）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">目标 ...: 依赖 ...</span><br><span class="line">    命令（Shell 命令）</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Makefile中的其它规则一般都是为第一条规则服务的</p>
+</li>
+<li>命令在执行前，需要先检查规则中的依赖是否存在<ul>
+<li>如果存在，执行命令</li>
+<li>如果不存在，向下检查其他规则，检查有没有一个规则是用来生成该依赖的，如果找到了，则执行该规则中的命令</li>
+</ul>
+</li>
+<li><p>检测更新，在执行规则中的命令时，会比较目标和依赖文件的时间</p>
+<ul>
+<li>如果依赖的时间比目标的时间晚，需要重新生成目标</li>
+<li>如果依赖的时间比目标的时间早，目标不需要更新，对应规则中的命令不需要被执行</li>
+</ul>
+</li>
+<li><p>自定义变量<br>变量名=变量值</p>
+</li>
+<li>预定义变量（只能在规则的命令中使用）<br>AR：归档维护程序的名称，默认值为ar<br>CC：C编译器的名称，默认值为cc<br>CXX：C++编译器的名称，默认值为g++<br>\$@：目标的完整名称<br>\$&lt;：第一个依赖文件的名称<br>\$^：所有的依赖文件</li>
+<li>获取变量的值<br>$(变量名)</li>
+<li>模式匹配<br>对于目标和依赖，使用%通配符表示一个字符串，如%.o:%.c</li>
+<li>伪目标<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.PHONY:目标</span><br><span class="line">声明目标为伪目标</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li><p>$(wildcard PATTERN…)</p>
+<ul>
+<li>功能：获取指定目录下指定类型的文件列表</li>
+<li>参数：PATTERN指的是某个或多个目录下的对应的某种类型的文件，如果有多个目录，一般使用空格间隔</li>
+<li>返回：得到的若干个文件的文件列表，文件名之间使用空格间隔</li>
+<li>示例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(wildcard *.c ./sub/*.c)</span><br><span class="line">返回值格式：a.c b.c c.c</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>$(patsubst \<pattern\>,\<replacement\>,\<text\>)</text\></replacement\></pattern\></p>
+<ul>
+<li>功能：查找\<text\>中的单词（单词以“空格”、“Tab”、“回车”或“换行”分隔）是否符合模式\<pattern\>，如果匹配的话，则以\<replacement\>替换</replacement\></pattern\></text\></li>
+<li>\<pattern\>可以包括通配符%，表示任意长度的字符串。如果\<replacement\>中也包含%，那么两个%的值将相同。</replacement\></pattern\></li>
+<li>返回：函数返回被替换过后的字符串</li>
+<li>示例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(patsubst %.c, %.o, x.c bar.c)</span><br><span class="line">返回值格式：x.o bar.o</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -784,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCC工作流程及编译选项"><span class="nav-number">1.</span> <span class="nav-text">GCC工作流程及编译选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态库制作和使用"><span class="nav-number">2.</span> <span class="nav-text">静态库制作和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规则"><span class="nav-number">2.1.</span> <span class="nav-text">命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态库的制作"><span class="nav-number">2.2.</span> <span class="nav-text">静态库的制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态库的使用"><span class="nav-number">2.3.</span> <span class="nav-text">静态库的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态库的制作和使用"><span class="nav-number">3.</span> <span class="nav-text">动态库的制作和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规则-1"><span class="nav-number">3.1.</span> <span class="nav-text">命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态库的制作"><span class="nav-number">3.2.</span> <span class="nav-text">动态库的制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态库的使用"><span class="nav-number">3.3.</span> <span class="nav-text">动态库的使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCC工作流程及编译选项"><span class="nav-number">1.</span> <span class="nav-text">GCC工作流程及编译选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态库制作和使用"><span class="nav-number">2.</span> <span class="nav-text">静态库制作和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规则"><span class="nav-number">2.1.</span> <span class="nav-text">命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态库的制作"><span class="nav-number">2.2.</span> <span class="nav-text">静态库的制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态库的使用"><span class="nav-number">2.3.</span> <span class="nav-text">静态库的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态库的制作和使用"><span class="nav-number">3.</span> <span class="nav-text">动态库的制作和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规则-1"><span class="nav-number">3.1.</span> <span class="nav-text">命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态库的制作"><span class="nav-number">3.2.</span> <span class="nav-text">动态库的制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态库的使用"><span class="nav-number">3.3.</span> <span class="nav-text">动态库的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile文件命名和规则"><span class="nav-number">3.4.</span> <span class="nav-text">Makefile文件命名和规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件命名"><span class="nav-number">3.4.1.</span> <span class="nav-text">文件命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Makefile规则"><span class="nav-number">3.4.2.</span> <span class="nav-text">Makefile规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">3.4.3.</span> <span class="nav-text">函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
